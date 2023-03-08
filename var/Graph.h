@@ -7,20 +7,26 @@
 
 
 #include <vector>
-#include "../algorithm/Word.h"
+#include "Word.h"
 
 class Graph {
 private:
     int size = 0;
     vector<Word> nodes;
     vector<vector<int>> edges;
+public:
+    Graph();
+
+    Graph(Graph const &o);
 
     void addEdge(int u, int v);
 
-public:
-    void addNode(Word &word);
+    // 第二个参数表示是否自动增加边的关系
+    void addNode(Word &word, bool autoEdges = true);
 
     int getSize() const;
+
+    Word &getNode(int pos);
 
     const vector<Word> &getNodes() const;
 

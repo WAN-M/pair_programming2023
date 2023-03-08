@@ -10,11 +10,15 @@
 
 class Cycle : public Algorithm {
 public:
+    explicit Cycle(Graph &graph, Parameter &parameter) : Algorithm(graph, parameter) {
+
+    }
+
     void allWordlist() override;
 
-    vector <string> longestWords() override;
+    vector<string> &longestWords() override;
 
-    vector<string> & longestAlphas() override;
+    vector<string> &longestAlphas() override;
 };
 
 

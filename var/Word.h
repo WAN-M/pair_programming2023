@@ -16,6 +16,8 @@ private:
     char last;
     int len;
 public:
+    Word();
+
     Word(char *word);
 
     const string &getWord() const;

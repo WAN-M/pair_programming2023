@@ -5,6 +5,13 @@
 #include "Word.h"
 #include <cstring>
 
+Word::Word() {
+    this->word = "";
+    this->first = 0;
+    this->len = 0;
+    this->last = 0;
+}
+
 Word::Word(char *word) {
     this->word = word;
     this->first = word[0];

@@ -5,13 +5,13 @@
 #include "Cycle.h"
 
 void Cycle::allWordlist() {
-    return 0;
+//    return 0;
 }
 
-vector <string> Cycle::longestWords() {
-    return 0;
+vector<string> & Cycle::longestWords() {
+//    return 0;
 }
 
 vector<string> & Cycle::longestAlphas() {
-    return 0;
+//    return 0;
 }

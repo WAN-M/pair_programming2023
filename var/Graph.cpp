@@ -4,17 +4,31 @@
 
 #include "Graph.h"
 
-void Graph::addNode(Word &word) {
+Graph::Graph() {}
+
+Graph::Graph(const Graph &o) {
+    this->size = o.size;
+    this->nodes.assign(o.getNodes().begin(), o.getNodes().end());
+    for (int i = 0; i < size; i++) {
+        vector<int> v;
+        v.assign(o.getEdges().at(i).begin(), o.getEdges().at(i).end());
+        this->edges.push_back(v);
+    }
+}
+
+void Graph::addNode(Word &word, bool autoEdges) {
     this->edges.emplace_back();
 
-    for (int i = 0; i < this->nodes.size(); i++) {
-        int newPos = (int) this->nodes.size();
-        Word node = this->nodes.at(i);
-        if (node.getFirst() == word.getLast()) {
-            addEdge(newPos, i);
-        }
-        if (node.getLast() == word.getFirst()) {
-            addEdge(i, newPos);
+    if (autoEdges) {
+        for (int i = 0; i < this->nodes.size(); i++) {
+            int newPos = (int) this->nodes.size();
+            Word node = this->nodes.at(i);
+            if (node.getFirst() == word.getLast()) {
+                addEdge(newPos, i);
+            }
+            if (node.getLast() == word.getFirst()) {
+                addEdge(i, newPos);
+            }
         }
     }
 
@@ -30,10 +44,16 @@ int Graph::getSize() const {
     return size;
 }
 
-const vector<Word> &Graph::getNodes() const {
-    return nodes;
+Word &Graph::getNode(int pos) {
+    return nodes.at(pos);
 }
 
 const vector<vector<int>> &Graph::getEdges() const {
     return edges;
 }
+
+const vector<Word> &Graph::getNodes() const {
+    return nodes;
+}
+
+

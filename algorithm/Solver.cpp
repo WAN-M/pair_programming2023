@@ -58,12 +58,12 @@ void Solver::solve() {
     Algorithm *algorithm;
     if (!hasCycle(this->graph)) {
         // 无环图
-        algorithm = new NoCycle();
+        algorithm = new NoCycle(this->graph, this->parameter);
     } else {
         if (!this->parameter.isR()) {
             // TODO 未指定-r但有环
         }
-        algorithm = new Cycle();
+        algorithm = new Cycle(this->graph, this->parameter);
     }
 
     if (this->parameter.isN()) {
@@ -77,4 +77,4 @@ void Solver::solve() {
     delete algorithm;
 }
 
-Solver::Solver(const Parameter &parameter) : parameter(parameter) {}
+Solver::Solver(Parameter &parameter) : parameter(parameter) {}

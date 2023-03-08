@@ -6,18 +6,18 @@
 #define WORDLIST_SOLVER_H
 
 #include <vector>
-#include "Word.h"
+#include "../var/Word.h"
 #include "../var/Graph.h"
 #include "../var/Parameter.h"
 
 using namespace std;
 class Solver {
 private:
-    Parameter parameter;
+    Parameter &parameter;
     Graph graph;
 
 public:
-    explicit Solver(const Parameter &parameter);
+    explicit Solver(Parameter &parameter);
 
     void solve();
     void newWord(char *word);

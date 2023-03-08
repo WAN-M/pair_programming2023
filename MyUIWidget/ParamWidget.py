@@ -2,7 +2,7 @@ import traceback
 
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QCheckBox, QLineEdit, QSpacerItem, QSizePolicy, QToolBar
 from PyQt5.QtCore import Qt
-from resources import add_break_png, del_break_png
+from resources import select_png, selected_png
 from tools import base64ToQIcon
 
 
@@ -33,7 +33,7 @@ class ParamWidget(QWidget):
         self.button = self.check.addAction(self.objectName())
         self.button.triggered.connect(self.__changeIcon)
         self.__press = False
-        self.button.setIcon(base64ToQIcon(add_break_png))
+        self.button.setIcon(base64ToQIcon(select_png))
 
         button_container.addWidget(self.check)
         button_container.addItem(QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
@@ -75,7 +75,7 @@ class ParamWidget(QWidget):
     def __changeIcon(self):
         if self.__press:
             self.__press = False
-            self.button.setIcon(base64ToQIcon(add_break_png))
+            self.button.setIcon(base64ToQIcon(select_png))
         else:
             self.__press = True
-            self.button.setIcon(base64ToQIcon(del_break_png))
+            self.button.setIcon(base64ToQIcon(selected_png))

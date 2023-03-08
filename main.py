@@ -2,8 +2,11 @@ import sys
 import traceback
 
 from PyQt5.QtWidgets import QApplication
+
+from MyUIWidget.ImportExportWindow import ImportExportWindow
 from MyUIWidget.MainWindow import MainWindow
 from qss import qss
+import qrc
 
 def new_app():
     app = QApplication(sys.argv)
@@ -13,7 +16,8 @@ def new_app():
     # cal = cpu_thread("cpu")
     # cal.setDaemon(True)
     # cal.start()
-
+    ImportExportWindow.import_window = ImportExportWindow("import")
+    ImportExportWindow.export_window = ImportExportWindow("export")
     # 初始化主窗口
     window = MainWindow()
     window.show()

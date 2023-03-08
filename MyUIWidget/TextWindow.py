@@ -9,6 +9,7 @@ class TextWindow(QSplitter):
     def __init__(self):
         try:
             super(TextWindow, self).__init__(Qt.Qt.Vertical)
+            self.setObjectName("text_window")
             self.__initUI()
 
         except Exception as e:

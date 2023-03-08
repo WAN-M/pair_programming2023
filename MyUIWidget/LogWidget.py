@@ -2,7 +2,8 @@ import traceback
 
 from PyQt5 import Qt
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QTextEdit
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QTextEdit, QLabel
+
 
 class LogWidget(QWidget):
     def __init__(self):
@@ -20,17 +21,18 @@ class LogWidget(QWidget):
         log_container.setContentsMargins(0, 0, 0, 0)  # 外边隙0
         log_container.setSpacing(0)  # 控件间间隙为0
 
-        self.__log_title = QLineEdit()
-        self.__log_title.setText("Log")
-        self.__log_title.setFocusPolicy(Qt.Qt.NoFocus)
+        self.__log_title = QLabel()
+        self.__log_title.setText(" Log")
+        # self.__log_title.setFocusPolicy(Qt.Qt.NoFocus)
         log_container.addWidget(self.__log_title)
 
         self.__log_text = QTextEdit()
-        self.__log_text.setObjectName("log")
+        self.__log_text.setObjectName("log_text")
         self.__log_text.setFont(QFont("Microsoft YaHei", 11))
         log_container.addWidget(self.__log_text)
 
         self.__log_cmd = QLineEdit()
+        self.__log_cmd.setObjectName("cmd")
         log_container.addWidget(self.__log_cmd)
 
         self.setLayout(log_container)

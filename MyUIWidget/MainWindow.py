@@ -3,7 +3,7 @@ import traceback
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QCursor
-from PyQt5.QtWidgets import QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame
 
 from MyUIWidget.MenuBar import MenuBar
 from MyUIWidget.RunBar import RunBar
@@ -12,11 +12,11 @@ from MyUIWidget.ContentWindow import ContentWindow
 sys.setrecursionlimit(10000)
 PADDING = 1
 
-class MainWindow(QWidget):
+class MainWindow(QFrame):
 
     def __init__(self):
         try:
-            super().__init__()
+            super(MainWindow, self).__init__()
             self.__initUI() # 填充界面元素
             self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowSystemMenuHint) # 自身无边框
             self.SHADOW_WIDTH = 0 # 自身边框距离
@@ -33,7 +33,7 @@ class MainWindow(QWidget):
     def __initUI(self):
         # 最外层垂直布局
         main_container = QVBoxLayout()
-        main_container.setContentsMargins(5, 5, 5, 5) # 外边隙
+        main_container.setContentsMargins(0, 0, 0, 0) # 外边隙
         main_container.setSpacing(0) # 控件间间隙
 
         # 菜单栏 水平按钮

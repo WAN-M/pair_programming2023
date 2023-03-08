@@ -1,6 +1,10 @@
 qss="""
-#main_back_ground,
-#open_save
+#main_back_ground
+{
+    border:1px solid grey;
+    background-color:rgb(66, 66, 66);
+}
+#import_export
 {
     background-color:rgb(66, 66, 66);
 }
@@ -102,7 +106,7 @@ QScrollBar::sub-line:horizontal
     background: transparent;
 }
 /* menu bar */
-#left_menu_bar, #right_menu_bar
+#right_menu_bar
 {
     border-width: 1px;
     border-color: rgb(100, 100, 100);
@@ -118,12 +122,12 @@ QScrollBar::sub-line:horizontal
     padding: 4px;
 }
 
-#debug_bar
+#run_bar
 {
 
     border-width: 1px;
     border-color: rgb(100, 100, 100);
-    border-style: solid none none none;
+    border-style: solid none solid none;
     background: transparent;
     padding: 3px;
     
@@ -158,42 +162,14 @@ QToolButton:hover
     background-color: rgb(75, 110, 174)
 }
 
-#version_bar
-{
-    border-width: 1px;
-    border-color: rgb(100, 100, 100);
-    border-style: solid none none none;
-    background: transparent;
-    color: rgb(220, 220, 220);
-}
-
-#side_bar, #log_bar
-{
-    border-style: none;
-    background: transparent;
-    color: rgb(220, 220, 220);
-}
-
-#left_menu_bar::item, #right_menu_bar::item, #side_bar::item, #log_bar::item, #icon_bar::item, #icon_bar_2::item
+#right_menu_bar::item, #icon_bar::item, #icon_bar_2::item
 {
     background-color: rgb(66, 66, 66);
 }
 
-#left_menu_bar::item:selected ,#debug_bar::item:selected, #right_menu_bar::item:selected
+#run_bar::item:selected, #right_menu_bar::item:selected
 {
     background-color: rgb(75, 110, 174);
-}
-
-#side_bar::item:selected, #log_bar::item:selected
-{
-    background-color: rgb(100, 100, 100);
-}
-
-#side_bar_view
-{
-    border-width: 1px;
-    border-color: rgb(100, 100, 100);
-    border-style: solid solid solid none;
 }
 
 QSplitter::handle
@@ -207,6 +183,13 @@ QLineEdit
     background-color: transparent;
     border: 2px solid rgb(100, 100, 100);
     color: rgb(220, 220, 220);
+}
+
+#input_box, #cmd
+{
+    font-family: 'Microsoft YaHei';
+    background-color: rgb(40, 40, 40);
+    color: rgb(180, 180, 180);
 }
 
 QTabWidget::pane
@@ -224,7 +207,7 @@ QTabBar::tab
     color: rgb(220, 220, 220);
 }
 
-#tp_r_sp
+#text_window, #controller_window
 {
     border: 1px solid rgb(100, 100, 100);
 }
@@ -274,7 +257,7 @@ QTreeView::branch:has-children:!has-siblings:closed,
 QTreeView::branch:closed:has-children:has-siblings
 {
     border-image: none;
-    image: url(':/icon/branch_closed');
+    image: url(':/icon/branch_closed.png');
 }
 
 QTreeView::branch:open:has-children:!has-siblings,
@@ -392,9 +375,11 @@ QHeaderView::section
     height: 35;
 }
 
-#order_list_view::item
+#controller_window
 {
-    padding: 5;
+    border-width: 1px;
+    border-color: rgb(100, 100, 100);
+    border-style: solid solid solid solid;
 }
 
 QTableView

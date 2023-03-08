@@ -1,12 +1,13 @@
 import traceback
 
-from PyQt5.QtWidgets import QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QSpacerItem, QSizePolicy
 from MyUIWidget.ParamWidget import ParamWidget
 
-class ControllerWindow(QWidget):
+class ControllerWindow(QFrame):
     def __init__(self):
         try:
             super(ControllerWindow, self).__init__()
+            self.setObjectName("controller_window")
             self.__initUI()
             self.__qss()
 
@@ -25,6 +26,8 @@ class ControllerWindow(QWidget):
         main_container.addWidget(ParamWidget("-h 指定首字母", True))
         main_container.addWidget(ParamWidget("-t 指定尾字母", True))
         main_container.addWidget(ParamWidget("-j 禁用首字母", True))
+
+        main_container.addItem(QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Expanding))
 
         self.setLayout(main_container)
 

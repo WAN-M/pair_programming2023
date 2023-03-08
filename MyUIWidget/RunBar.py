@@ -2,8 +2,10 @@ import traceback
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QSizePolicy, QToolBar
+
+from MyUIWidget.ImportExportWindow import ImportExportWindow
 from tools import base64ToQIcon
-from resources import compile_png, add_to_queue_png, run_png
+from resources import open_file_png, run_png, save_file_png
 
 class RunBar(QToolBar):
     def __init__(self):
@@ -18,10 +20,12 @@ class RunBar(QToolBar):
 
     def __initButton(self):
         import_button = self.addAction("Import")
-        import_button.setIcon(base64ToQIcon(compile_png))
+        import_button.setIcon(base64ToQIcon(open_file_png))
+        import_button.triggered.connect(ImportExportWindow.import_window.show)
 
         export_button = self.addAction("Export")
-        export_button.setIcon(base64ToQIcon(add_to_queue_png))
+        export_button.setIcon(base64ToQIcon(save_file_png))
+        export_button.triggered.connect(ImportExportWindow.export_window.show)
 
         run_button = self.addAction("Run")
         run_button.setIcon(base64ToQIcon(run_png))

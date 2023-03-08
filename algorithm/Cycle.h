@@ -9,6 +9,9 @@
 #include "Algorithm.h"
 
 class Cycle : public Algorithm {
+private:
+    void longestPath(int getWeight(const string &path));
+
 public:
     explicit Cycle(Graph &graph, Parameter &parameter) : Algorithm(graph, parameter) {
 

@@ -5,6 +5,7 @@
 #include "NoCycle.h"
 #include "../var/Constant.h"
 #include "../tools/JudgeChar.h"
+#include "../var/Information.h"
 
 #include <cstring>
 #include <iostream>
@@ -129,7 +130,7 @@ void NoCycle::longestPath(int type) {
     }
 
     if (pre[size - 1] == INF) {
-        cout << "不存在满足条件的单词链" << endl;
+        cout << NO_SATISFYING_WL << endl;
     } else {
         stack<int> s;
         for (int i = pre[size - 1]; i != size - 2; i = pre[i]) {

@@ -25,6 +25,7 @@ class ParamWidget(QWidget):
 
         check_button = QWidget()
         button_container = QHBoxLayout()
+        button_container.setContentsMargins(0, 5, 0, 5) # 外边隙0
         button_container.addItem(QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
 
         self.check = QToolBar()

@@ -1,5 +1,5 @@
 qss="""
-#main_back_ground
+#main_back_ground, #import_export
 {
     border:1px solid grey;
     background-color:rgb(66, 66, 66);
@@ -380,6 +380,13 @@ QHeaderView::section
     border-width: 1px;
     border-color: rgb(100, 100, 100);
     border-style: solid solid solid solid;
+}
+
+#api_debug
+{
+    border-width: 1px;
+    border-color: rgb(100, 100, 100);
+    border-style: solid none none none;
 }
 
 QTableView

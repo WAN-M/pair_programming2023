@@ -1,6 +1,6 @@
 import os
 import traceback
-from os.path import isdir, exists
+from os.path import isdir, exists, isfile
 from os import mkdir
 
 from PyQt5.QtCore import Qt
@@ -8,8 +8,9 @@ from PyQt5.QtGui import QFont, QCursor
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QHBoxLayout, QPushButton, QLineEdit, QTreeView, QSpacerItem, \
     QSizePolicy, QFileSystemModel, QMenuBar, QFrame
 
+from MyUIWidget.EditorWidget import EditorWidget
 from resources import main_png
-from tools import base64ToQIcon
+from tools import base64ToQIcon, readTxt, writeTxt
 
 class ImportExportWindow(QFrame):
     import_window = None
@@ -24,12 +25,7 @@ class ImportExportWindow(QFrame):
             self.__init_tree()
             self.setWindowModality(Qt.ApplicationModal)
 
-
-
-            if label == "import":
-                self.ok_button.clicked.connect(self.open_project)
-            elif label == "export":
-                self.ok_button.clicked.connect(self.save_project)
+            self.ok_button.clicked.connect(self.ok)
 
             self.__qss()
         except Exception as e:
@@ -112,31 +108,42 @@ class ImportExportWindow(QFrame):
             #获取单击后的指定路径
             filePath = self.tree_model.filePath(Qmodelidx)
             #判断拿到的文件是文件夹还是文件，Flase为文件，True为文件夹
-            if isdir(filePath):
-                self.path_text.setText(filePath)
-                self.old_directory = filePath
-            else:
-                self.file = filePath
+            if self.label == 'import':
+                if isdir(filePath):
+                    self.path_text.setText(filePath)
+                    self.old_directory = filePath
+                elif isfile(filePath) and filePath.endswith(".txt"):
+                    self.path_text.setText(filePath)
+                    self.old_directory = filePath
+                else:
+                    self.file = filePath
+            elif self.label == 'export':
+                if isdir(filePath):
+                    self.path_text.setText(filePath + 'export.txt' if filePath.endswith('/') else filePath + '/export.txt')
+                    self.old_directory = filePath
+                elif isfile(filePath) and filePath.endswith(".txt"):
+                    self.path_text.setText(filePath)
+                    self.old_directory = filePath
+                else:
+                    self.file = filePath
+
         except Exception as e:
             print(traceback.format_exc())
 
-    def make_dir(self):
+    def ok(self):
         try:
-            path = self.path_text.text()
-            if isdir(path):
-                directory = path + "/Project"
-                i = 0
-                while exists(directory + str(i)):
-                    i += 1
-                mkdir(directory + str(i))
-            else:
-                mkdir(path)
-        except Exception as e:
-            print(traceback.format_exc())
+            # print(self.path_text.text())
+            if self.label == 'import' and exists(self.path_text.text()):
+                flag, text = readTxt(self.path_text.text())
+                if flag:
+                    EditorWidget.input_text.setText(text)
+                    self.close()
+            elif self.label == 'export' and self.path_text.text().endswith('.txt'):
+                # print(EditorWidget.output_text.getText())
+                flag = writeTxt(self.path_text.text(), EditorWidget.output_text.getText())
+                if flag:
+                    self.close()
 
-    def open_project(self):
-        try:
-            pass
         except Exception as e:
             print(traceback.format_exc())
 

@@ -2,6 +2,7 @@ import traceback
 
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QSpacerItem, QSizePolicy
 from MyUIWidget.ParamWidget import ParamWidget
+from MyUIWidget.APIWidget import APIWidget
 
 class ControllerWindow(QFrame):
     def __init__(self):
@@ -26,6 +27,19 @@ class ControllerWindow(QFrame):
         main_container.addWidget(ParamWidget("-h 指定首字母", True))
         main_container.addWidget(ParamWidget("-t 指定尾字母", True))
         main_container.addWidget(ParamWidget("-j 禁用首字母", True))
+
+        api_debug = QFrame()
+        api_debug.setObjectName("api_debug")
+        api_layout = QVBoxLayout()
+
+        api_layout.addWidget(APIWidget('gen_chain_word'))
+        api_layout.addWidget(APIWidget('gen_chains_all'))
+        api_layout.addWidget(APIWidget('gen_chain_word_unique'))
+        api_layout.addWidget(APIWidget('gen_chain_char'))
+
+        api_debug.setLayout(api_layout)
+
+        main_container.addWidget(api_debug)
 
         main_container.addItem(QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Expanding))
 

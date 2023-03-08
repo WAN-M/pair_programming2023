@@ -14,13 +14,26 @@ void Graph::addNode(Word &word) {
             addEdge(newPos, i);
         }
         if (node.getLast() == word.getFirst()) {
-            addEdge(i,  newPos);
+            addEdge(i, newPos);
         }
     }
 
     this->nodes.push_back(word);
+    this->size++;
 }
 
 void Graph::addEdge(int u, int v) {
     edges.at(u).push_back(v);
+}
+
+int Graph::getSize() const {
+    return size;
+}
+
+const vector<Word> &Graph::getNodes() const {
+    return nodes;
+}
+
+const vector<vector<int>> &Graph::getEdges() const {
+    return edges;
 }

@@ -8,13 +8,17 @@
 #include <vector>
 #include "Word.h"
 #include "../var/Graph.h"
+#include "../var/Parameter.h"
 
 using namespace std;
 class Solver {
 private:
+    Parameter parameter;
     Graph graph;
 
 public:
+    explicit Solver(const Parameter &parameter);
+
     void solve();
     void newWord(char *word);
 };

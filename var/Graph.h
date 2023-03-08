@@ -11,6 +11,7 @@
 
 class Graph {
 private:
+    int size = 0;
     vector<Word> nodes;
     vector<vector<int>> edges;
 
@@ -18,6 +19,12 @@ private:
 
 public:
     void addNode(Word &word);
+
+    int getSize() const;
+
+    const vector<Word> &getNodes() const;
+
+    const vector<vector<int>> &getEdges() const;
 };
 
 

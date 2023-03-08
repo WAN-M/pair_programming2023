@@ -1,12 +1,13 @@
 #include "input/Scanner.h"
 #include "var/Parameter.h"
 #include "algorithm/Solver.h"
+
 using namespace std;
 
-int main(int argc,char *argv[]) {
+int main(int argc, char *argv[]) {
     Scanner scanner(argc, argv);
     Parameter parameter;
-    Solver solver;
+    Solver solver(parameter);
 
     scanner.setParas(parameter);
     scanner.readFile(solver);

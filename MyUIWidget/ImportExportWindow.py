@@ -1,14 +1,14 @@
 import os
 import traceback
-from os.path import isdir, exists, dirname
-from os import mkdir, rename
+from os.path import isdir, exists
+from os import mkdir
 
-from PyQt5.QtCore import Qt, QPoint
-from PyQt5.QtGui import QMouseEvent, QFont, QCursor
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont, QCursor
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QHBoxLayout, QPushButton, QLineEdit, QTreeView, QSpacerItem, \
     QSizePolicy, QFileSystemModel, QMenuBar, QFrame
 
-from resources import main_png, new_folder_png, rename_folder_png
+from resources import main_png
 from tools import base64ToQIcon
 
 class ImportExportWindow(QFrame):

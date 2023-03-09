@@ -3,6 +3,8 @@
 //
 
 #include "Scanner.h"
+#include "../error/Error.h"
+
 #include <cctype>
 #include <unistd.h>
 #include <io.h>
@@ -16,15 +18,15 @@ Scanner::Scanner(int n, char *paras[]) : n(n) {
     this->paras = paras;
 }
 
-char nextChar(const char *const para) {
-    if (para == nullptr) {
-        // TODO 未指定字符
-    } else if (strlen(para) > 1) {
-        // TODO 只能指定一个字符
-    } else if (!isalpha(para[0])) {
-        // TODO 只能指定单词字符
+char nextChar(const char *const alpha, const char *const para) {
+    if (alpha == nullptr) {
+        Error::wrongSpecificAlpha(para, 0);
+    } else if (strlen(alpha) > 1) {
+        Error::wrongSpecificAlpha(para, 1);
+    } else if (!isalpha(alpha[0])) {
+        Error::wrongSpecificAlpha(para, 2);
     } else {
-        return (char) tolower(para[0]);
+        return (char) tolower(alpha[0]);
     }
     return 0;
 }
@@ -45,34 +47,25 @@ void Scanner::setParas(Parameter &parameter) {
                 parameter.setC(true);
                 break;
             case 'h':
-                c = nextChar(optarg);
-                if (c == 0) {
-                    // TODO 出错
-                } else {
+                c = nextChar(optarg, "-h");
+                if (c != 0) {
                     parameter.setH(c);
                 }
                 break;
             case 't':
-                c = nextChar(optarg);
-                if (c == 0) {
-                    // TODO 出错
-                } else {
+                c = nextChar(optarg, "-t");
+                if (c != 0) {
                     parameter.setT(c);
                 }
                 break;
             case 'j':
-                c = nextChar(optarg);
-                if (c == 0) {
-                    // TODO 出错
-                } else {
+                c = nextChar(optarg, "-j");
+                if (c != 0) {
                     parameter.setJ(c);
                 }
                 break;
-            case '?':
-                // TODO 不存在的参数
-                break;
             default:
-                // TODO 不存在的参数
+                Error::wrongParameter();
                 break;
         }
     }
@@ -90,7 +83,7 @@ void readAvailableFile(Solver &solver, const char *const fileName) {
     int cnt = 0;
     char c;
     while (!inFile.eof()) {
-        c = inFile.get();
+        c = (char) inFile.get();
 //        inFile >> c;
         if (inFile.fail()) {
             break;
@@ -117,12 +110,18 @@ void readAvailableFile(Solver &solver, const char *const fileName) {
 }
 
 void Scanner::readFile(Solver &solver) {
-    const char *const fileName = this->paras[this->n - 1];
-    // 判读文件是否存在
+    char *const fileName = this->paras[this->n - 1];
+    // 判断文件是否是.txt后缀
+    char *fileType = fileName + strlen(fileType) - 4;
+    if (strcmp(fileType, ".txt") != 0) {
+        Error::wrongFileStatus(2);
+    }
+
+    // 判断文件是否存在
     if (access(fileName, F_OK) == -1) {
-        // TODO 文件不存在
+        Error::wrongFileStatus(0);
     } else if (access(fileName, R_OK) == -1) {
-        // TODO 文件不可读
+        Error::wrongFileStatus(1);
     } else {
         readAvailableFile(solver, fileName);
     }

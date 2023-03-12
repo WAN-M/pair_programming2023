@@ -112,8 +112,8 @@ void readAvailableFile(Solver &solver, const char *const fileName) {
 void Scanner::readFile(Solver &solver) {
     char *const fileName = this->paras[this->n - 1];
     // 判断文件是否是.txt后缀
-    char *fileType = fileName + strlen(fileType) - 4;
-    if (strcmp(fileType, ".txt") != 0) {
+    char *fileType = fileName + strlen(fileName) - 4;
+    if (fileType < fileName || strcmp(fileType, ".txt") != 0) {
         Error::wrongFileStatus(2);
     }
 

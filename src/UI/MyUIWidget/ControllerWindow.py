@@ -18,8 +18,28 @@ def clearAPI():
         ControllerWindow.api_chain_char.changeIcon()
     if ControllerWindow.api_chain_word.press:
         ControllerWindow.api_chain_word.changeIcon()
-    if ControllerWindow.api_chain_word_unique.press:
-        ControllerWindow.api_chain_word_unique.changeIcon()
+    # if ControllerWindow.api_chain_word_unique.press:
+    #     ControllerWindow.api_chain_word_unique.changeIcon()
+
+def clearParam():
+    if ControllerWindow.param_n.press:
+        ControllerWindow.param_n.changeIcon()
+    if ControllerWindow.param_w.press:
+        ControllerWindow.param_w.changeIcon()
+    if ControllerWindow.param_c.press:
+        ControllerWindow.param_c.changeIcon()
+
+    setMayParam(True)
+
+    if ControllerWindow.param_r.press:
+        ControllerWindow.param_r.changeIcon()
+    if ControllerWindow.param_h.press:
+        ControllerWindow.param_h.changeIcon()
+    if ControllerWindow.param_t.press:
+        ControllerWindow.param_t.changeIcon()
+    if ControllerWindow.param_j.press:
+        ControllerWindow.param_j.changeIcon()
+
 
 def paramN():
     if ControllerWindow.param_w.press:
@@ -48,6 +68,27 @@ def paramC():
     clearAPI()
     setMayParam(True)
 
+def apiChainsAll():
+    if ControllerWindow.api_chains_all.press:
+        ControllerWindow.param_n.click()
+        ControllerWindow.api_chains_all.changeIcon()
+    else:
+        ControllerWindow.param_n.click()
+
+def apiChainWord():
+    if ControllerWindow.api_chain_word.press:
+        ControllerWindow.param_w.click()
+        ControllerWindow.api_chain_word.changeIcon()
+    else:
+        ControllerWindow.param_w.click()
+
+def apiChainChar():
+    if ControllerWindow.api_chain_char.press:
+        ControllerWindow.param_c.click()
+        ControllerWindow.api_chain_char.changeIcon()
+    else:
+        ControllerWindow.param_c.click()
+
 class ControllerWindow(QFrame):
     # must
     param_n = None
@@ -61,7 +102,7 @@ class ControllerWindow(QFrame):
     # api
     api_chain_word = None
     api_chains_all = None
-    api_chain_word_unique = None
+    # api_chain_word_unique = None
     api_chain_char = None
 
     def __init__(self):
@@ -129,13 +170,16 @@ class ControllerWindow(QFrame):
         api_layout.addWidget(MiddleLabelWidget("直接测试指定接口"))
 
         ControllerWindow.api_chain_word = APIWidget('gen_chain_word')
+        ControllerWindow.api_chain_word.button.triggered.connect(apiChainWord)
         ControllerWindow.api_chains_all = APIWidget('gen_chains_all')
-        ControllerWindow.api_chain_word_unique = APIWidget('gen_chain_word_unique')
+        ControllerWindow.api_chains_all.button.triggered.connect(apiChainsAll)
+        # ControllerWindow.api_chain_word_unique = APIWidget('gen_chain_word_unique')
         ControllerWindow.api_chain_char = APIWidget('gen_chain_char')
+        ControllerWindow.api_chain_char.button.triggered.connect(apiChainChar)
 
-        api_layout.addWidget(ControllerWindow.api_chain_word)
         api_layout.addWidget(ControllerWindow.api_chains_all)
-        api_layout.addWidget(ControllerWindow.api_chain_word_unique)
+        api_layout.addWidget(ControllerWindow.api_chain_word)
+        # api_layout.addWidget(ControllerWindow.api_chain_word_unique)
         api_layout.addWidget(ControllerWindow.api_chain_char)
 
         api_debug.setLayout(api_layout)

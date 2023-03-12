@@ -12,12 +12,13 @@ def setMayParam(status):
     ControllerWindow.param_j.setStatus(status)
 
 def clearAPI():
-    if ControllerWindow.api_chains_all.press:
-        ControllerWindow.api_chains_all.changeIcon()
-    if ControllerWindow.api_chain_char.press:
-        ControllerWindow.api_chain_char.changeIcon()
-    if ControllerWindow.api_chain_word.press:
-        ControllerWindow.api_chain_word.changeIcon()
+    pass
+    # if ControllerWindow.api_chains_all.press:
+    #     ControllerWindow.api_chains_all.changeIcon()
+    # if ControllerWindow.api_chain_char.press:
+    #     ControllerWindow.api_chain_char.changeIcon()
+    # if ControllerWindow.api_chain_word.press:
+    #     ControllerWindow.api_chain_word.changeIcon()
     # if ControllerWindow.api_chain_word_unique.press:
     #     ControllerWindow.api_chain_word_unique.changeIcon()
 
@@ -145,13 +146,13 @@ class ControllerWindow(QFrame):
         param_may_layout = QVBoxLayout()
         param_may_layout.addWidget(MiddleLabelWidget("可选参数"))
 
-        ControllerWindow.param_r = ParamWidget("-r 允许单词环")
+        ControllerWindow.param_r = ParamWidget("-r 允许单词环", must=False)
         ControllerWindow.param_r.button.triggered.connect(clearAPI)
-        ControllerWindow.param_h = ParamWidget("-h 指定首字母", True)
+        ControllerWindow.param_h = ParamWidget("-h 指定首字母", need_text=True, must=False)
         ControllerWindow.param_h.button.triggered.connect(clearAPI)
-        ControllerWindow.param_t = ParamWidget("-t 指定尾字母", True)
+        ControllerWindow.param_t = ParamWidget("-t 指定尾字母", need_text=True, must=False)
         ControllerWindow.param_t.button.triggered.connect(clearAPI)
-        ControllerWindow.param_j = ParamWidget("-j 禁用首字母", True)
+        ControllerWindow.param_j = ParamWidget("-j 禁用首字母", need_text=True, must=False)
         ControllerWindow.param_j.button.triggered.connect(clearAPI)
 
         param_may_layout.addWidget(ControllerWindow.param_r)
@@ -164,27 +165,27 @@ class ControllerWindow(QFrame):
         main_container.addWidget(param_may)
         #######################################################################
 
-        api_debug = QFrame()
-        api_debug.setObjectName("api_debug")
-        api_layout = QVBoxLayout()
-        api_layout.addWidget(MiddleLabelWidget("直接测试指定接口"))
-
-        ControllerWindow.api_chain_word = APIWidget('gen_chain_word')
-        ControllerWindow.api_chain_word.button.triggered.connect(apiChainWord)
-        ControllerWindow.api_chains_all = APIWidget('gen_chains_all')
-        ControllerWindow.api_chains_all.button.triggered.connect(apiChainsAll)
-        # ControllerWindow.api_chain_word_unique = APIWidget('gen_chain_word_unique')
-        ControllerWindow.api_chain_char = APIWidget('gen_chain_char')
-        ControllerWindow.api_chain_char.button.triggered.connect(apiChainChar)
-
-        api_layout.addWidget(ControllerWindow.api_chains_all)
-        api_layout.addWidget(ControllerWindow.api_chain_word)
-        # api_layout.addWidget(ControllerWindow.api_chain_word_unique)
-        api_layout.addWidget(ControllerWindow.api_chain_char)
-
-        api_debug.setLayout(api_layout)
-
-        main_container.addWidget(api_debug)
+        # api_debug = QFrame()
+        # api_debug.setObjectName("api_debug")
+        # api_layout = QVBoxLayout()
+        # api_layout.addWidget(MiddleLabelWidget("直接测试指定接口"))
+        #
+        # ControllerWindow.api_chain_word = APIWidget('gen_chain_word')
+        # ControllerWindow.api_chain_word.button.triggered.connect(apiChainWord)
+        # ControllerWindow.api_chains_all = APIWidget('gen_chains_all')
+        # ControllerWindow.api_chains_all.button.triggered.connect(apiChainsAll)
+        # # ControllerWindow.api_chain_word_unique = APIWidget('gen_chain_word_unique')
+        # ControllerWindow.api_chain_char = APIWidget('gen_chain_char')
+        # ControllerWindow.api_chain_char.button.triggered.connect(apiChainChar)
+        #
+        # api_layout.addWidget(ControllerWindow.api_chains_all)
+        # api_layout.addWidget(ControllerWindow.api_chain_word)
+        # # api_layout.addWidget(ControllerWindow.api_chain_word_unique)
+        # api_layout.addWidget(ControllerWindow.api_chain_char)
+        #
+        # api_debug.setLayout(api_layout)
+        #
+        # main_container.addWidget(api_debug)
         #############################################################################
         main_container.addItem(QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Expanding))
 

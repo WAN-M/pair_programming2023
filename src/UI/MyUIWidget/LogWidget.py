@@ -35,7 +35,7 @@ class LogWidget(QWidget):
         LogWidget.cmd.setObjectName("cmd")
         log_container.addWidget(LogWidget.cmd)
         LogWidget.cmd.setFocusPolicy(Qt.Qt.NoFocus)
-        # LogWidget.cmd.setText(order_instance.head + " " + order_instance.txt)
+        LogWidget.cmd.setText('未选择必选参数')
 
         self.setLayout(log_container)
 

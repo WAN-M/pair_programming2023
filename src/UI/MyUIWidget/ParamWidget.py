@@ -5,14 +5,15 @@ from PyQt5.QtCore import Qt
 
 # from MyUIWidget.ControllerWindow import buttunHazard
 from order import order_instance
-from resources import select_png, selected_png
+from resources import select_png, selected_png, api_select_png, api_selected_png
 from tools import base64ToQIcon
 
 class ParamWidget(QWidget):
-    def __init__(self, name, need_text=False):
+    def __init__(self, name, need_text=False, must=True):
         try:
             super(ParamWidget, self).__init__()
             self.need_text = need_text
+            self.must = must
             self.setObjectName(name)
             self.__initUI()
             self.__qss()
@@ -35,7 +36,10 @@ class ParamWidget(QWidget):
         self.button = self.check.addAction(self.objectName())
         self.button.triggered.connect(self.changeIcon)
         self.press = False
-        self.button.setIcon(base64ToQIcon(select_png))
+        if self.must:
+            self.button.setIcon(base64ToQIcon(select_png))
+        else:
+            self.button.setIcon(base64ToQIcon(api_select_png))
 
         button_container.addWidget(self.check)
         button_container.addItem(QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
@@ -80,11 +84,17 @@ class ParamWidget(QWidget):
 
         if self.press:
             self.press = False
-            self.button.setIcon(base64ToQIcon(select_png))
+            if self.must:
+                self.button.setIcon(base64ToQIcon(select_png))
+            else:
+                self.button.setIcon(base64ToQIcon(api_select_png))
             order_instance.changeParam(self.objectName().split(" ")[0], False)
         else:
             self.press = True
-            self.button.setIcon(base64ToQIcon(selected_png))
+            if self.must:
+                self.button.setIcon(base64ToQIcon(selected_png))
+            else:
+                self.button.setIcon(base64ToQIcon(api_selected_png))
             order_instance.changeParam(self.objectName().split(" ")[0], True)
 
         # if self.need_text:

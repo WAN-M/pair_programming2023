@@ -382,6 +382,13 @@ QHeaderView::section
     border-style: solid solid solid solid;
 }
 
+#param_must
+{
+    border-width: 1px;
+    border-color: rgb(100, 100, 100);
+    border-style: none none solid none;
+}
+
 #api_debug
 {
     border-width: 1px;

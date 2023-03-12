@@ -3,6 +3,7 @@ import traceback
 
 from PyQt5.QtWidgets import QApplication
 
+from MyUIWidget.ControllerWindow import ControllerWindow
 from MyUIWidget.ImportExportWindow import ImportExportWindow
 from MyUIWidget.MainWindow import MainWindow
 from qss import qss
@@ -23,6 +24,7 @@ def new_app():
     window.show()
 
     app.setStyleSheet(qss)
+    ControllerWindow.param_n.click()
     # 显示主窗口
     # window.showMaximized()
 

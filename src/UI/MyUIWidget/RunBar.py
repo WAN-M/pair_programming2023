@@ -4,6 +4,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QSizePolicy, QToolBar
 
 from MyUIWidget.ImportExportWindow import ImportExportWindow
+from order import Order
 from tools import base64ToQIcon
 from resources import open_file_png, run_png, save_file_png
 
@@ -29,6 +30,7 @@ class RunBar(QToolBar):
 
         run_button = self.addAction("Run")
         run_button.setIcon(base64ToQIcon(run_png))
+        run_button.triggered.connect(Order.run)
 
         size = self.sizePolicy()
         size.setVerticalPolicy(QSizePolicy.Minimum)

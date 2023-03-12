@@ -3,10 +3,9 @@ import traceback
 from PyQt5 import Qt
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QTextEdit, QLabel
-
-
 class LogWidget(QWidget):
     cmd = None
+    log_text = None
     def __init__(self):
         try:
             super(LogWidget, self).__init__()
@@ -27,10 +26,10 @@ class LogWidget(QWidget):
         # self.__log_title.setFocusPolicy(Qt.Qt.NoFocus)
         log_container.addWidget(self.__log_title)
 
-        self.__log_text = QTextEdit()
-        self.__log_text.setObjectName("log_text")
-        self.__log_text.setFont(QFont("Microsoft YaHei", 11))
-        log_container.addWidget(self.__log_text)
+        LogWidget.log_text = QTextEdit()
+        LogWidget.log_text.setObjectName("log_text")
+        LogWidget.log_text.setFont(QFont("Microsoft YaHei", 11))
+        log_container.addWidget(LogWidget.log_text)
 
         LogWidget.cmd = QLineEdit()
         LogWidget.cmd.setObjectName("cmd")

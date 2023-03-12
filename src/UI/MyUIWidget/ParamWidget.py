@@ -90,4 +90,5 @@ class ParamWidget(QWidget):
         order_instance.setText(self.objectName().split(" ")[0], self.text.text())
         order_instance.changeCmdText()
 
-
+    def click(self):
+        self.button.trigger()

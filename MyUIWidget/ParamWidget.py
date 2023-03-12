@@ -2,9 +2,10 @@ import traceback
 
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QCheckBox, QLineEdit, QSpacerItem, QSizePolicy, QToolBar
 from PyQt5.QtCore import Qt
+
+from order import order_instance
 from resources import select_png, selected_png
 from tools import base64ToQIcon
-
 
 class ParamWidget(QWidget):
     def __init__(self, name, need_text=False):
@@ -54,6 +55,7 @@ class ParamWidget(QWidget):
 
         if self.need_text:
             self.text = QLineEdit()
+            self.text.textChanged.connect(self.__text_change)
             main_container.addWidget(self.text)
 
         # main_container.addItem(QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
@@ -73,9 +75,19 @@ class ParamWidget(QWidget):
             self.text.setFont(font)
 
     def __changeIcon(self):
+        order_instance.changeParam(self.objectName().split(" ")[0])
         if self.__press:
             self.__press = False
             self.button.setIcon(base64ToQIcon(select_png))
         else:
             self.__press = True
             self.button.setIcon(base64ToQIcon(selected_png))
+        if self.need_text:
+            order_instance.setText(self.objectName().split(" ")[0], self.text.text())
+        order_instance.changeCmdText()
+
+    def __text_change(self):
+        order_instance.setText(self.objectName().split(" ")[0], self.text.text())
+        order_instance.changeCmdText()
+
+

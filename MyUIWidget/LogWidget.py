@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QTextEdit, QLabel
 
 
 class LogWidget(QWidget):
+    cmd = None
     def __init__(self):
         try:
             super(LogWidget, self).__init__()
@@ -31,9 +32,11 @@ class LogWidget(QWidget):
         self.__log_text.setFont(QFont("Microsoft YaHei", 11))
         log_container.addWidget(self.__log_text)
 
-        self.__log_cmd = QLineEdit()
-        self.__log_cmd.setObjectName("cmd")
-        log_container.addWidget(self.__log_cmd)
+        LogWidget.cmd = QLineEdit()
+        LogWidget.cmd.setObjectName("cmd")
+        log_container.addWidget(LogWidget.cmd)
+        LogWidget.cmd.setFocusPolicy(Qt.Qt.NoFocus)
+        # LogWidget.cmd.setText(order_instance.head + " " + order_instance.txt)
 
         self.setLayout(log_container)
 
@@ -43,10 +46,10 @@ class LogWidget(QWidget):
         font.setPointSize(10)
         self.__log_title.setFont(font)
 
-        self.__log_cmd.setFixedHeight(35)
-        font = self.__log_cmd.font()
+        LogWidget.cmd.setFixedHeight(35)
+        font = LogWidget.cmd.font()
         font.setPointSize(10)
-        self.__log_cmd.setFont(font)
+        LogWidget.cmd.setFont(font)
 
         self.setMaximumHeight(600)
         # self.setMinimumHeight(300)

@@ -3,6 +3,7 @@ import traceback
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QCheckBox, QLineEdit, QSpacerItem, QSizePolicy, QToolBar
 from PyQt5.QtCore import Qt
 
+# from MyUIWidget.ControllerWindow import buttunHazard
 from order import order_instance
 from resources import select_png, selected_png
 from tools import base64ToQIcon
@@ -32,8 +33,8 @@ class ParamWidget(QWidget):
         self.check = QToolBar()
         self.check.setToolButtonStyle(Qt.ToolButtonTextBesideIcon) # icon 旁边显示文字
         self.button = self.check.addAction(self.objectName())
-        self.button.triggered.connect(self.__changeIcon)
-        self.__press = False
+        self.button.triggered.connect(self.changeIcon)
+        self.press = False
         self.button.setIcon(base64ToQIcon(select_png))
 
         button_container.addWidget(self.check)
@@ -74,16 +75,20 @@ class ParamWidget(QWidget):
             font.setPointSize(10)
             self.text.setFont(font)
 
-    def __changeIcon(self):
-        order_instance.changeParam(self.objectName().split(" ")[0])
-        if self.__press:
-            self.__press = False
+    def changeIcon(self):
+        # buttunHazard(self.objectName())
+
+        if self.press:
+            self.press = False
             self.button.setIcon(base64ToQIcon(select_png))
+            order_instance.changeParam(self.objectName().split(" ")[0], False)
         else:
-            self.__press = True
+            self.press = True
             self.button.setIcon(base64ToQIcon(selected_png))
-        if self.need_text:
-            order_instance.setText(self.objectName().split(" ")[0], self.text.text())
+            order_instance.changeParam(self.objectName().split(" ")[0], True)
+
+        # if self.need_text:
+        #     order_instance.setText(self.objectName().split(" ")[0], self.text.text())
         order_instance.changeCmdText()
 
     def __text_change(self):
@@ -92,3 +97,7 @@ class ParamWidget(QWidget):
 
     def click(self):
         self.button.trigger()
+
+    def setStatus(self, status):
+        # order_instance.changeParam(self.objectName().split(" ")[0], status)
+        self.setEnabled(status)

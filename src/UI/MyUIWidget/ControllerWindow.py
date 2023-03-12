@@ -5,6 +5,49 @@ from MyUIWidget.ParamWidget import ParamWidget
 from MyUIWidget.APIWidget import APIWidget
 from MyUIWidget.MiddelLabel import MiddleLabelWidget
 
+def setMayParam(status):
+    ControllerWindow.param_r.setStatus(status)
+    ControllerWindow.param_h.setStatus(status)
+    ControllerWindow.param_t.setStatus(status)
+    ControllerWindow.param_j.setStatus(status)
+
+def clearAPI():
+    if ControllerWindow.api_chains_all.press:
+        ControllerWindow.api_chains_all.changeIcon()
+    if ControllerWindow.api_chain_char.press:
+        ControllerWindow.api_chain_char.changeIcon()
+    if ControllerWindow.api_chain_word.press:
+        ControllerWindow.api_chain_word.changeIcon()
+    if ControllerWindow.api_chain_word_unique.press:
+        ControllerWindow.api_chain_word_unique.changeIcon()
+
+def paramN():
+    if ControllerWindow.param_w.press:
+        ControllerWindow.param_w.changeIcon()
+    if ControllerWindow.param_c.press:
+        ControllerWindow.param_c.changeIcon()
+    clearAPI()
+    if ControllerWindow.param_n.press:
+        setMayParam(False)
+    else:
+        setMayParam(True)
+
+def paramW():
+    if ControllerWindow.param_n.press:
+        ControllerWindow.param_n.changeIcon()
+    if ControllerWindow.param_c.press:
+        ControllerWindow.param_c.changeIcon()
+    clearAPI()
+    setMayParam(True)
+
+def paramC():
+    if ControllerWindow.param_n.press:
+        ControllerWindow.param_n.changeIcon()
+    if ControllerWindow.param_w.press:
+        ControllerWindow.param_w.changeIcon()
+    clearAPI()
+    setMayParam(True)
+
 class ControllerWindow(QFrame):
     # must
     param_n = None
@@ -43,8 +86,11 @@ class ControllerWindow(QFrame):
         param_must_layout.addWidget(MiddleLabelWidget("必选参数"))
 
         ControllerWindow.param_n = ParamWidget("-n 单词链个数")
+        ControllerWindow.param_n.button.triggered.connect(paramN)
         ControllerWindow.param_w = ParamWidget("-w 最多单词数")
+        ControllerWindow.param_w.button.triggered.connect(paramW)
         ControllerWindow.param_c = ParamWidget("-c 最多字母数")
+        ControllerWindow.param_c.button.triggered.connect(paramC)
 
         param_must_layout.addWidget(ControllerWindow.param_n)
         param_must_layout.addWidget(ControllerWindow.param_w)
@@ -59,9 +105,13 @@ class ControllerWindow(QFrame):
         param_may_layout.addWidget(MiddleLabelWidget("可选参数"))
 
         ControllerWindow.param_r = ParamWidget("-r 允许单词环")
+        ControllerWindow.param_r.button.triggered.connect(clearAPI)
         ControllerWindow.param_h = ParamWidget("-h 指定首字母", True)
+        ControllerWindow.param_h.button.triggered.connect(clearAPI)
         ControllerWindow.param_t = ParamWidget("-t 指定尾字母", True)
+        ControllerWindow.param_t.button.triggered.connect(clearAPI)
         ControllerWindow.param_j = ParamWidget("-j 禁用首字母", True)
+        ControllerWindow.param_j.button.triggered.connect(clearAPI)
 
         param_may_layout.addWidget(ControllerWindow.param_r)
         param_may_layout.addWidget(ControllerWindow.param_h)
@@ -98,4 +148,5 @@ class ControllerWindow(QFrame):
 
     def __qss(self):
         self.setFixedWidth(300)
+
 

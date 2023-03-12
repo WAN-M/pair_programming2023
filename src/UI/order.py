@@ -7,7 +7,6 @@ from MyUIWidget.EditorWidget import EditorWidget
 def checkPath():
     model = 0
     try:
-
         exe_path = 'WordList.exe'
         dll_path = 'WordList.dll'
         if os.path.exists(exe_path):
@@ -41,28 +40,36 @@ class Order:
         self.input_path = ""
         self.model = 0
 
-    def changeParam(self, key):
-        if Order.order_dict[key][0]:
-            Order.order_dict[key][0] = False
-        else:
-            Order.order_dict[key][0] = True
+    def changeParam(self, key, status):
+        Order.order_dict[key][0] = status
 
     def setText(self, key, text):
         Order.order_dict[key][1] = text
 
     def changeCmdText(self):
         text = Order.head
-        for key in Order.order_dict.keys():
-            if Order.order_dict[key][0]:
-                text += " " + key + " " + Order.order_dict[key][1]
+        # for key in Order.order_dict.keys():
+        #     if Order.order_dict[key][0]:
+        #         text += " " + key + " " + Order.order_dict[key][1]
+
+        if Order.order_dict['-n'][0]:
+            text += " " + '-n'
+        elif Order.order_dict['-w'][0] or Order.order_dict['-c'][0]:
+            for key in Order.order_dict.keys():
+                if Order.order_dict[key][0]:
+                    text += " " + key + " " + Order.order_dict[key][1]
+        else:
+            text = '未选择必选参数'
+            LogWidget.cmd.setText(text)
+            return
         text += " " + Order.txt
         LogWidget.cmd.setText(text)
 
     def run(self):
         try:
             text = EditorWidget.input_text.getText()
-            if len(LogWidget.cmd.text()) < 2:
-                LogWidget.log_text.setText('没有选择指令')
+            if len(LogWidget.cmd.text()) < 2 or LogWidget.cmd.text() == '未选择必选参数':
+                LogWidget.log_text.setText('参数不足')
                 return
             with open(Order.txt, "w") as f:
                 f.write(text)

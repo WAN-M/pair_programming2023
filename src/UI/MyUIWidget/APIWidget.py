@@ -26,8 +26,8 @@ class APIWidget(QWidget):
         self.check.setToolButtonStyle(Qt.ToolButtonTextBesideIcon) # icon 旁边显示文字
         self.button = self.check.addAction(" " + self.objectName())
         self.button.setIcon(base64ToQIcon(api_select_png))
-        self.button.triggered.connect(self.__changeIcon)
-        self.__press = False
+        self.button.triggered.connect(self.changeIcon)
+        self.press = False
 
         button_container.addWidget(self.check)
         button_container.addItem(QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
@@ -39,10 +39,10 @@ class APIWidget(QWidget):
         font.setPointSize(11)
         self.check.setFont(font)
 
-    def __changeIcon(self):
-        if self.__press:
-            self.__press = False
+    def changeIcon(self):
+        if self.press:
+            self.press = False
             self.button.setIcon(base64ToQIcon(api_select_png))
         else:
-            self.__press = True
+            self.press = True
             self.button.setIcon(base64ToQIcon(api_selected_png))

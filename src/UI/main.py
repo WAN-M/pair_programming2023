@@ -24,7 +24,7 @@ def new_app():
     window.show()
 
     app.setStyleSheet(qss)
-    ControllerWindow.param_n.click()
+    # ControllerWindow.param_n.click()
     # 显示主窗口
     # window.showMaximized()
 

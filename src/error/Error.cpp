@@ -18,7 +18,7 @@ void Error::checkParas(Parameter parameter) {
                             parameter.getT() != 0 || parameter.getJ() != 0 || parameter.getH() != 0)) {
         wrongParaCombination();
     }
-    if (parameter.isW() || parameter.isC()) {
+    if (parameter.isW() && parameter.isC()) {
         wrongParaCombination();
     }
     if (!(parameter.isN() || parameter.isW() || parameter.isC())) {

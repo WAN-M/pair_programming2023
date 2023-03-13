@@ -14,7 +14,16 @@ void Error::quitWithError() {
 }
 
 void Error::checkParas(Parameter parameter) {
-
+    if (parameter.isN() && (parameter.isC() || parameter.isW() || parameter.isR() ||
+                            parameter.getT() != 0 || parameter.getJ() != 0 || parameter.getH() != 0)) {
+        wrongParaCombination();
+    }
+    if (parameter.isW() || parameter.isC()) {
+        wrongParaCombination();
+    }
+    if (!(parameter.isN() || parameter.isW() || parameter.isC())) {
+        wrongParaCombination();
+    }
 }
 
 void Error::wrongParaCombination() {

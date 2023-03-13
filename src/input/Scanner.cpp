@@ -72,6 +72,8 @@ void Scanner::setParas(Parameter &parameter) {
                 break;
         }
     }
+
+    Error::checkParas(parameter);
 }
 
 void readAvailableFile(Solver &solver, const char *const fileName) {

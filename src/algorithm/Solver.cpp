@@ -6,6 +6,7 @@
 #include "Algorithm.h"
 #include "NoCycle.h"
 #include "Cycle.h"
+#include "../error/Error.h"
 #include <cstring>
 #include <queue>
 
@@ -61,7 +62,7 @@ void Solver::solve() {
         algorithm = new NoCycle(this->graph, this->parameter);
     } else {
         if (!this->parameter.isR()) {
-            // TODO 未指定-r但有环
+            Error::dataCyclicWithoutR();
         }
         algorithm = new Cycle(this->graph, this->parameter);
     }

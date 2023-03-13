@@ -64,6 +64,9 @@ void Scanner::setParas(Parameter &parameter) {
                     parameter.setJ(c);
                 }
                 break;
+            case 'r':
+                parameter.setR(true);
+                break;
             default:
                 Error::wrongParameter();
                 break;

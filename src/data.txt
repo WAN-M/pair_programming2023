@@ -1,5 +1,4 @@
-element
-heaven
-table
-teach
-talk
+abc
+cde
+efg
+gkc

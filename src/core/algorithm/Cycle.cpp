@@ -62,15 +62,17 @@ string dfs(Graph &graph, Parameter &parameter, int now, bool vis[],
     return longestPath;
 }
 
-static void printPath(const string &path) {
+static void printPath(const string &path, char *result[]) {
     vector<string> split;
     splitByBlank(path, split);
+    int pos = 0;
     for (string &str: split) {
-        cout << str << endl;
+//        cout << str << endl;
+        strcpy(result[pos++], str.c_str());
     }
 }
 
-void Cycle::longestPath(int getWeight(const string &path)) {
+void Cycle::longestPath(int getWeight(const string &path), char *result[]) {
     int size = this->graph.getSize();
     string ans;
     bool vis[size + 5];
@@ -90,16 +92,16 @@ void Cycle::longestPath(int getWeight(const string &path)) {
     if (ans.empty()) {
         cout << NO_SATISFYING_WL << endl;
     } else {
-        printPath(ans);
+        printPath(ans, result);
     }
 }
 
 vector<string> &Cycle::longestWords(char *result[]) {
-    longestPath(weightByWords);
+    longestPath(weightByWords, result);
 }
 
 vector<string> &Cycle::longestAlphas(char *result[]) {
-    longestPath(weightByAlphas);
+    longestPath(weightByAlphas, result);
 }
 
 

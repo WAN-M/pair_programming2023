@@ -67,11 +67,11 @@ void Solver::solve(char *result[]) {
     }
 
     if (parameter.isN()) {
-        algorithm->allWordlist();
+        algorithm->allWordlist(result);
     } else if (parameter.isW()) {
-        algorithm->longestWords();
+        algorithm->longestWords(result);
     } else if (parameter.isC()) {
-        algorithm->longestAlphas();
+        algorithm->longestAlphas(result);
     }
 
     delete algorithm;

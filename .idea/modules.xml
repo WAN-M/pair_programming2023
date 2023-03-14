@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/pair_programming2023.iml" filepath="$PROJECT_DIR$/.idea/pair_programming2023.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/结对.iml" filepath="$PROJECT_DIR$/.idea/结对.iml" />
     </modules>
   </component>

@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.24)
-project(WordList)
+cmake_minimum_required(VERSION 3.21)
+project(src)
 
 set(CMAKE_CXX_STANDARD 17)
 

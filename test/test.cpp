@@ -1,16 +1,31 @@
-ï»¿#include "pch.h"
-#include "CppUnitTest.h"
+#include <gtest/gtest.h>
+#include <tchar.h>
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+#include "your_aim.h"
 
-namespace test
+/// <summary>
+/// Ê¹ÓÃvsÁ¬Ğø´ò3¸ö/£¬×Ô¶¯µ¯³ö¸Ã×¢ÊÍ
+/// µ¥Ôª²âÊÔ£¬²âÊÔËùÓĞº¯Êı£¬Ã¿¸öº¯Êıµ¥¶ÀĞ´Ò»¸ö²âÊÔÑùÀı£¬±£Ö¤¸Ãº¯Êı°Ù·Ö°Ù±»²âµ½
+/// </summary>
+/// <param name="NameOfTestFunction">²âÊÔº¯ÊıÃû</param>
+/// <param name="DescriptionOfAssert">¿ÊÍûµÃµ½µÄ²âÊÔĞ§¹ûÃèÊö</param>
+
+TEST(NameOfTestFunction, DescriptionOfAssert)
 {
-	TEST_CLASS(test)
-	{
-	public:
-		
-		TEST_METHOD(TestMethod1)
-		{
-		}
-	};
+	int res = your_aim_count();
+	EXPECT_EQ(0, res);
+}
+
+/// <summary>
+/// ÒÔÏÂÇëÎğĞŞ¸Ä
+/// </summary>
+/// <param name="argc"></param>
+/// <param name="argv"></param>
+/// <returns></returns>
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	testing::InitGoogleTest(&argc, argv);
+	testing::GTEST_FLAG(output) = "xml:";
+	return RUN_ALL_TESTS();
 }

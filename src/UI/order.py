@@ -1,14 +1,17 @@
 import os
 import traceback
 import time
+
+from PyQt5.QtCore import QDir
+
 from MyUIWidget.LogWidget import LogWidget
 from MyUIWidget.EditorWidget import EditorWidget
 
 def checkPath():
     model = 0
     try:
-        exe_path = 'WordList.exe'
-        dll_path = 'WordList.dll'
+        exe_path = QDir.currentPath() + '/WordList.exe'
+        dll_path = QDir.currentPath() + '/WordList.dll'
         if os.path.exists(exe_path):
             model = 1
         elif os.path.exists(dll_path):

@@ -23,9 +23,9 @@ public:
 
     virtual void allWordlist(char *result[]) = 0;
 
-    virtual vector<string> &longestWords(char *result[]) = 0;
+    virtual void longestWords(char *result[]) = 0;
 
-    virtual vector<string> &longestAlphas(char *result[]) = 0;
+    virtual void longestAlphas(char *result[]) = 0;
 };
 
 

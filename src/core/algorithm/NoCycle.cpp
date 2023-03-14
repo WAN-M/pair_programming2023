@@ -39,8 +39,9 @@ static void dfs(Graph &graph, int now, int cnt[], vector<string> &path, int &pos
 
 static int wordlistCnt(Graph &graph) {
     int n = graph.getSize();
-    int cnt[n + 5];
-    memset(cnt, 0, sizeof(cnt));
+//    int cnt[n + 5];
+    int *cnt = (int *) malloc(sizeof(int) * (n + 5));
+    memset(cnt, 0, sizeof(int) * (n + 5));
     vector<string> useless;
     int sum = 0;
     for (int i = 0; i < n; i++) {
@@ -50,6 +51,7 @@ static int wordlistCnt(Graph &graph) {
         }
         sum += cnt[i];
     }
+    free(cnt);
     return sum;
 }
 
@@ -81,10 +83,12 @@ void NoCycle::allWordlist(char *result[]) {
 static void spfa(Graph *graph, int start, int pre[], int getWeight(Graph *graph, int u, int v)) {
     queue<int> q;
     int size = graph->getSize();
-    int dis[size + 5];
-    bool vis[size + 5];
-    memset(dis, INF, sizeof(dis));
-    memset(vis, 0, sizeof(vis));
+//    int dis[size + 5];
+//    bool vis[size + 5];
+    int *dis = (int *) malloc(sizeof(int) * (size + 5));
+    bool *vis = (bool *) malloc(sizeof(bool) * (size + 5));
+    memset(dis, INF, sizeof(int) * (size + 5));
+    memset(vis, 0, sizeof(bool) * (size + 5));
 
     dis[start] = 0;
     vis[start] = true;
@@ -105,6 +109,9 @@ static void spfa(Graph *graph, int start, int pre[], int getWeight(Graph *graph,
             }
         }
     }
+
+    free(dis);
+    free(vis);
 }
 
 static int weightByWords(Graph *graph, int u, int v) {
@@ -118,8 +125,9 @@ static int weightByAlphas(Graph *graph, int u, int v) {
 void NoCycle::longestPath(int type, char *result[]) {
     Graph *newGraph = buildNewGraph();
     int size = newGraph->getSize();
-    int pre[size + 5];
-    memset(pre, INF, sizeof(pre));
+//    int pre[size + 5];
+    int *pre = (int *) malloc(sizeof(int) * (size + 5));
+    memset(pre, INF, sizeof(int) * (size + 5));
 
     switch (type) {
         case 0:
@@ -146,14 +154,16 @@ void NoCycle::longestPath(int type, char *result[]) {
             s.pop();
         }
     }
-    delete newGraph;
+
+    free(pre);
+    free(newGraph);
 }
 
-vector<string> &NoCycle::longestWords(char *result[]) {
+void NoCycle::longestWords(char *result[]) {
     this->longestPath(0, result);
 }
 
-vector<string> &NoCycle::longestAlphas(char *result[]) {
+void NoCycle::longestAlphas(char *result[]) {
     this->longestPath(1, result);
 }
 

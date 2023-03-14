@@ -19,9 +19,9 @@ public:
 
     void allWordlist(char *result[]) override;
 
-    vector<string> &longestWords(char *result[]) override;
+    void longestWords(char *result[]) override;
 
-    vector<string> &longestAlphas(char *result[]) override;
+    void longestAlphas(char *result[]) override;
 };
 
 

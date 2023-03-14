@@ -75,8 +75,9 @@ static void printPath(const string &path, char *result[]) {
 void Cycle::longestPath(int getWeight(const string &path), char *result[]) {
     int size = this->graph.getSize();
     string ans;
-    bool vis[size + 5];
-    memset(vis, 0, sizeof(vis));
+//    bool vis[size + 5];
+    bool *vis = (bool *) malloc(sizeof(bool) * (size + 5));
+    memset(vis, 0, sizeof(bool) * (size + 5));
     for (int i = 0; i < size; i++) {
         if (firstOk(this->parameter, this->graph.getNode(i).getFirst())) {
             vis[i] = true;
@@ -88,6 +89,7 @@ void Cycle::longestPath(int getWeight(const string &path), char *result[]) {
             }
         }
     }
+    free(vis);
 
     if (ans.empty()) {
         cout << NO_SATISFYING_WL << endl;
@@ -96,11 +98,11 @@ void Cycle::longestPath(int getWeight(const string &path), char *result[]) {
     }
 }
 
-vector<string> &Cycle::longestWords(char *result[]) {
+void Cycle::longestWords(char *result[]) {
     longestPath(weightByWords, result);
 }
 
-vector<string> &Cycle::longestAlphas(char *result[]) {
+void Cycle::longestAlphas(char *result[]) {
     longestPath(weightByAlphas, result);
 }
 

@@ -68,6 +68,7 @@ static void printPath(const string &path, char *result[]) {
     int pos = 0;
     for (string &str: split) {
 //        cout << str << endl;
+        result[pos] = (char *) malloc(sizeof(char) * (str.length() + 5));
         strcpy(result[pos++], str.c_str());
     }
 }

@@ -4,7 +4,7 @@
 
 #include "pch.h"
 #include <iostream>
-#include<fstream>
+#include <fstream>
 #include "core/library.h"
 #define maxLength 20001
 using namespace std;
@@ -58,7 +58,7 @@ void getWord(char* allWords[], int index, char start, char end, int length, bool
 /// </summary>
 /// <returns></returns>
 int get25HeadTailConnectLongWords(char* words[]) {
-	int number = 8;
+	int number = 25;
 	string path = "./0_25个首尾相连长单词.txt";
 	for (int i = 0; i < number; i++) {
 		getWord(words, i, 'a' + i, 'a' + i + 1, 8, true);
@@ -116,12 +116,16 @@ int getCircle(char** words){
 /// </summary>
 /// <param name="words"></param>
 /// <returns></returns>
-int getSelfCircle(char** words){
+int getSelfCircle(char** words, int * resNumber, int *maxLen){
     words[0] = (char *)"abcde";
     words[1] = (char *)"abcdc";
     words[2] = (char *)"abcda";
     words[3] = (char *)"edaat";
     words[4] = (char *)"tckkk";
+
+	*resNumber = 7;
+	*maxLen = 4;
+
     return 5;
 }
 
@@ -249,57 +253,57 @@ int getPlentyCircles(char** words) {
 	return number;
 }
 
-int other() {
-	/*getWords();*/
-	//char** words = (char**)malloc(sizeof(char*) * 20001);
-	//int len = getWords(words);
-
-	char* words[] = {
-		"aPqhb",
-		"bmaLc",
-		"cLDfd",
-		"drvCe",
-		"egbKf",
-		"fndxg",
-		"gFfZh",
-		"hStJi",
-		"irpGj",
-		"jRNvk",
-		"kSmcl",
-		"lsyQm",
-		"mEiEn",
-		"nfZio",
-		"okavp",
-		"pSEzq",
-		"qyXXr",
-		"rlgps",
-		"sfDot",
-		"tEXbu",
-		"uojVv",
-		"vvbyw",
-		"wpeLx",
-		"xPNLy",
-		"yVvpz",
-	};
-
-	char** res = (char**)malloc(sizeof(char*) * maxLength);
-	for (int i = 0; i < 25; i++) {
-		printf("%s\n", *(words + i));
-		//append("test.txt", *(words + i));
-	}
-	try {
-		int api_res = gen_chains_all(words, 25, res);
-		//		free(words);
-		for (int i = 0; i < maxLength; i++) {
-			free(res[i]);
-		}
-		free(res);
-		printf("%d\n", api_res);
-	}
-	catch (exception& e) {
-		cout << e.what() << endl;
-	}
-
-	//ofstr();
-	return 0;
-}
+//int other() {
+//	/*getWords();*/
+//	//char** words = (char**)malloc(sizeof(char*) * 20001);
+//	//int len = getWords(words);
+//
+//	char* words[] = {
+//		"aPqhb",
+//		"bmaLc",
+//		"cLDfd",
+//		"drvCe",
+//		"egbKf",
+//		"fndxg",
+//		"gFfZh",
+//		"hStJi",
+//		"irpGj",
+//		"jRNvk",
+//		"kSmcl",
+//		"lsyQm",
+//		"mEiEn",
+//		"nfZio",
+//		"okavp",
+//		"pSEzq",
+//		"qyXXr",
+//		"rlgps",
+//		"sfDot",
+//		"tEXbu",
+//		"uojVv",
+//		"vvbyw",
+//		"wpeLx",
+//		"xPNLy",
+//		"yVvpz",
+//	};
+//
+//	char** res = (char**)malloc(sizeof(char*) * maxLength);
+//	for (int i = 0; i < 25; i++) {
+//		printf("%s\n", *(words + i));
+//		//append("test.txt", *(words + i));
+//	}
+//	try {
+//		int api_res = gen_chains_all(words, 25, res);
+//		//		free(words);
+//		for (int i = 0; i < maxLength; i++) {
+//			free(res[i]);
+//		}
+//		free(res);
+//		printf("%d\n", api_res);
+//	}
+//	catch (exception& e) {
+//		cout << e.what() << endl;
+//	}
+//
+//	//ofstr();
+//	return 0;
+//}

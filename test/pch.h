@@ -14,7 +14,7 @@ int getPlentyCircles(char** words);
 
 //  ÷∂ØªØ
 int getCircle(char** words);
-int getSelfCircle(char** words);
+int getSelfCircle(char** words, int* resNumber, int* maxLen);
 int getSelfCircleWithUpperChar(char** words);
 int getCircleWithUpperChar(char** words);
 int getRepeat(char** words);

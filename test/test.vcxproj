@@ -37,7 +37,7 @@
     <ClInclude Include="..\src\core\algorithm\Cycle.h" />
     <ClInclude Include="..\src\core\algorithm\NoCycle.h" />
     <ClInclude Include="..\src\core\algorithm\Solver.h" />
-    <ClInclude Include="..\src\core\error\Error.h" />
+    <ClInclude Include="..\src\core\error\MyError.h" />
     <ClInclude Include="..\src\core\library.h" />
     <ClInclude Include="..\src\core\tools\JudgeChar.h" />
     <ClInclude Include="..\src\core\var\Constant.h" />
@@ -52,7 +52,7 @@
     <ClCompile Include="..\src\core\algorithm\Cycle.cpp" />
     <ClCompile Include="..\src\core\algorithm\NoCycle.cpp" />
     <ClCompile Include="..\src\core\algorithm\Solver.cpp" />
-    <ClCompile Include="..\src\core\error\Error.cpp" />
+    <ClCompile Include="..\src\core\error\MyError.cpp" />
     <ClCompile Include="..\src\core\library.cpp" />
     <ClCompile Include="..\src\core\tools\JudgeChar.cpp" />
     <ClCompile Include="..\src\core\var\Global.cpp" />

@@ -6,10 +6,10 @@
 #include "Algorithm.h"
 #include "NoCycle.h"
 #include "Cycle.h"
-#include "../error/Error.h"
 #include "../var/Global.h"
 #include <cstring>
 #include <queue>
+#include "core/error/MyError.h"
 
 // 先利用拓扑排序，判断图中是否有环
 static bool hasCycle(Graph &graph) {
@@ -63,7 +63,7 @@ int Solver::solve(char *result[]) {
         algorithm = new NoCycle(graph, parameter);
     } else {
         if (!parameter.isR()) {
-            Error::dataCyclicWithoutR();
+            MyError::dataCyclicWithoutR();
         }
         algorithm = new Cycle(graph, parameter);
     }

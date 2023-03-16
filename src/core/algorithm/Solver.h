@@ -13,7 +13,7 @@
 using namespace std;
 class Solver {
 public:
-    static void solve(char *result[]);
+    static int solve(char *result[]);
 };
 
 

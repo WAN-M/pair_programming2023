@@ -20,8 +20,10 @@ static void printPath(vector<string> &path, int &pos, char *result[]) {
         len += s.length();
     }
     result[pos] = (char *) malloc(sizeof(char) * (len + 5));
+    result[pos][0] = 0;
     for (string &s: path) {
         strcat(result[pos], s.c_str());
+        strcat(result[pos], " ");
     }
     pos++;
 }
@@ -33,7 +35,7 @@ static void dfs(Graph &graph, int now, int cnt[], vector<string> &path, int &pos
             path.push_back(graph.getNode(next).getWord());
             printPath(path, pos, result);
         }
-        dfs(graph, next, cnt, path, pos);
+        dfs(graph, next, cnt, path, pos, result);
         if (result != nullptr) {
             path.pop_back();
         } else if (cnt != nullptr) {
@@ -60,7 +62,7 @@ static int wordlistCnt(Graph &graph) {
     return sum;
 }
 
-static void getAllPath(Graph &graph, char *result[]) {
+static int getAllPath(Graph &graph, char *result[]) {
     int n = graph.getSize();
     int pos = 0;
 
@@ -70,12 +72,14 @@ static void getAllPath(Graph &graph, char *result[]) {
         dfs(graph, i, nullptr, path, pos, result);
         path.pop_back();
     }
+
+    return pos;
 }
 
-void NoCycle::allWordlist(char *result[]) {
-    cout << wordlistCnt(this->graph) << endl;
+int NoCycle::allWordlist(char *result[]) {
+//    cout << wordlistCnt(this->graph) << endl;
 
-    getAllPath(this->graph, result);
+    return getAllPath(this->graph, result);
 }
 
 /* 求解最长路：
@@ -127,7 +131,7 @@ static int weightByAlphas(Graph *graph, int u, int v) {
     return v == graph->getSize() - 1 ? 0 : -graph->getNode(v).getLen();
 }
 
-void NoCycle::longestPath(int type, char *result[]) {
+int NoCycle::longestPath(int type, char *result[]) {
     Graph *newGraph = buildNewGraph();
     int size = newGraph->getSize();
 //    int pre[size + 5];
@@ -145,6 +149,7 @@ void NoCycle::longestPath(int type, char *result[]) {
             break;
     }
 
+    int pos = 0;
     if (pre[size - 1] == INF) {
         cout << NO_SATISFYING_WL << endl;
     } else {
@@ -152,7 +157,6 @@ void NoCycle::longestPath(int type, char *result[]) {
         for (int i = pre[size - 1]; i != size - 2; i = pre[i]) {
             s.push(i);
         }
-        int pos = 0;
         while (!s.empty()) {
 //            cout << newGraph->getNode(s.top()).getWord() << endl;
             result[pos] = (char *) malloc(sizeof(char) * (newGraph->getNode(s.top()).getWord().length() + 5));
@@ -163,14 +167,16 @@ void NoCycle::longestPath(int type, char *result[]) {
 
     free(pre);
     free(newGraph);
+
+    return pos;
 }
 
-void NoCycle::longestWords(char *result[]) {
-    this->longestPath(0, result);
+int NoCycle::longestWords(char *result[]) {
+    return this->longestPath(0, result);
 }
 
-void NoCycle::longestAlphas(char *result[]) {
-    this->longestPath(1, result);
+int NoCycle::longestAlphas(char *result[]) {
+    return this->longestPath(1, result);
 }
 
 Graph *NoCycle::buildNewGraph() {

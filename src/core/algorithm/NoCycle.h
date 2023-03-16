@@ -13,18 +13,18 @@ private:
     Graph *buildNewGraph();
 
     // 0表示单词数最多，1表示字母数最多
-    void longestPath(int type, char *result[]);
+    int longestPath(int type, char *result[]);
 
 public:
     explicit NoCycle(Graph &graph, Parameter &parameter) : Algorithm(graph, parameter) {
 
     }
 
-    void allWordlist(char *result[]) override;
+    int allWordlist(char *result[]) override;
 
-    void longestWords(char *result[]) override;
+    int longestWords(char *result[]) override;
 
-    void longestAlphas(char *result[]) override;
+    int longestAlphas(char *result[]) override;
 };
 
 

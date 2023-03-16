@@ -17,11 +17,11 @@ public:
 
     }
 
-    void allWordlist(char *result[]) override;
+    int allWordlist(char *result[]) override;
 
-    void longestWords(char *result[]) override;
+    int longestWords(char *result[]) override;
 
-    void longestAlphas(char *result[]) override;
+    int longestAlphas(char *result[]) override;
 };
 
 

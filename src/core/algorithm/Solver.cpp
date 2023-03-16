@@ -16,8 +16,9 @@ static bool hasCycle(Graph &graph) {
     int n = graph.getSize();
 
     // 1. 求得各点的入度
-    int in[n + 5];
-    memset(in, 0, sizeof(in));
+//    int in[n + 5];
+    int *in = (int *) malloc(sizeof(int) * (n + 5));
+    memset(in, 0, sizeof(int) * (n + 5));
     for (int i = 0; i < n; i++) {
         vector<int> now = graph.getEdges().at(i);
         for (int &v: now) {

@@ -51,7 +51,7 @@ static bool hasCycle(Graph &graph) {
     return cnt != n;
 }
 
-void Solver::solve(char *result[]) {
+int Solver::solve(char *result[]) {
     Graph &graph = Global::get_instance().getGraph();
     Parameter &parameter = Global::get_instance().getParameter();
 
@@ -66,13 +66,16 @@ void Solver::solve(char *result[]) {
         algorithm = new Cycle(graph, parameter);
     }
 
+    int ans = 0;
     if (parameter.isN()) {
-        algorithm->allWordlist(result);
+        ans = algorithm->allWordlist(result);
     } else if (parameter.isW()) {
-        algorithm->longestWords(result);
+        ans = algorithm->longestWords(result);
     } else if (parameter.isC()) {
-        algorithm->longestAlphas(result);
+        ans = algorithm->longestAlphas(result);
     }
 
     delete algorithm;
+
+    return ans;
 }

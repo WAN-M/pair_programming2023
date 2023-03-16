@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void Cycle::allWordlist(char *result[]) {
+int Cycle::allWordlist(char *result[]) {
     cout << "数据可构成环，无法求解单词链数量" << endl;
 }
 
@@ -99,11 +99,11 @@ void Cycle::longestPath(int getWeight(const string &path), char *result[]) {
     }
 }
 
-void Cycle::longestWords(char *result[]) {
+int Cycle::longestWords(char *result[]) {
     longestPath(weightByWords, result);
 }
 
-void Cycle::longestAlphas(char *result[]) {
+int Cycle::longestAlphas(char *result[]) {
     longestPath(weightByAlphas, result);
 }
 

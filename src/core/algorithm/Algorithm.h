@@ -21,11 +21,11 @@ public:
 
     virtual ~Algorithm() = default;
 
-    virtual void allWordlist(char *result[]) = 0;
+    virtual int allWordlist(char *result[]) = 0;
 
-    virtual void longestWords(char *result[]) = 0;
+    virtual int longestWords(char *result[]) = 0;
 
-    virtual void longestAlphas(char *result[]) = 0;
+    virtual int longestAlphas(char *result[]) = 0;
 };
 
 

@@ -15,6 +15,11 @@
 using namespace std;
 
 static void printPath(vector<string> &path, int &pos, char *result[]) {
+    int len = 0;
+    for (string &s: path) {
+        len += s.length();
+    }
+    result[pos] = (char *) malloc(sizeof(char) * (len + 5));
     for (string &s: path) {
         strcat(result[pos], s.c_str());
     }
@@ -150,6 +155,7 @@ void NoCycle::longestPath(int type, char *result[]) {
         int pos = 0;
         while (!s.empty()) {
 //            cout << newGraph->getNode(s.top()).getWord() << endl;
+            result[pos] = (char *) malloc(sizeof(char) * (newGraph->getNode(s.top()).getWord().length() + 5));
             strcpy(result[pos++], newGraph->getNode(s.top()).getWord().c_str());
             s.pop();
         }

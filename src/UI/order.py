@@ -10,8 +10,10 @@ from MyUIWidget.EditorWidget import EditorWidget
 def checkPath():
     model = 0
     try:
-        exe_path = QDir.currentPath() + '/WordList.exe'
-        dll_path = QDir.currentPath() + '/WordList.dll'
+        # exe_path = QDir.currentPath() + '/WordList.exe'
+        # dll_path = QDir.currentPath() + '/WordList.dll'
+        exe_path = os.path.dirname(os.path.realpath(__file__)) + '/WordList.exe'
+        dll_path = os.path.dirname(os.path.realpath(__file__)) + '/WordList.dll'
         if os.path.exists(exe_path):
             model = 1
         elif os.path.exists(dll_path):
@@ -87,7 +89,7 @@ class Order:
                     LogWidget.log_text.setText('程序运行时间:%s秒' % (round(t2 - t1, 2)))
                 else:
                     pass
-                    LogWidget.log_text.setText('没有找到可执行程序或动态链接库')
+                    LogWidget.log_text.setText(os.path.dirname(os.path.realpath(__file__)))
             except Exception as e:
                 pass
                 LogWidget.log_text.setText(traceback.format_exc())

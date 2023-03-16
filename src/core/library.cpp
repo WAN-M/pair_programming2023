@@ -39,8 +39,3 @@ extern "C" __declspec(dllexport) int gen_chain_char(char *words[], int len, char
     Global::get_instance().getParameter().setC(true);
     return Solver::solve(result);
 }
-
-extern "C" __declspec(dllexport) int myFunc(int a)
-{
-    return a;
-}

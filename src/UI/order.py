@@ -9,9 +9,14 @@ from MyUIWidget.EditorWidget import EditorWidget
 
 def checkPath():
     model = 0
+
+    # , ('WordList.exe', '.')
+
     try:
-        exe_path = QDir.currentPath() + '/WordList.exe'
-        dll_path = QDir.currentPath() + '/WordList.dll'
+        # exe_path = QDir.currentPath() + '/WordList.exe'
+        # dll_path = QDir.currentPath() + '/WordList.dll'
+        exe_path = os.path.dirname(os.path.realpath(__file__)) + '/WordList.exe'
+        dll_path = os.path.dirname(os.path.realpath(__file__)) + '/WordList.dll'
         if os.path.exists(exe_path):
             model = 1
         elif os.path.exists(dll_path):
@@ -55,6 +60,8 @@ class Order:
         #     if Order.order_dict[key][0]:
         #         text += " " + key + " " + Order.order_dict[key][1]
 
+
+
         if Order.order_dict['-n'][0]:
             text += " " + '-n'
         elif Order.order_dict['-w'][0] or Order.order_dict['-c'][0]:
@@ -80,14 +87,14 @@ class Order:
                 model = checkPath()
                 if model == 1:
                     t1 = time.time()
-                    res = os.popen(LogWidget.cmd.text(), "r").read()
+                    res = os.popen(LogWidget.cmd.text() + " " + QDir.currentPath() + "/core.dll", "r").read()
                     # print(res)
                     t2 = time.time()
                     EditorWidget.output_text.setText(res)
                     LogWidget.log_text.setText('程序运行时间:%s秒' % (round(t2 - t1, 2)))
                 else:
                     pass
-                    LogWidget.log_text.setText('没有找到可执行程序或动态链接库')
+                    LogWidget.log_text.setText(os.path.dirname(QDir.currentPath()))
             except Exception as e:
                 pass
                 LogWidget.log_text.setText(traceback.format_exc())

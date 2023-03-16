@@ -68,8 +68,14 @@ int main() {
 		printf("%s\n", *(words + i));
 		//append("test.txt", *(words + i));
 	}
-	int api_res = gen_chains_all(words, len, res);
-	printf("%d\n", api_res);
+    try{
+        int api_res = gen_chains_all(words, len, res);
+        printf("%d\n", api_res);
+    }
+	catch (exception &e){
+        cout<< e.what() <<endl;
+    }
+
 	//ofstr();
 	return 0;
 }

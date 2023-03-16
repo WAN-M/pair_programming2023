@@ -20,7 +20,7 @@ static void setParameters(char head, char tail, char reject, bool enable_loop) {
 }
 
 
-int gen_chains_all(char *words[], int len, char *result[]) {
+extern "C" __declspec(dllexport) int gen_chains_all(char *words[], int len, char *result[]) {
     buildGraph(words, len);
     Global::get_instance().getParameter().setN(true);
     Solver::solve(result);
@@ -28,7 +28,7 @@ int gen_chains_all(char *words[], int len, char *result[]) {
     return 0;
 }
 
-int gen_chain_word(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
+extern "C" __declspec(dllexport) int gen_chain_word(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
     buildGraph(words, len);
     setParameters(head, tail, reject, enable_loop);
     Global::get_instance().getParameter().setW(true);
@@ -37,11 +37,16 @@ int gen_chain_word(char *words[], int len, char *result[], char head, char tail,
     return 0;
 }
 
-int gen_chain_char(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
+extern "C" __declspec(dllexport) int gen_chain_char(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
     buildGraph(words, len);
     setParameters(head, tail, reject, enable_loop);
     Global::get_instance().getParameter().setC(true);
     Solver::solve(result);
 
     return 0;
+}
+
+extern "C" __declspec(dllexport) int myFunc(int a)
+{
+    return a;
 }

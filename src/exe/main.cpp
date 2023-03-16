@@ -2,18 +2,21 @@
 #include "input/Scanner.h"
 #include "input/Parameter.h"
 #include <libloaderapi.h>
+#define AS_GUI_MODULE false
 
 using namespace std;
 
 HMODULE module = nullptr;
-void loadModule(char* path){
+bool loadModule(char* path){
     // 运行时加载DLL库
     module = LoadLibraryA(path);     // 根据DLL文件名，加载DLL，返回一个模块句柄
     if (module == nullptr)
     {
         printf("加载core.dll动态库失败\n");
+        return false;
     } else{
         printf("加载core.dll动态库成功\n");
+        return true;
     }
 }
 
@@ -96,6 +99,15 @@ void call_gen_chain_char(char *words[], int len, char *result[], char head, char
 }
 
 int main(int argc, char *argv[]) {
+    char* path = (char *) &"core.dll";
+    if(AS_GUI_MODULE){
+        path = argv[argc - 1];
+        printf("检测到作为GUI模块使用，core.dll路径输入为: %s\n", path);
+        argc = argc - 1;
+    } else{
+        printf("检测到作为独立模块使用\n");
+    }
+//    return 0;
     Scanner scanner(argc, argv);
     Parameter parameter;
     scanner.setParas(parameter);
@@ -127,8 +139,8 @@ int main(int argc, char *argv[]) {
     char ** res = (char **) malloc(sizeof (char *) * maxLength);
 
     // load dll
-    string path = "core.dll";
-    loadModule((char *)path.c_str());
+    if(!loadModule(path))
+        return 0;
     // -w -c -n
     if(parameter.isW()){
         printf("w!\n");
@@ -142,6 +154,9 @@ int main(int argc, char *argv[]) {
         printf("n!\n");
         call_gen_chains_all(read, wordNumber, res);
     }
+
+    free(res);
+    free(read);
 
     return 0;
 }

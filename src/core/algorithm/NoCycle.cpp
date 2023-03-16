@@ -14,30 +14,26 @@
 
 using namespace std;
 
-static void printPath(vector<string> &path, int &pos, char *result[]) {
-    int len = 0;
-    for (string &s: path) {
-        len += s.length();
-    }
+static void printPath(string &path, int &pos, char *result[]) {
+    int len = path.length();
     result[pos] = (char *) malloc(sizeof(char) * (len + 5));
-    result[pos][0] = 0;
-    for (string &s: path) {
-        strcat(result[pos], s.c_str());
-        strcat(result[pos], " ");
-    }
-    pos++;
+    strcpy(result[pos++], path.c_str());
 }
 
-static void dfs(Graph &graph, int now, int cnt[], vector<string> &path, int &pos,
+static void dfs(Graph &graph, int now, int cnt[], string &path, int &pos,
                 char *result[] = nullptr) {
+    cout << now << endl;
     for (int next: graph.getEdges().at(now)) {
+        cout << "next: " << next << endl;
+        int len = 0;
         if (result != nullptr) {
-            path.push_back(graph.getNode(next).getWord());
+            len = graph.getNode(next).getWord().length() + 1;
+            path += " " + graph.getNode(next).getWord();
             printPath(path, pos, result);
         }
         dfs(graph, next, cnt, path, pos, result);
         if (result != nullptr) {
-            path.pop_back();
+            path.erase(path.end() - len);
         } else if (cnt != nullptr) {
             cnt[now] += cnt[next] + 1;
         }
@@ -49,7 +45,7 @@ static int wordlistCnt(Graph &graph) {
 //    int cnt[n + 5];
     int *cnt = (int *) malloc(sizeof(int) * (n + 5));
     memset(cnt, 0, sizeof(int) * (n + 5));
-    vector<string> useless;
+    string useless;
     int sum = 0;
     for (int i = 0; i < n; i++) {
         if (cnt[i] == 0) {
@@ -66,11 +62,11 @@ static int getAllPath(Graph &graph, char *result[]) {
     int n = graph.getSize();
     int pos = 0;
 
-    vector<string> path;
+    string path;
     for (int i = 0; i < n; i++) {
-        path.push_back(graph.getNode(i).getWord());
+        path = graph.getNode(i).getWord();
         dfs(graph, i, nullptr, path, pos, result);
-        path.pop_back();
+        path = "";
     }
 
     return pos;

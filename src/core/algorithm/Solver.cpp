@@ -60,7 +60,7 @@ int Solver::solve(char *result[]) {
         // ÎÞ»·Í¼
         algorithm = new NoCycle(graph, parameter);
     } else {
-        if (parameter.isR()) {
+        if (!parameter.isR()) {
             Error::dataCyclicWithoutR();
         }
         algorithm = new Cycle(graph, parameter);

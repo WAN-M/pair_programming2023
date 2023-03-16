@@ -13,6 +13,7 @@ using namespace std;
 
 int Cycle::allWordlist(char *result[]) {
     cout << "数据可构成环，无法求解单词链数量" << endl;
+    return -1;
 }
 
 static void splitByBlank(const string &str, vector<string> &split) {

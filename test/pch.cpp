@@ -61,15 +61,46 @@ int getWords(char** words) {
 
 int main() {
 	/*getWords();*/
-	char** words = (char**)malloc(sizeof(char*) * 20001);
-	int len = getWords(words);
+	//char** words = (char**)malloc(sizeof(char*) * 20001);
+	//int len = getWords(words);
+
+	char* words[] = {
+		"aPqhb",
+        "bmaLc",
+        "cLDfd",
+        "drvCe",
+        "egbKf",
+        "fndxg",
+        "gFfZh",
+        "hStJi",
+        "irpGj",
+        "jRNvk",
+        "kSmcl",
+        "lsyQm",
+        "mEiEn",
+        "nfZio",
+        "okavp",
+        "pSEzq",
+        "qyXXr",
+        "rlgps",
+        "sfDot",
+        "tEXbu",
+        "uojVv",
+        "vvbyw",
+        "wpeLx",
+        "xPNLy",
+        "yVvpz",
+	};
+
 	char** res = (char**)malloc(sizeof(char*) * maxLength);
 	for (int i = 0; i < 25; i++) {
 		printf("%s\n", *(words + i));
 		//append("test.txt", *(words + i));
 	}
     try{
-        int api_res = gen_chains_all(words, len, res);
+        int api_res = gen_chains_all(words, 25, res);
+//		free(words);
+		free(res);
         printf("%d\n", api_res);
     }
 	catch (exception &e){

@@ -49,6 +49,7 @@ static bool hasCycle(Graph &graph) {
         }
     }
 
+    free(in);
     return cnt != n;
 }
 

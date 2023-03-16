@@ -17,10 +17,18 @@ void append(string path, char* str)
 	ofs.close();
 }
 
-void getWord(char** allWords, int index, char start, char end, int length, bool upper) {
-    char* res = (char*) malloc(sizeof (char ) * (length + 1));
+void create(string path)
+{
+	ofstream ofs;						//定义流对象
+	ofs.open(path, ios::in);		//以写的方式打开文件
+	ofs << "";//写入
+	ofs.close();
+}
+
+void getWord(char* allWords[], int index, char start, char end, int length, bool upper) {
+    char* res = (char*) malloc(sizeof(char) * length);
 	res[0] = start;
-	for (int i = 1; i < length - 1; i++) {
+	for (int i = 1; i < length - 2; i++) {
 		int up = 0;
 		char temp = 'a' + rand() % 26;
 		if (upper) {
@@ -31,65 +39,247 @@ void getWord(char** allWords, int index, char start, char end, int length, bool 
 		}
 		res[i] = temp;
 	}
-    res[length - 1] = end;
-	res[length] = '\0';
+    res[length - 2] = end;
+	res[length - 1] = 0;
 
 	//printf("%s\n", word.c_str());
+	allWords[index] = (char*)malloc(sizeof(char) * (length + 5));
+	strcpy(allWords[index], res);
 
-
+	free(res);
 	//printf("%s\n", res);
-	*(allWords + index) = res;
+	//*(allWords + index) = res;
 
 	//printf("%s\n", index, allWords[index]);
 }
 
 /// <summary>
-/// 26连续长单词
+/// 25连续长单词
 /// </summary>
 /// <returns></returns>
-int getWords(char** words) {
-	for (int i = 0; i < 25; i++) {
-		getWord(words, i, 'a' + i, 'a' + i + 1, 5, true);
+int get25HeadTailConnectLongWords(char* words[]) {
+	int number = 8;
+	string path = "./0_25个首尾相连长单词.txt";
+	for (int i = 0; i < number; i++) {
+		getWord(words, i, 'a' + i, 'a' + i + 1, 8, true);
 		//printf("%s\n", words[i]);
 	}
-	/*for (int i = 0; i < 25; i++) {
-		printf("%s\n", *(words + i));
-		append("test.txt", *(words + i));
-	}*/
-	return 25;
+	create(path);
+	for (int i = 0; i < number; i++) {
+		printf("%s\n", words[i]);
+		append(path, words[i]);
+	}
+	return number;
 }
 
-int main() {
+/// <summary>
+/// a->z,b->z,...
+/// 全联通网络
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int getFullHeadTailConnectWords(char** words) {
+	int number = 25;
+	int count = 0;
+	string path = "./1_全联通网络.txt";
+	for (int i = 0; i < number; i++) {
+		for (int j = i; j < number - 1; j++) {
+			getWord(words, i * number + j, 'a' + j, 'a' + j + 1, 8, true);
+			count += 1;
+		}
+		//printf("%s\n", words[i]);
+	}
+	create(path);
+	for (int i = 0; i < number; i++) {
+		printf("%s\n", words[i]);
+		append(path, words[i]);
+	}
+	return count;
+}
+
+/// <summary>
+/// 单词存在环路
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int getCircle(char** words){
+    words[0] = (char *)"ssstd";
+    words[1] = (char *)"dab";
+    words[2] = (char *)"bccca";
+    words[3] = (char *)"assbd";
+    words[4] = (char *)"ssdtb";
+    return 5;
+}
+
+/// <summary>
+/// 单词带自环
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int getSelfCircle(char** words){
+    words[0] = (char *)"abcde";
+    words[1] = (char *)"abcdc";
+    words[2] = (char *)"abcda";
+    words[3] = (char *)"edaat";
+    words[4] = (char *)"tckkk";
+    return 5;
+}
+
+/// <summary>
+/// 单词带自环且大小写
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int getSelfCircleWithUpperChar(char** words) {
+	words[0] = (char*)"abcde";
+	words[1] = (char*)"Abcdc";
+	words[2] = (char*)"abcdA";
+	words[3] = (char*)"edaat";
+	words[4] = (char*)"tckkk";
+	return 5;
+}
+
+/// <summary>
+/// 单词存在环路且大小写成环
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int getCircleWithUpperChar(char** words) {
+	words[0] = (char*)"abcdE";
+	words[1] = (char*)"eccct";
+	words[2] = (char*)"tbbaA";
+	words[3] = (char*)"Evjju";
+	words[4] = (char*)"ubv";
+	return 5;
+}
+
+/// <summary>
+/// 单词重复
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int getRepeat(char** words) {
+	words[0] = (char*)"abcdE";
+	words[1] = (char*)"eccct";
+	words[2] = (char*)"tbbab";
+	words[3] = (char*)"BaaaB";
+	words[4] = (char*)"abcdE";
+	return 5;
+}
+
+/// <summary>
+/// 单词重复且成环
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int getCircleWithRepeat(char** words) {
+	words[0] = (char*)"abcdE";
+	words[1] = (char*)"eccct";
+	words[2] = (char*)"BaaaB";
+	words[3] = (char*)"BaaaB";
+	words[4] = (char*)"tss";
+	return 5;
+}
+
+/// <summary>
+/// 多单词链
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int getDifferentCircle(char** words) {
+	words[0] = (char*)"abcdE";
+	words[1] = (char*)"eccct";
+	words[2] = (char*)"BaaaB";
+	words[3] = (char*)"bsbbv";
+	words[4] = (char*)"vqs";
+	words[5] = (char*)"fsbss";
+	words[6] = (char*)"sbbvu";
+	words[7] = (char*)"ssso";
+	return 5;
+}
+
+/// <summary>
+/// 超级多单词链
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int getPlentyLinks(char** words) {
+	int number = 25;
+	string path = "tooManyLinks.txt";
+	for (int i = 0; i < number; i++) {
+		for (int j = 0; j < number; j++) {
+			getWord(words, i * number + j, 'a' + i, 'a' + i + 1, 4 + j, true);
+		}
+		
+		//printf("%s\n", words[i]);
+	}
+	create(path);
+	for (int i = 0; i < number * number; i++) {
+		printf("%s\n", *(words + i));
+		append(path, *(words + i));
+	}
+	return number;
+}
+
+/// <summary>
+/// 超级多单词环
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int getPlentyCircles(char** words) {
+	int number = 26;
+	string path = "./3_超多单词环.txt";
+	for (int i = 0; i < number; i++) {
+		for (int j = 0; j < number; j++) {
+			if (i != 25) {
+				getWord(words, i * number + j, 'a' + i, 'a' + i + 1, 4 + j, true);
+			}
+			else
+			{
+				getWord(words, i * number + j, 'a' + i, 'a', 4 + j, true);
+			}
+		}
+		//printf("%s\n", words[i]);
+	}
+	create(path);
+	for (int i = 0; i < number; i++) {
+		printf("%s\n", *(words + i));
+		append(path, *(words + i));
+	}
+	return number;
+}
+
+int other() {
 	/*getWords();*/
 	//char** words = (char**)malloc(sizeof(char*) * 20001);
 	//int len = getWords(words);
 
 	char* words[] = {
 		"aPqhb",
-        "bmaLc",
-        "cLDfd",
-        "drvCe",
-        "egbKf",
-        "fndxg",
-        "gFfZh",
-        "hStJi",
-        "irpGj",
-        "jRNvk",
-        "kSmcl",
-        "lsyQm",
-        "mEiEn",
-        "nfZio",
-        "okavp",
-        "pSEzq",
-        "qyXXr",
-        "rlgps",
-        "sfDot",
-        "tEXbu",
-        "uojVv",
-        "vvbyw",
-        "wpeLx",
-        "xPNLy",
-        "yVvpz",
+		"bmaLc",
+		"cLDfd",
+		"drvCe",
+		"egbKf",
+		"fndxg",
+		"gFfZh",
+		"hStJi",
+		"irpGj",
+		"jRNvk",
+		"kSmcl",
+		"lsyQm",
+		"mEiEn",
+		"nfZio",
+		"okavp",
+		"pSEzq",
+		"qyXXr",
+		"rlgps",
+		"sfDot",
+		"tEXbu",
+		"uojVv",
+		"vvbyw",
+		"wpeLx",
+		"xPNLy",
+		"yVvpz",
 	};
 
 	char** res = (char**)malloc(sizeof(char*) * maxLength);
@@ -97,15 +287,18 @@ int main() {
 		printf("%s\n", *(words + i));
 		//append("test.txt", *(words + i));
 	}
-    try{
-        int api_res = gen_chains_all(words, 25, res);
-//		free(words);
+	try {
+		int api_res = gen_chains_all(words, 25, res);
+		//		free(words);
+		for (int i = 0; i < maxLength; i++) {
+			free(res[i]);
+		}
 		free(res);
-        printf("%d\n", api_res);
-    }
-	catch (exception &e){
-        cout<< e.what() <<endl;
-    }
+		printf("%d\n", api_res);
+	}
+	catch (exception& e) {
+		cout << e.what() << endl;
+	}
 
 	//ofstr();
 	return 0;

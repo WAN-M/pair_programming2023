@@ -21,6 +21,11 @@ static void setParameters(char head, char tail, char reject, bool enable_loop) {
 
 
 extern "C" __declspec(dllexport) int gen_chains_all(char *words[], int len, char *result[]) {
+    
+    for (int i = 0; i < len; i++) {
+        printf("check %s\n", words[i]);
+    }
+    
     buildGraph(words, len);
     Global::get_instance().getParameter().setN(true);
     return Solver::solve(result);

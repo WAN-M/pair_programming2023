@@ -30,7 +30,7 @@ using namespace std;
 /// <param name="NameOfTestFunction">测试函数名</param>
 /// <param name="DescriptionOfAssert">渴望得到的测试效果描述</param>
 
-// 普通环，不允许
+//普通环，不允许
 TEST(NCircle, Forbid)
 {
 	char* words[maxLength];
@@ -51,6 +51,16 @@ TEST(NCircle, Forbid)
     // 结果不能低于下限
     EXPECT_GE(api_res, 0);
     printf("NCircle finish! 结果长度: %d\n", api_res);
+    //free(words);
+    /*for (int i = 0; i < len; i++) {
+        free(words[i]);
+    }
+    free(resNumber);
+    free(maxLen);
+    for (int i = 0; i < api_res; i++) {
+        free(res[i]);
+    }*/
+    //delete res;
 }
 
 // 自身带环，允许
@@ -181,7 +191,7 @@ TEST(NCircleWithRepeat, Forbid)
     //int api_res = gen_chain_char(words, len, res, 0, 0, 0, true);
     //int api_res = gen_chain_word(words, len, res, 0, 0, 0, true);
     printf("n circle-with-repeat (x) %d\n", api_res);
-    cout << e.reason << " 本题不应有异常!" << endl;
+    //cout << e.reason << " 本题不应有异常!" << endl;
     //EXPECT_EQ(0, api_res);
 }
 
@@ -202,9 +212,9 @@ TEST(NDifferentCircle, Forbid)
     }
     catch (MyError e) {
         // 本题应有异常
-        //EXPECT_EQ(e.reason, DATA_CYCLIC);
-        cout << "没有定义该类异常 " << e.reason << endl;
-        EXPECT_EQ(e.reason, FILE_NOT_EXIST);
+        EXPECT_EQ(e.reason, DATA_CYCLIC);
+        //cout << "没有定义该类异常 " << e.reason << endl;
+        //EXPECT_EQ(e.reason, FILE_NOT_EXIST);
     }
     // 结果不能超过上限
     EXPECT_LT(api_res, maxLength);

@@ -11,11 +11,13 @@ class Scanner {
 private:
     int n;
     char **paras;
+    void readAvailableFile(const char *const fileName);
 public:
     int wordNumber = 0;
+    char **words = nullptr;
     Scanner(int n, char *paras[]);
     void setParas(Parameter &parameter);
-    char** readFile();
+    void readFile();
 };
 
 #endif //WORDLIST_SCANNER_H

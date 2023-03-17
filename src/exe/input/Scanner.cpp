@@ -11,6 +11,7 @@
 #include <io.h>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <set>
 #include <vector>
 
@@ -78,7 +79,7 @@ void Scanner::setParas(Parameter &parameter) {
     Error::checkParas(parameter);
 }
 
-vector<string> readAvailableFile(const char *const fileName) {
+void Scanner::readAvailableFile(const char *const fileName) {
     fstream inFile;
     inFile.open(fileName, ios::in);
     if (!inFile.is_open()) {
@@ -86,8 +87,13 @@ vector<string> readAvailableFile(const char *const fileName) {
     }
 
 //    set<string> words;
-    vector<string> allWords = {};
-    string word;
+//    vector<string> allWords = {};
+//    stringbuf word;
+
+    vector<char*> allWords;
+    vector<char> word;
+
+//    string word;
 
 //    char *buf = (char *) malloc(sizeof(char) * 50);
 //    int cnt = 0;
@@ -100,11 +106,16 @@ vector<string> readAvailableFile(const char *const fileName) {
         }
         if (isalpha(c)) {
 //            buf[cnt++] = (char) tolower(c);
-            word.append(1, (char) tolower(c));
+            word.push_back(c);
         } else {
-            if (word.length() > 0){
-                allWords.push_back(word);
-                word = "";
+            if (!word.empty()){
+                word.push_back(0);
+                char* temp = (char*) malloc(sizeof (char ) * word.size());
+                for(int j = 0; j < word.size(); j++){
+                    *(temp + j) = word[j];
+                }
+                word.clear();
+                allWords.push_back(temp);
             }
 //            if (cnt > 0) {
 //                buf[cnt] = 0;
@@ -116,9 +127,14 @@ vector<string> readAvailableFile(const char *const fileName) {
 //            cnt = 0;
         }
     }
-    if (word.length() > 0){
-        allWords.push_back(word);
-        word = "";
+    if (!word.empty()){
+        word.push_back(0);
+        char* temp = (char*) malloc(sizeof (char ) * word.size());
+        for(int j = 0; j < word.size(); j++){
+            *(temp + j) = word[j];
+        }
+        word.clear();
+        allWords.push_back(temp);
     }
 //    if (cnt > 0) {
 //        buf[cnt] = 0;
@@ -126,10 +142,21 @@ vector<string> readAvailableFile(const char *const fileName) {
 //    }
 //    free(buf);
     inFile.close();
-    return allWords;
+
+    this->words = (char **) malloc(sizeof (char *) * allWords.size());
+    for(int i = 0; i < allWords.size(); i++){
+        *((this->words) + i) = allWords[i];
+    }
+    this->wordNumber = (int) allWords.size();
+
+//    for(int i = 0; i < allWords.size(); i++){
+//        printf("raf %s\n", allWords[i]);
+//    }
+
+    allWords.clear();
 }
 
-char** Scanner::readFile() {
+void Scanner::readFile() {
     // todo 确定读入参数一定按顺序吗
     char *const fileName = this->paras[this->n - 1];
     // 判断文件是否是.txt后缀
@@ -144,16 +171,6 @@ char** Scanner::readFile() {
     } else if (access(fileName, R_OK) == -1) {
         Error::wrongFileStatus(1);
     } else {
-        vector<string> allWords = readAvailableFile(fileName);
-        char** res = (char **) malloc(sizeof (char *) * allWords.size());
-        for (int i = 0; i < allWords.size(); i++){
-//            char* pointer = (char *) malloc(sizeof (char ) * allWords[i].length());
-            char* pointer = (char *)allWords[i].c_str();
-            *(res + i) = pointer;
-//            printf("%s\n", pointer);
-        }
-        this->wordNumber = (int) allWords.size();
-        return res;
+        readAvailableFile(fileName);
     }
-    return nullptr;
 }

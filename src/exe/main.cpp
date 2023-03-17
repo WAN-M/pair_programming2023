@@ -20,9 +20,16 @@ bool loadModule(char* path){
     }
 }
 
+void myPrint(char * words[], int length){
+    for(int i = 0; i < length; i++){
+        printf("%s\n", words[i]);
+    }
+}
+
 // 动态调用DLL库
 void call_gen_chains_all(char* words[], int len, char* result[])
 {
+//    myPrint(words, len);
     typedef int(*AddFunc)(char* words[], int len, char* result[]);
     // 定义函数指针类型
     AddFunc callFunc;
@@ -112,7 +119,10 @@ int main(int argc, char *argv[]) {
     Parameter parameter;
     scanner.setParas(parameter);
     // 全部单词
-    char ** read = scanner.readFile();
+    scanner.readFile();
+
+    char** read = scanner.words;
+
     if(read == nullptr){
         printf("wrong input!");
         return 0;

@@ -3,4 +3,8 @@ project(exe)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(exe main.cpp input/Parameter.cpp input/Scanner.cpp error/Error.cpp)
+add_executable(exe
+        main.cpp
+        input/Parameter.cpp
+        input/Scanner.cpp
+        error/Error.cpp)

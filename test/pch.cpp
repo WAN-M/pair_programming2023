@@ -121,11 +121,11 @@ int getCircle(char** words, int* resNumber, int* maxLen){
 /// <param name="words"></param>
 /// <returns></returns>
 int getSelfCircle(char** words, int * resNumber, int *maxLen){
-    words[0] = (char *)"abcde";
-    words[1] = (char *)"abcdc";
-    words[2] = (char *)"abcda";
-    words[3] = (char *)"edaat";
-    words[4] = (char *)"tckkk";
+    words[0] = (char *)"abcxde";
+    words[1] = (char *)"abxxscdc";
+    words[2] = (char *)"abcsssssda";
+    words[3] = (char *)"edassssssssssssssat";
+    words[4] = (char *)"tckssssssssskk";
 
 	*resNumber = 7;
 	*maxLen = 4;
@@ -211,14 +211,14 @@ int getCircleWithRepeat(char** words, int* resNumber, int* maxLen) {
 /// <param name="words"></param>
 /// <returns></returns>
 int getDifferentCircle(char** words, int* resNumber, int* maxLen) {
-	words[0] = (char*)"abcdE";
-	words[1] = (char*)"eccct";
-	words[2] = (char*)"BaaaB";
-	words[3] = (char*)"bsbbv";
-	words[4] = (char*)"vqs";
-	words[5] = (char*)"fsbss";
-	words[6] = (char*)"sbbvu";
-	words[7] = (char*)"ssso";
+	words[0] = (char*)"abcssssddE";
+	words[1] = (char*)"eccdct";
+	words[2] = (char*)"BaasssssssssaB";
+	words[3] = (char*)"bv";
+	words[4] = (char*)"vqxs";
+	words[5] = (char*)"fss";
+	words[6] = (char*)"sbxxbvu";
+	words[7] = (char*)"sssso";
 
 	*resNumber = 12;
 	*maxLen = 4;
@@ -236,7 +236,7 @@ int getPlentyLinks(char** words) {
 	string path = "tooManyLinks.txt";
 	for (int i = 0; i < number; i++) {
 		for (int j = 0; j < number; j++) {
-			getWord(words, i * number + j, 'a' + i, 'a' + i + 1, 4 + j, true);
+			getWord(words, i * number + j, 'a' + i, 'a' + i + 1, 4 + rand() % (j + 1), true);
 		}
 		
 		//printf("%s\n", words[i]);
@@ -260,11 +260,11 @@ int getPlentyCircles(char** words) {
 	for (int i = 0; i < number; i++) {
 		for (int j = 0; j < number; j++) {
 			if (i != 25) {
-				getWord(words, i * number + j, 'a' + i, 'a' + i + 1, 4 + j, true);
+				getWord(words, i * number + j, 'a' + i, 'a' + i + 1, 4 + rand() % (j + 1), true);
 			}
 			else
 			{
-				getWord(words, i * number + j, 'a' + i, 'a', 4 + j, true);
+				getWord(words, i * number + j, 'a' + i, 'a', 4 + rand() % (j + 1), true);
 			}
 		}
 		//printf("%s\n", words[i]);

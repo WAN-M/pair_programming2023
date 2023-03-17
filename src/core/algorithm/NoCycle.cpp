@@ -22,9 +22,9 @@ static void printPath(string &path, int &pos, char *result[]) {
 
 static void dfs(Graph &graph, int now, int cnt[], string &path, int &pos,
                 char *result[] = nullptr) {
-    cout << now << endl;
+    //cout << now << endl;
     for (int next: graph.getEdges().at(now)) {
-        cout << "next: " << next << endl;
+        //cout << "next: " << next << endl;
         int len = 0;
         if (result != nullptr) {
             len = graph.getNode(next).getWord().length() + 1;

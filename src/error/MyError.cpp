@@ -4,16 +4,23 @@
 
 #include <cstdlib>
 #include <iostream>
-#include "Error.h"
+#include "MyError.h"
 #include "../var/Information.h"
 
 using namespace std;
 
-void Error::quitWithError() {
-    exit(-1);
+MyError::MyError(string reason)
+{
+    this->reason = reason;
 }
 
-void Error::checkParas(Parameter parameter) {
+void MyError::quitWithMyError(string reason) {
+    throw MyError(reason);
+    //exit(-1);
+}
+
+
+void MyError::checkParas(Parameter parameter) {
     if (parameter.isN() && (parameter.isC() || parameter.isW() || parameter.isR() ||
                             parameter.getT() != 0 || parameter.getJ() != 0 || parameter.getH() != 0)) {
         wrongParaCombination();
@@ -26,41 +33,45 @@ void Error::checkParas(Parameter parameter) {
     }
 }
 
-void Error::wrongParaCombination() {
+void MyError::wrongParaCombination() {
     cout << PARAMETERS_CRUSH << endl;
-    quitWithError();
+    quitWithMyError(PARAMETERS_CRUSH);
 }
 
-void Error::wrongSpecificAlpha(const char *const para, int type) {
+void MyError::wrongSpecificAlpha(const char *const para, int type) {
     cout << para << ONLY_ONE_ALPHA << endl;
-    quitWithError();
+    quitWithMyError(ONLY_ONE_ALPHA);
 }
 
-void Error::wrongParameter() {
+void MyError::wrongParameter() {
     cout << WRONG_PARAMETER << endl;
-    quitWithError();
+    quitWithMyError(WRONG_PARAMETER);
 }
 
-void Error::wrongFileStatus(int type) {
+void MyError::wrongFileStatus(int type) {
+    string reason = "unkown";
     switch (type) {
         case 0:
             cout << FILE_NOT_EXIST << endl;
+            reason = FILE_NOT_EXIST;
             break;
         case 1:
             cout << FILE_UNREADABLE << endl;
+            reason = FILE_UNREADABLE;
             break;
         case 2:
             cout << FILE_NOT_TXT << endl;
+            reason = FILE_NOT_TXT;
             break;
         default:
             break;
     }
-    quitWithError();
+    quitWithMyError(reason);
 }
 
-void Error::dataCyclicWithoutR() {
+void MyError::dataCyclicWithoutR() {
     cout << DATA_CYCLIC << endl;
-    quitWithError();
+    quitWithMyError(DATA_CYCLIC);
 }
 
 

@@ -2,12 +2,13 @@
 // Created by DELL on 2023/3/9.
 //
 
-#ifndef WORDLIST_ERROR_H
-#define WORDLIST_ERROR_H
+#ifndef WORDLIST_MyError_H
+#define WORDLIST_MyError_H
 
 
 #include "../var/Parameter.h"
-
+#include <iostream>
+using namespace std;
 /*
  * 提供各种数据错误处理方式
  * 1. 参数组合冲突
@@ -16,11 +17,14 @@
  * 4. 数据文件出错，包括文件不存在、文件不可读和文件类型不是.txt
  * 5. 未指定-r但数据存在环
  */
-class Error {
+class MyError {
 private:
-    static void quitWithError();
-
+    static void quitWithMyError(string reason);
 public:
+    string reason = "";
+    
+    MyError(string reason);
+
     static void checkParas(Parameter parameter);
 
     static void wrongParaCombination();
@@ -47,4 +51,4 @@ public:
 };
 
 
-#endif //WORDLIST_ERROR_H
+#endif //WORDLIST_MyError_H

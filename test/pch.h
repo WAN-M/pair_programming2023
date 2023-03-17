@@ -13,10 +13,10 @@ int getPlentyLinks(char** words);
 int getPlentyCircles(char** words);
 
 //  ÷∂ØªØ
-int getCircle(char** words);
+int getCircle(char** words, int* resNumber, int* maxLen);
 int getSelfCircle(char** words, int* resNumber, int* maxLen);
-int getSelfCircleWithUpperChar(char** words);
-int getCircleWithUpperChar(char** words);
-int getRepeat(char** words);
-int getCircleWithRepeat(char** words);
-int getDifferentCircle(char** words);
+int getSelfCircleWithUpperChar(char** words, int* resNumber, int* maxLen);
+int getCircleWithUpperChar(char** words, int* resNumber, int* maxLen);
+int getRepeat(char** words, int* resNumber, int* maxLen);
+int getCircleWithRepeat(char** words, int* resNumber, int* maxLen);
+int getDifferentCircle(char** words, int* resNumber, int* maxLen);

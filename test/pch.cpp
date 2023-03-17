@@ -102,12 +102,16 @@ int getFullHeadTailConnectWords(char** words) {
 /// </summary>
 /// <param name="words"></param>
 /// <returns></returns>
-int getCircle(char** words){
+int getCircle(char** words, int* resNumber, int* maxLen){
     words[0] = (char *)"ssstd";
     words[1] = (char *)"dab";
     words[2] = (char *)"bccca";
     words[3] = (char *)"assbd";
     words[4] = (char *)"ssdtb";
+
+	*resNumber = 12;
+	*maxLen = 3;
+
     return 5;
 }
 
@@ -134,12 +138,16 @@ int getSelfCircle(char** words, int * resNumber, int *maxLen){
 /// </summary>
 /// <param name="words"></param>
 /// <returns></returns>
-int getSelfCircleWithUpperChar(char** words) {
+int getSelfCircleWithUpperChar(char** words, int* resNumber, int* maxLen) {
 	words[0] = (char*)"abcde";
 	words[1] = (char*)"Abcdc";
 	words[2] = (char*)"abcdA";
 	words[3] = (char*)"edaat";
 	words[4] = (char*)"tckkk";
+
+	*resNumber = 7;
+	*maxLen = 4;
+
 	return 5;
 }
 
@@ -148,12 +156,16 @@ int getSelfCircleWithUpperChar(char** words) {
 /// </summary>
 /// <param name="words"></param>
 /// <returns></returns>
-int getCircleWithUpperChar(char** words) {
+int getCircleWithUpperChar(char** words, int* resNumber, int* maxLen) {
 	words[0] = (char*)"abcdE";
 	words[1] = (char*)"eccct";
 	words[2] = (char*)"tbbaA";
 	words[3] = (char*)"Evjju";
 	words[4] = (char*)"ubv";
+
+	*resNumber = 12;
+	*maxLen = 4;
+
 	return 5;
 }
 
@@ -162,12 +174,16 @@ int getCircleWithUpperChar(char** words) {
 /// </summary>
 /// <param name="words"></param>
 /// <returns></returns>
-int getRepeat(char** words) {
+int getRepeat(char** words, int* resNumber, int* maxLen) {
 	words[0] = (char*)"abcdE";
 	words[1] = (char*)"eccct";
 	words[2] = (char*)"tbbab";
 	words[3] = (char*)"BaaaB";
 	words[4] = (char*)"abcdE";
+
+	*resNumber = 9;
+	*maxLen = 4;
+
 	return 5;
 }
 
@@ -176,12 +192,16 @@ int getRepeat(char** words) {
 /// </summary>
 /// <param name="words"></param>
 /// <returns></returns>
-int getCircleWithRepeat(char** words) {
+int getCircleWithRepeat(char** words, int* resNumber, int* maxLen) {
 	words[0] = (char*)"abcdE";
 	words[1] = (char*)"eccct";
 	words[2] = (char*)"BaaaB";
 	words[3] = (char*)"BaaaB";
 	words[4] = (char*)"tss";
+
+	*resNumber = 4;
+	*maxLen = 3;
+
 	return 5;
 }
 
@@ -190,7 +210,7 @@ int getCircleWithRepeat(char** words) {
 /// </summary>
 /// <param name="words"></param>
 /// <returns></returns>
-int getDifferentCircle(char** words) {
+int getDifferentCircle(char** words, int* resNumber, int* maxLen) {
 	words[0] = (char*)"abcdE";
 	words[1] = (char*)"eccct";
 	words[2] = (char*)"BaaaB";
@@ -199,6 +219,10 @@ int getDifferentCircle(char** words) {
 	words[5] = (char*)"fsbss";
 	words[6] = (char*)"sbbvu";
 	words[7] = (char*)"ssso";
+
+	*resNumber = 12;
+	*maxLen = 4;
+
 	return 5;
 }
 

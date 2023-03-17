@@ -9,7 +9,7 @@
 #include "../var/Global.h"
 #include <cstring>
 #include <queue>
-#include "core/error/MyError.h"
+#include "../error/MyError.h"
 
 // 先利用拓扑排序，判断图中是否有环
 static bool hasCycle(Graph &graph) {

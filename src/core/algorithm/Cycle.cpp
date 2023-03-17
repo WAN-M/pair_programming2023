@@ -103,11 +103,11 @@ int Cycle::longestPath(int getWeight(const string &path), char *result[]) {
 }
 
 int Cycle::longestWords(char *result[]) {
-    longestPath(weightByWords, result);
+    return longestPath(weightByWords, result);
 }
 
 int Cycle::longestAlphas(char *result[]) {
-    longestPath(weightByAlphas, result);
+    return longestPath(weightByAlphas, result);
 }
 
 

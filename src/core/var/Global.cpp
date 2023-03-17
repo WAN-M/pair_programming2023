@@ -18,3 +18,8 @@ Graph &Global::getGraph() {
 Parameter &Global::getParameter() {
     return parameter;
 }
+
+void Global::reset() {
+    this->graph = Graph();
+    this->parameter = Parameter();
+}

@@ -25,6 +25,8 @@ public:
     Graph &getGraph();
 
     Parameter &getParameter();
+
+    void reset();
 };
 
 

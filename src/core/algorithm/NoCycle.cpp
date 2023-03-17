@@ -34,9 +34,9 @@ static void dfs(Graph &graph, int now, int cnt[], string &path, int &pos,
         dfs(graph, next, cnt, path, pos, result);
         if (result != nullptr) {
             path.erase(path.end() - len, path.end());
-        } else if (cnt != nullptr) {
+        }/* else if (cnt != nullptr) {
             cnt[now] += cnt[next] + 1;
-        }
+        }*/
     }
 }
 

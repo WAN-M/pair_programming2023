@@ -25,23 +25,22 @@ extern "C" __declspec(dllexport) int gen_chains_all(char *words[], int len, char
     //for (int i = 0; i < len; i++) {
     //    printf("check %s\n", words[i]);
     //}
-    
+    Global::get_instance().reset();
     buildGraph(words, len);
     Global::get_instance().getParameter().setN(true);
     return Solver::solve(result);
 }
 
 extern "C" __declspec(dllexport) int gen_chain_word(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
+    Global::get_instance().reset();
     buildGraph(words, len);
     setParameters(head, tail, reject, enable_loop);
     Global::get_instance().getParameter().setW(true);
     return Solver::solve(result);
 }
 
-extern "C" __declspec(dllexport) int gen_chain_char(char *words[], int len,
-                                                    char *result[], char head,
-                                                    char tail, char reject,
-                                                    bool enable_loop) {
+extern "C" __declspec(dllexport) int gen_chain_char(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
+    Global::get_instance().reset();
     buildGraph(words, len);
     setParameters(head, tail, reject, enable_loop);
     Global::get_instance().getParameter().setC(true);

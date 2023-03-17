@@ -106,7 +106,7 @@ void Scanner::readAvailableFile(const char *const fileName) {
         }
         if (isalpha(c)) {
 //            buf[cnt++] = (char) tolower(c);
-            word.push_back(c);
+            word.push_back((char) tolower(c));
         } else {
             if (!word.empty()){
                 word.push_back(0);

@@ -94,12 +94,14 @@ int Cycle::longestPath(int getWeight(const string &path), char *result[]) {
     }
     free(vis);
 
+    int ret = 0;
     if (ans.empty()) {
         cout << NO_SATISFYING_WL << endl;
-        return 0;
+        ret = 0;
     } else {
-        return printPath(ans, result);
+        ret = printPath(ans, result);
     }
+    return ret;
 }
 
 int Cycle::longestWords(char *result[]) {

@@ -1,49 +1,67 @@
 #include <iostream>
+#include <fstream>
 #include "input/Scanner.h"
 #include "input/Parameter.h"
 #include <libloaderapi.h>
+#include "exception/Information.h"
+#include "exception/FileException.h"
 #define AS_GUI_MODULE false
-#define debug true
+#define debug false
+#define res_path "solution.txt"
 using namespace std;
 
 HMODULE module = nullptr;
 bool loadModule(char* path){
-    // ÔËĞĞÊ±¼ÓÔØDLL¿â
-    module = LoadLibraryA(path);     // ¸ù¾İDLLÎÄ¼şÃû£¬¼ÓÔØDLL£¬·µ»ØÒ»¸öÄ£¿é¾ä±ú
+    // è¿è¡Œæ—¶åŠ è½½DLLåº“
+    module = LoadLibraryA(path);     // æ ¹æ®DLLæ–‡ä»¶åï¼ŒåŠ è½½DLLï¼Œè¿”å›ä¸€ä¸ªæ¨¡å—å¥æŸ„
     if (module == nullptr)
     {
-        printf("¼ÓÔØcore.dll¶¯Ì¬¿âÊ§°Ü\n");
-        return false;
-    } else{
-        printf("¼ÓÔØcore.dll¶¯Ì¬¿â³É¹¦\n");
-        return true;
+        throw FileException(NO_MODULE);
     }
+    return true;
 }
 
-void myPrint(char * words[], int length){
-    for(int i = 0; i < length; i++){
-        printf("%s\n", words[i]);
-    }
+void append(string path, char* str)
+{
+    ofstream ofs;						//å®šä¹‰æµå¯¹è±¡
+    ofs.open(path, ios::app);		//ä»¥å†™çš„æ–¹å¼æ‰“å¼€æ–‡ä»¶
+    ofs << str << endl;//å†™å…¥
+    ofs.close();
 }
 
-// ¶¯Ì¬µ÷ÓÃDLL¿â
+void create(string path)
+{
+    ofstream ofs;						//å®šä¹‰æµå¯¹è±¡
+    ofs.open(path, ios::out);		//ä»¥å†™çš„æ–¹å¼æ‰“å¼€æ–‡ä»¶
+    ofs << "";//å†™å…¥
+    ofs.close();
+}
+
+//void myPrint(char * words[], int length){
+//    for(int i = 0; i < length; i++){
+//        printf("%s\n", words[i]);
+//    }
+//}
+
+// åŠ¨æ€è°ƒç”¨DLLåº“
 void call_gen_chains_all(char* words[], int len, char* result[])
 {
 //    myPrint(words, len);
     typedef int(*AddFunc)(char* words[], int len, char* result[]);
-    // ¶¨Òåº¯ÊıÖ¸ÕëÀàĞÍ
+    // å®šä¹‰å‡½æ•°æŒ‡é’ˆç±»å‹
     AddFunc callFunc;
-    // µ¼³öº¯ÊıµØÖ·
+    // å¯¼å‡ºå‡½æ•°åœ°å€
     callFunc = (AddFunc)GetProcAddress(module, "gen_chains_all");
-    // GetProcAddress·µ»ØÖ¸ÏòµÄº¯ÊıÃûµÄº¯ÊıµØÖ·
-    if(callFunc != nullptr){
-        printf("Ñ°ÕÒº¯Êı³É¹¦£¬¿ªÊ¼ÔËĞĞ\n");
-    } else{
-        printf("Î´ÕÒµ½º¯Êı!\n");
+    // GetProcAddressè¿”å›æŒ‡å‘çš„å‡½æ•°åçš„å‡½æ•°åœ°å€
+    if(callFunc == nullptr){
+        throw FileException(NO_FUNCTION);
     }
+
     try {
         int res  = callFunc(words, len, result);
-        printf("¶¯Ì¬µ÷ÓÃ£¬½á¹û¸öÊı %d\n", res);
+        if(debug){
+            printf("åŠ¨æ€è°ƒç”¨ï¼Œç»“æœä¸ªæ•° %d\n", res);
+        }
         for (int i = 0; i < res; i++){
             printf("%s\n", result[i]);
         }
@@ -53,25 +71,32 @@ void call_gen_chains_all(char* words[], int len, char* result[])
     }
 }
 
-// ¶¯Ì¬µ÷ÓÃDLL¿â
+// åŠ¨æ€è°ƒç”¨DLLåº“
 void call_gen_chain_word(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop)
 {
     typedef int(*AddFunc)(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop);
-    // ¶¨Òåº¯ÊıÖ¸ÕëÀàĞÍ
+    // å®šä¹‰å‡½æ•°æŒ‡é’ˆç±»å‹
     AddFunc callFunc;
-    // µ¼³öº¯ÊıµØÖ·
+    // å¯¼å‡ºå‡½æ•°åœ°å€
     callFunc = (AddFunc)GetProcAddress(module, "gen_chain_word");
-    // GetProcAddress·µ»ØÖ¸ÏòµÄº¯ÊıÃûµÄº¯ÊıµØÖ·
-    if(callFunc != nullptr){
-        printf("Ñ°ÕÒº¯Êı³É¹¦£¬¿ªÊ¼ÔËĞĞ\n");
-    } else{
-        printf("Î´ÕÒµ½º¯Êı!\n");
+    // GetProcAddressè¿”å›æŒ‡å‘çš„å‡½æ•°åçš„å‡½æ•°åœ°å€
+    if(callFunc == nullptr){
+        throw FileException(NO_FUNCTION);
     }
     try {
         int res  = callFunc(words, len, result, head, tail, reject, enable_loop);
-        printf("¶¯Ì¬µ÷ÓÃ£¬½á¹û¸öÊı %d\n", res);
-        for (int i = 0; i < res; i++){
-            printf("%s\n", result[i]);
+        if(debug){
+            printf("åŠ¨æ€è°ƒç”¨ï¼Œç»“æœä¸ªæ•° %d\n", res);
+        }
+        try{
+            create(res_path);
+            for (int i = 0; i < res; i++){
+//            printf("%s\n", result[i]);
+                append(res_path, result[i]);
+            }
+        }
+        catch (exception &e){
+            throw FileException(FILE_WRITE_ERROR);
         }
     }
     catch (exception &e){
@@ -79,25 +104,32 @@ void call_gen_chain_word(char *words[], int len, char *result[], char head, char
     }
 }
 
-// ¶¯Ì¬µ÷ÓÃDLL¿â
+// åŠ¨æ€è°ƒç”¨DLLåº“
 void call_gen_chain_char(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop)
 {
     typedef int(*AddFunc)(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop);
-    // ¶¨Òåº¯ÊıÖ¸ÕëÀàĞÍ
+    // å®šä¹‰å‡½æ•°æŒ‡é’ˆç±»å‹
     AddFunc callFunc;
-    // µ¼³öº¯ÊıµØÖ·
+    // å¯¼å‡ºå‡½æ•°åœ°å€
     callFunc = (AddFunc)GetProcAddress(module, "gen_chain_char");
-    // GetProcAddress·µ»ØÖ¸ÏòµÄº¯ÊıÃûµÄº¯ÊıµØÖ·
-    if(callFunc != nullptr){
-        printf("Ñ°ÕÒº¯Êı³É¹¦£¬¿ªÊ¼ÔËĞĞ\n");
-    } else{
-        printf("Î´ÕÒµ½º¯Êı!\n");
+    // GetProcAddressè¿”å›æŒ‡å‘çš„å‡½æ•°åçš„å‡½æ•°åœ°å€
+    if(callFunc == nullptr){
+        throw FileException(NO_FUNCTION);
     }
     try {
         int res  = callFunc(words, len, result, head, tail, reject, enable_loop);
-        printf("¶¯Ì¬µ÷ÓÃ£¬½á¹û¸öÊı %d\n", res);
-        for (int i = 0; i < res; i++){
-            printf("%s\n", result[i]);
+        if(debug){
+            printf("åŠ¨æ€è°ƒç”¨ï¼Œç»“æœä¸ªæ•° %d\n", res);
+        }
+        try{
+            create(res_path);
+            for (int i = 0; i < res; i++){
+//            printf("%s\n", result[i]);
+                append(res_path, result[i]);
+            }
+        }
+        catch (exception &e){
+            throw FileException(FILE_WRITE_ERROR);
         }
     }
     catch (exception &e){
@@ -106,71 +138,77 @@ void call_gen_chain_char(char *words[], int len, char *result[], char head, char
 }
 
 int main(int argc, char *argv[]) {
-    char* path = (char *) &"core.dll";
-    if(AS_GUI_MODULE){
-        path = argv[argc - 1];
-        argc = argc - 1;
-        if(debug){
-            printf("¼ì²âµ½×÷ÎªGUIÄ£¿éÊ¹ÓÃ£¬core.dllÂ·¾¶ÊäÈëÎª: %s\n", path);
+    try{
+        char* path = (char *) &"core.dll";
+        if(AS_GUI_MODULE){
+            path = argv[argc - 1];
+            argc = argc - 1;
+            if(debug){
+                printf("æ£€æµ‹åˆ°ä½œä¸ºGUIæ¨¡å—ä½¿ç”¨ï¼Œcore.dllè·¯å¾„è¾“å…¥ä¸º: %s\n", path);
+            }
+        } else{
+            if(debug){
+                printf("æ£€æµ‹åˆ°ä½œä¸ºç‹¬ç«‹æ¨¡å—ä½¿ç”¨\n");
+            }
         }
-    } else{
-        if(debug){
-            printf("¼ì²âµ½×÷Îª¶ÀÁ¢Ä£¿éÊ¹ÓÃ\n");
-        }
-    }
 //    return 0;
-    Scanner scanner(argc, argv);
-    Parameter parameter;
-    scanner.setParas(parameter);
-    // È«²¿µ¥´Ê
-    scanner.readFile();
+        Scanner scanner(argc, argv);
+        Parameter parameter;
+        scanner.setParas(parameter);
+        // å…¨éƒ¨å•è¯
+        scanner.readFile();
 
-    char** read = scanner.words;
+        char** read = scanner.words;
 
-    if(read == nullptr){
-        printf("wrong input!");
-        return 0;
+//        if(read == nullptr){
+//            printf("wrong input!");
+//            return 0;
+//        }
+        // å•è¯ä¸ªæ•°
+        int wordNumber = scanner.wordNumber;
+
+        if(debug){
+            for (int i = 0; i < wordNumber; i++){
+                printf("%s\n", *(read + i));
+            }
+            printf("%d\n", wordNumber);
+        }
+
+        // head tail reject
+        char head = parameter.getH();
+        char tail = parameter.getT();
+        char reject = parameter.getJ();
+
+        // loop
+        bool loop = parameter.isR();
+        int maxLength = 20001;
+
+        // result
+        char ** res = (char **) malloc(sizeof (char *) * maxLength);
+
+        // load dll
+        if(!loadModule(path))
+            return 0;
+        // -w -c -n
+        if(parameter.isW()){
+//            printf("w!\n");
+            call_gen_chain_word(read, wordNumber, res, head, tail, reject, loop);
+        }
+        else if(parameter.isC()){
+//            printf("c!\n");
+            call_gen_chain_char(read, wordNumber, res, head, tail, reject, loop);
+        }
+        else if(parameter.isN()){
+//            printf("n!\n");
+            call_gen_chains_all(read, wordNumber, res);
+        }
+
+        free(res);
+        free(read);
     }
-    // µ¥´Ê¸öÊı
-    int wordNumber = scanner.wordNumber;
-
-    for (int i = 0; i < wordNumber; i++){
-        printf("%s\n", *(read + i));
+    catch (exception &e){
+        printf("%s\n", e.what());
     }
-
-    printf("%d\n", wordNumber);
-
-    // head tail reject
-    char head = parameter.getH();
-    char tail = parameter.getT();
-    char reject = parameter.getJ();
-
-    // loop
-    bool loop = parameter.isR();
-    int maxLength = 20001;
-
-    // result
-    char ** res = (char **) malloc(sizeof (char *) * maxLength);
-
-    // load dll
-    if(!loadModule(path))
-        return 0;
-    // -w -c -n
-    if(parameter.isW()){
-        printf("w!\n");
-        call_gen_chain_word(read, wordNumber, res, head, tail, reject, loop);
-    }
-    if(parameter.isC()){
-        printf("c!\n");
-        call_gen_chain_char(read, wordNumber, res, head, tail, reject, loop);
-    }
-    if(parameter.isN()){
-        printf("n!\n");
-        call_gen_chains_all(read, wordNumber, res);
-    }
-
-    free(res);
-    free(read);
 
     return 0;
 }

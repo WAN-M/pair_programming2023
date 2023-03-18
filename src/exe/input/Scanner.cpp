@@ -120,14 +120,14 @@ void Scanner::readAvailableFile(const char *const fileName) {
     fstream inFile;
     inFile.open(fileName, ios::in);
     if (!inFile.is_open()) {
-        cout << "打开文件失败" << endl;
+//        cout << "打开文件失败" << endl;
+        throw FileException(FILE_NOT_EXIST);
     }
 
     set<string> allWords;
 //    vector<string> allWords = {};
 //    stringbuf word;
-
-    vector<char *> allWords;
+//    vector<char *> pointers;
     vector<char> word;
 
 //    string word;
@@ -152,16 +152,11 @@ void Scanner::readAvailableFile(const char *const fileName) {
                     *(temp + j) = word[j];
                 }
                 word.clear();
-                allWords.push_back(temp);
+
+                if (allWords.find(temp) == allWords.end()) {
+                    allWords.insert(temp);
+                }
             }
-//            if (cnt > 0) {
-//                buf[cnt] = 0;
-//                if (words.find(buf) == words.end()) {
-//                    words.insert(buf);
-//                    solver.newWord(buf);
-//                }
-//            }
-//            cnt = 0;
         }
     }
     if (!word.empty()) {
@@ -171,7 +166,10 @@ void Scanner::readAvailableFile(const char *const fileName) {
             *(temp + j) = word[j];
         }
         word.clear();
-        allWords.push_back(temp);
+
+        if (allWords.find(temp) == allWords.end()) {
+            allWords.insert(temp);
+        }
     }
 //    if (cnt > 0) {
 //        buf[cnt] = 0;
@@ -181,8 +179,13 @@ void Scanner::readAvailableFile(const char *const fileName) {
     inFile.close();
 
     this->words = (char **) malloc(sizeof(char *) * allWords.size());
-    for (int i = 0; i < allWords.size(); i++) {
-        *((this->words) + i) = allWords[i];
+//    for (int i = 0; i < allWords.size(); i++) {
+//        *((this->words) + i) = allWords.;
+//    }
+    int index = 0;
+    for(string pointer : allWords){
+        *((this->words) + index) = (char *) malloc(sizeof(char) * (pointer.size() + 5));
+        strcpy((this->words)[index++], pointer.c_str());
     }
     this->wordNumber = (int) allWords.size();
 

@@ -5,11 +5,7 @@
 #include "pch.h"
 #include <iostream>
 #include <fstream>
-
-#include "library.h"
-
-
-
+#include "core/library.h"
 #define maxLength 20001
 using namespace std;
  
@@ -65,14 +61,14 @@ int get25HeadTailConnectLongWords(char* words[]) {
 	int number = 25;
 	string path = "./0_25个首尾相连长单词.txt";
 	for (int i = 0; i < number; i++) {
-		getWord(words, i, 'a' + i, 'a' + i + 1, 10000, true);
+		getWord(words, i, 'a' + i, 'a' + i + 1, 8, true);
 		//printf("%s\n", words[i]);
 	}
-	//create(path);
-	//for (int i = 0; i < number; i++) {
-	//	printf("%s\n", words[i]);
-	//	append(path, words[i]);
-	//}
+	create(path);
+	for (int i = 0; i < number; i++) {
+		printf("%s\n", words[i]);
+		append(path, words[i]);
+	}
 	return number;
 }
 
@@ -83,22 +79,21 @@ int get25HeadTailConnectLongWords(char* words[]) {
 /// <param name="words"></param>
 /// <returns></returns>
 int getFullHeadTailConnectWords(char** words) {
-	int number = 26;
+	int number = 25;
 	int count = 0;
 	string path = "./1_全联通网络.txt";
 	for (int i = 0; i < number; i++) {
 		for (int j = i; j < number - 1; j++) {
-			getWord(words, count, 'a' + j, 'a' + j + 1, 8, true);
+			getWord(words, i * number + j, 'a' + j, 'a' + j + 1, 8, true);
 			count += 1;
 		}
 		//printf("%s\n", words[i]);
 	}
-	//pri
-	//create(path);
-	//for (int i = 0; i < count; i++) {
-	//	printf("%s\n", words[i]);
-	//	append(path, words[i]);
-	//}
+	create(path);
+	for (int i = 0; i < number; i++) {
+		printf("%s\n", words[i]);
+		append(path, words[i]);
+	}
 	return count;
 }
 
@@ -238,21 +233,19 @@ int getDifferentCircle(char** words, int* resNumber, int* maxLen) {
 /// <returns></returns>
 int getPlentyLinks(char** words) {
 	int number = 25;
-	int count = 0;
-	string path = "./2_超多单词链.txt";
+	string path = "tooManyLinks.txt";
 	for (int i = 0; i < number; i++) {
 		for (int j = 0; j < number; j++) {
 			getWord(words, i * number + j, 'a' + i, 'a' + i + 1, 4 + rand() % (j + 1), true);
-			count++;
 		}
 		
 		//printf("%s\n", words[i]);
 	}
-	//create(path);
-	//for (int i = 0; i < count; i++) {
-	//	printf("%s\n", *(words + i));
-	//	append(path, *(words + i));
-	//}
+	create(path);
+	for (int i = 0; i < number * number; i++) {
+		printf("%s\n", *(words + i));
+		append(path, *(words + i));
+	}
 	return number;
 }
 
@@ -263,7 +256,6 @@ int getPlentyLinks(char** words) {
 /// <returns></returns>
 int getPlentyCircles(char** words) {
 	int number = 26;
-	int count = 0;
 	string path = "./3_超多单词环.txt";
 	for (int i = 0; i < number; i++) {
 		for (int j = 0; j < number; j++) {
@@ -274,15 +266,14 @@ int getPlentyCircles(char** words) {
 			{
 				getWord(words, i * number + j, 'a' + i, 'a', 4 + rand() % (j + 1), true);
 			}
-			count++;
 		}
 		//printf("%s\n", words[i]);
 	}
-	//create(path);
-	//for (int i = 0; i < count; i++) {
-	//	printf("%s\n", *(words + i));
-	//	append(path, *(words + i));
-	//}
+	create(path);
+	for (int i = 0; i < number; i++) {
+		printf("%s\n", *(words + i));
+		append(path, *(words + i));
+	}
 	return number;
 }
 
@@ -339,16 +330,4 @@ int getPlentyCircles(char** words) {
 //
 //	//ofstr();
 //	return 0;
-//}
-
-//#undef main
-//int main() {
-//	char* words1[maxLength];
-//	get25HeadTailConnectLongWords(words1);
-//	char* words2[maxLength];
-//	getPlentyCircles(words2);
-//	char* words3[maxLength];
-//	getPlentyLinks(words3);
-//	char* words4[maxLength];
-//	getFullHeadTailConnectWords(words4);
 //}

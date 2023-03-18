@@ -7,4 +7,4 @@ add_executable(exe
         main.cpp
         input/Parameter.cpp
         input/Scanner.cpp
-        error/Error.cpp)
+        error/Error.cpp exception/Information.h)

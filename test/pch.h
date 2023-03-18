@@ -4,7 +4,8 @@
 
 #pragma once
 
-#include "gtest/gtest.h"
+//#include "gtest/gtest.h"
+
 // ×Ô¶¯»¯
 int get25HeadTailConnectLongWords(char* words[]);
 int getFullHeadTailConnectWords(char** words);

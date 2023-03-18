@@ -7,7 +7,8 @@
 #include "Global.h"
 #include "../../tools/Char2Pos.h"
 #include "../../tools/JudgeChar.h"
-#include "../../error/MyError.h"
+#include "../../exception/RuntimeException.h"
+#include "../../var/Information.h"
 #include <string>
 #include <vector>
 #include <cstring>
@@ -211,7 +212,7 @@ int OPTIMIZE::Solver::allWordlist(char **result) {
     }
 
     if (sumLen > MAX_ANS_LEN) {
-        // TODO 长度超过20000
+        throw RuntimeException(RESULT_TOO_LONG);
     }
     return pos;
 }
@@ -224,7 +225,7 @@ int OPTIMIZE::Solver::longestWords(char **result) {
     dfs(SOURCE, 0, nowPath, longestWeight, longestPath, 0, sumLen, weightByWords);
 
     if (sumLen > MAX_ANS_LEN) {
-        // TODO 长度超过20000
+        throw RuntimeException(RESULT_TOO_LONG);
     }
     return copyPath(longestPath, result, sumLen <= MAX_ANS_LEN);
 }
@@ -237,7 +238,7 @@ int OPTIMIZE::Solver::longestAlphas(char **result) {
     dfs(SOURCE, 0, nowPath, longestWeight, longestPath, 0, sumLen, weightByWords);
 
     if (sumLen > MAX_ANS_LEN) {
-        // TODO 长度超过20000
+        throw RuntimeException(RESULT_TOO_LONG);
     }
     return copyPath(longestPath, result, sumLen <= MAX_ANS_LEN);
 }
@@ -247,7 +248,7 @@ int OPTIMIZE::Solver::solve(char **result) {
     Parameter &parameter = Global::get_instance().getParameter();
 
     if (hasCycle() && !parameter.isR()) {
-        MyError::dataCyclicWithoutR();
+        throw RuntimeException(DATA_CYCLIC);
     }
 
     int ans = 0;
@@ -257,6 +258,10 @@ int OPTIMIZE::Solver::solve(char **result) {
         ans = longestWords(result);
     } else if (parameter.isC()) {
         ans = longestAlphas(result);
+    }
+
+    if (ans == 0) {
+        throw RuntimeException(NO_SATISFYING_WL);
     }
 
     return ans;

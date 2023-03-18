@@ -14,6 +14,10 @@ extern bool firstOk(Parameter parameter, char first) {
     return true;
 }
 
+extern bool firstRejected(Parameter &parameter, char first) {
+    return parameter.getJ() != 0 && parameter.getJ() == first;
+}
+
 extern bool lastOk(Parameter parameter, char last) {
     if (parameter.getT() != 0 && last != parameter.getT()) {
         return false;

@@ -76,6 +76,10 @@ extern "C" __declspec(dllexport) int gen_chain_word(char *words[], int len, char
 }
 
 extern "C" __declspec(dllexport) int gen_chain_char(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
+    for (int i = 0; i < len; i++) {
+        printf("%s\n", words[i]);
+    }
+    
     OPTIMIZE::Global::get_instance().reset();
     setParameters(head, tail, reject, enable_loop);
     buildGraph_o(words, len);

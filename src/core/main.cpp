@@ -76,11 +76,11 @@ int get25HeadTailConnectLongWords(char* words[]) {
 		getWord(words, i, 'a' + i, 'a' + i + 1, 10000, true);
 		//printf("%s\n", words[i]);
 	}
-	//create(path);
-	//for (int i = 0; i < number; i++) {
-	//	printf("%s\n", words[i]);
-	//	append(path, words[i]);
-	//}
+	create(path);
+	for (int i = 0; i < number; i++) {
+		//printf("%s\n", words[i]);
+		append(path, words[i]);
+	}
 	return number;
 }
 
@@ -1573,17 +1573,18 @@ void CCircle()
 ////
 
 void run() {
-    NCircle();
-    NSelfCircle();
-    NSelfCircleWithUpperChar();
-    NCircleWithUpperChar();
-    NRepeat();
-    NCircleWithRepeat();
-    NDifferentCircle();
+    //NCircle();
+    //NSelfCircle();
+    //NSelfCircleWithUpperChar();
+    //NCircleWithUpperChar();
+    //NRepeat();
+    //NCircleWithRepeat();
+    //NDifferentCircle();
     //NFullHeadTailConnectWords();
+    
 
-    WCircle();
-    CCircle();
+    //WCircle();
+    //CCircle();
 }
 
 int main() {
@@ -1634,8 +1635,26 @@ int main() {
         cout << "unknown exception" << endl;
     }*/
 
+    try {
+        cLinks(  0,
+              0,
+              0,
+              false);
+    }
+    catch (CommandException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (FileException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (RuntimeException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (exception e) {
+        cout << "unknown exception" << endl;
+    }
 
-    run();
+    //run();
     //cout << "s" << endl;
 
     //printWFullLink(0, 'z', 'x', true);

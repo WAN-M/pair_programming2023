@@ -93,6 +93,10 @@ void dfs(int now, int nowWeight, string &nowPath, int &longestWeight, string &lo
     // 大于3，因为两虚点贡献两条边
     if (now == TARGET && cnt > 3) {
         if (nowWeight > longestWeight) {
+            if (nowLen > MAX_ANS_LEN) {
+                throw RuntimeException(RESULT_TOO_LONG);
+            }
+
             longestPath = nowPath;
             longestWeight = nowWeight;
             sumLen = nowLen;
@@ -142,9 +146,9 @@ void dfs(int now, int nowWeight, string &nowPath, int &longestWeight, string &lo
 
         // 将下一条边标记为以遍历
         node.increaseItr(next);
-        if (nowLen <= MAX_ANS_LEN) {
-            dfs(next, nowWeight, nowPath, longestWeight, longestPath, nowLen, sumLen, getWeight, cnt + selfCnt + 1);
-        }
+//        if (nowLen <= MAX_ANS_LEN) {
+        dfs(next, nowWeight, nowPath, longestWeight, longestPath, nowLen, sumLen, getWeight, cnt + selfCnt + 1);
+//        }
         node.decreaseItr(next);
 
         if (edge->getLen() != 0) {

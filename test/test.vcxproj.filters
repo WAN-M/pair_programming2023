@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="test.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="..\src\core_old\tools\JudgeChar.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core_old\var\Global.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core_old\var\Graph.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core_old\var\Parameter.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core_old\var\Word.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core_old\library.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core_old\algorithm\Cycle.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core_old\algorithm\NoCycle.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core_old\algorithm\Solver.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core_old\error\MyError.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="..\src\core_old\tools\JudgeChar.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core_old\var\Constant.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core_old\var\Global.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core_old\var\Graph.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core_old\var\Information.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core_old\var\Parameter.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core_old\var\Word.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core_old\library.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core_old\algorithm\Algorithm.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core_old\algorithm\Cycle.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core_old\algorithm\NoCycle.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core_old\algorithm\Solver.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core_old\error\MyError.h">
+      <Filter>test</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="test">
+      <UniqueIdentifier>{6c888364-325d-48ca-9c4e-cf1f98868138}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

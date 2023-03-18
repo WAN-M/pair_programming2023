@@ -26,9 +26,9 @@ int OPTIMIZE::Edge::getLen() const {
     return len;
 }
 
-int OPTIMIZE::Edge::getU() const {
-    return u;
-}
+//int OPTIMIZE::Edge::getU() const {
+//    return u;
+//}
 
 int OPTIMIZE::Edge::getV() const {
     return v;

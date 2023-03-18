@@ -76,11 +76,11 @@ int get25HeadTailConnectLongWords(char* words[]) {
 		getWord(words, i, 'a' + i, 'a' + i + 1, 10000, true);
 		//printf("%s\n", words[i]);
 	}
-	create(path);
-	for (int i = 0; i < number; i++) {
-		//printf("%s\n", words[i]);
-		append(path, words[i]);
-	}
+	//create(path);
+	//for (int i = 0; i < number; i++) {
+	//	//printf("%s\n", words[i]);
+	//	append(path, words[i]);
+	//}
 	return number;
 }
 
@@ -718,10 +718,22 @@ void NFullHeadTailConnectWords()
     char* res[maxLength];
 
     int api_res = 0;
-    //try {
-    Low(words, len);
-    api_res = gen_chains_all(words, len, res);
-    //}
+    try {
+        Low(words, len);
+        api_res = gen_chains_all(words, len, res);
+    }
+    catch (CommandException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (FileException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (RuntimeException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (exception e) {
+        cout << "unknown exception" << endl;
+    }
     //catch (MyError e) {
     //    // 本题应有异常
     //    //EXPECT_EQ(e.reason, DATA_CYCLIC);
@@ -1573,18 +1585,17 @@ void CCircle()
 ////
 
 void run() {
-    //NCircle();
-    //NSelfCircle();
-    //NSelfCircleWithUpperChar();
-    //NCircleWithUpperChar();
-    //NRepeat();
-    //NCircleWithRepeat();
-    //NDifferentCircle();
-    //NFullHeadTailConnectWords();
+    NCircle();
+    NSelfCircle();
+    NSelfCircleWithUpperChar();
+    NCircleWithUpperChar();
+    NRepeat();
+    NCircleWithRepeat();
+    NDifferentCircle();
+    NFullHeadTailConnectWords();
     
-
-    //WCircle();
-    //CCircle();
+    WCircle();
+    CCircle();
 }
 
 int main() {
@@ -1635,7 +1646,7 @@ int main() {
         cout << "unknown exception" << endl;
     }*/
 
-    try {
+    /*try {
         cLinks(  0,
               0,
               0,
@@ -1652,9 +1663,9 @@ int main() {
     }
     catch (exception e) {
         cout << "unknown exception" << endl;
-    }
+    }*/
 
-    //run();
+    run();
     //cout << "s" << endl;
 
     //printWFullLink(0, 'z', 'x', true);

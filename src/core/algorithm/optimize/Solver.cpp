@@ -7,7 +7,8 @@
 #include "Global.h"
 #include "../../tools/Char2Pos.h"
 #include "../../tools/JudgeChar.h"
-#include "../../error/MyError.h"
+#include "../../exception/RuntimeException.h"
+#include "../../var/Information.h"
 #include <string>
 #include <vector>
 #include <cstring>
@@ -170,9 +171,12 @@ static void newPath(string &path, int &pos, char *result[]) {
     strcpy(result[pos++], path.c_str());
 }
 
-void getAllWordlist(int now, int nowLen, int &sumLen, string &path, int &pos, char *result[], bool canAns = false) {
+void getAllWordlist(int now, int nowLen, int &sumLen, string &path, int &pos, char *result[], int wordCnt) {
     OPTIMIZE::Node &node = OPTIMIZE::Global::get_instance().getGraph().getNode(now);
     for (int i: node.getNext()) {
+        if (i == TARGET) {
+            continue;
+        }
         int cnt = 0;
         while (node.hasEdge(i)) {
             cnt++;
@@ -180,18 +184,18 @@ void getAllWordlist(int now, int nowLen, int &sumLen, string &path, int &pos, ch
             node.increaseItr(i);
             int len = strlen(edge->getWord());
             nowLen += len;
-            if (canAns) {
+            if (wordCnt >= 1) {
                 path += " ";
                 len++;
             }
             path += edge->getWord();
-            if (canAns) {
+            if (wordCnt >= 1) {
                 sumLen += nowLen;
                 if (sumLen <= MAX_ANS_LEN) {
                     newPath(path, pos, result);
                 }
             }
-            getAllWordlist(i, nowLen, sumLen, path, pos, result, true);
+            getAllWordlist(i, nowLen, sumLen, path, pos, result, wordCnt + 1);
             path.erase(path.end() - len, path.end());
         }
 
@@ -207,11 +211,11 @@ int OPTIMIZE::Solver::allWordlist(char **result) {
     int sumLen = 0;
     for (int i = 0; i < ALPHA_SIZE; i++) {
         OPTIMIZE::Global::get_instance().getGraph().resetAll();
-        getAllWordlist(i, 0, sumLen, path, pos, result);
+        getAllWordlist(i, 0, sumLen, path, pos, result, 0);
     }
 
     if (sumLen > MAX_ANS_LEN) {
-        // TODO 长度超过20000
+        throw RuntimeException(RESULT_TOO_LONG);
     }
     return pos;
 }
@@ -224,7 +228,7 @@ int OPTIMIZE::Solver::longestWords(char **result) {
     dfs(SOURCE, 0, nowPath, longestWeight, longestPath, 0, sumLen, weightByWords);
 
     if (sumLen > MAX_ANS_LEN) {
-        // TODO 长度超过20000
+        throw RuntimeException(RESULT_TOO_LONG);
     }
     return copyPath(longestPath, result, sumLen <= MAX_ANS_LEN);
 }
@@ -237,7 +241,7 @@ int OPTIMIZE::Solver::longestAlphas(char **result) {
     dfs(SOURCE, 0, nowPath, longestWeight, longestPath, 0, sumLen, weightByWords);
 
     if (sumLen > MAX_ANS_LEN) {
-        // TODO 长度超过20000
+        throw RuntimeException(RESULT_TOO_LONG);
     }
     return copyPath(longestPath, result, sumLen <= MAX_ANS_LEN);
 }
@@ -247,7 +251,7 @@ int OPTIMIZE::Solver::solve(char **result) {
     Parameter &parameter = Global::get_instance().getParameter();
 
     if (hasCycle() && !parameter.isR()) {
-        MyError::dataCyclicWithoutR();
+        throw RuntimeException(DATA_CYCLIC);
     }
 
     int ans = 0;
@@ -257,6 +261,10 @@ int OPTIMIZE::Solver::solve(char **result) {
         ans = longestWords(result);
     } else if (parameter.isC()) {
         ans = longestAlphas(result);
+    }
+
+    if (ans == 0) {
+        throw RuntimeException(NO_SATISFYING_WL);
     }
 
     return ans;

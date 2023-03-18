@@ -12,7 +12,6 @@ using namespace std;
 
 #include <iostream>
 #include <fstream>
-#include "error/MyError.h"
 
 #define maxLength 20001
 #define release true

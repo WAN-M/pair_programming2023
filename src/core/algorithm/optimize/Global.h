@@ -14,6 +14,8 @@
 #define SOURCE 26
 #define TARGET 27
 
+#define MAX_ANS_LEN 20000
+
 namespace OPTIMIZE {
     class Global {
     private:

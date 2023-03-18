@@ -3,7 +3,7 @@
 #include "input/Parameter.h"
 #include <libloaderapi.h>
 #define AS_GUI_MODULE false
-
+#define debug true
 using namespace std;
 
 HMODULE module = nullptr;
@@ -109,10 +109,14 @@ int main(int argc, char *argv[]) {
     char* path = (char *) &"core.dll";
     if(AS_GUI_MODULE){
         path = argv[argc - 1];
-        printf("检测到作为GUI模块使用，core.dll路径输入为: %s\n", path);
         argc = argc - 1;
+        if(debug){
+            printf("检测到作为GUI模块使用，core.dll路径输入为: %s\n", path);
+        }
     } else{
-        printf("检测到作为独立模块使用\n");
+        if(debug){
+            printf("检测到作为独立模块使用\n");
+        }
     }
 //    return 0;
     Scanner scanner(argc, argv);

@@ -94,13 +94,13 @@ int getFullHeadTailConnectWords(char** words) {
 	int number = 26;
 	int count = 0;
 	string path = "./1_È«ÁªÍ¨ÍøÂç.txt";
-	//for (int i = 0; i < number; i++) {
-	//	for (int j = i; j < number - 1; j++) {
-	//		getWord(words, count, 'a' + j, 'a' + j + 1, 8, true);
-	//		count += 1;
-	//	}
-	//	//printf("%s\n", words[i]);
-	//}
+	for (int i = 0; i < number; i++) {
+		for (int j = i; j < number - 1; j++) {
+			getWord(words, count, 'a' + j, 'a' + j + 1, 8, true);
+			count += 1;
+		}
+		//printf("%s\n", words[i]);
+	}
     for (int i = 0; i < number; i++) {
         getWord(words, count, 'a' + i, 'a' + i, 8, true);
         count += 1;
@@ -108,11 +108,11 @@ int getFullHeadTailConnectWords(char** words) {
 
 	//pri
 	create(path);
-	for (int i = 0; i < count; i++) {
+	for (int i = 0; i < number - 23; i++) {
 		printf("word %s\n", words[i]);
 		append(path, words[i]);
 	}
-	return count;
+	return number - 23;
 }
 
 /// <summary>
@@ -1476,7 +1476,7 @@ int main() {
 
     //run();
 
-    printWFullLink(0, 0, 'a', true);
+    printWFullLink('a', 'c', 0, true);
 
     return 0;
 }

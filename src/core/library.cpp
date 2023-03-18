@@ -40,8 +40,11 @@ static void buildGraph_o(char *words[], int len) {
 
 static void releaseEdges() {
     for (OPTIMIZE::Edge * edge : edges) {
-        delete &edge;
+        if (edge != nullptr) {
+            delete edge;
+        }
     }
+    edges.clear();
 }
 
 static void setParameters(char head, char tail, char reject, bool enable_loop) {

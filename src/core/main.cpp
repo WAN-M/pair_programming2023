@@ -706,6 +706,52 @@ void NDifferentCircle()
     }
 }
 
+// todo
+// 多个不同链，允许
+void NFullHeadTailConnectWords()
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+
+    int len = getFullHeadTailConnectWords(words);
+    char* res[maxLength];
+
+    int api_res = 0;
+    //try {
+    Low(words, len);
+    api_res = gen_chains_all(words, len, res);
+    //}
+    //catch (MyError e) {
+    //    // 本题应有异常
+    //    //EXPECT_EQ(e.reason, DATA_CYCLIC);
+    //    cout << e.reason << endl;
+    //    //EXPECT_EQ(e.reason, FILE_NOT_EXIST);
+    //}
+    //// 结果不能超过上限
+    //EXPECT_LT(api_res, maxLength);
+    //// 结果不能低于下限
+    //EXPECT_GE(api_res, 0);
+    //int api_res = gen_chain_char(words, len, res, 0, 0, 0, true);
+    //int api_res = gen_chain_word(words, len, res, 0, 0, 0, true);
+    printf("n different-circle (x) %d\n", api_res);
+    //EXPECT_EQ(0, api_res);
+    //string path;
+    //if (release) {
+    //    path = "reNDifferentCircle.txt";
+    //}
+    //else
+    //{
+    //    path = "deNDifferentCircle.txt";
+    //}
+    ////string path = mode + "NDifferentCircle.txt";
+    //mycreate(path);
+    for (int i = 0; i < api_res; i++) {
+        printf("%s\n", res[i]);
+        //myappend(path, words[i]);
+    }
+}
+
 /// <summary>
 /// 集中测试 gen_chain_word
 /// </summary>
@@ -1527,15 +1573,16 @@ void CCircle()
 ////
 
 void run() {
-    //NCircle();
-    //NSelfCircle();
-    //NSelfCircleWithUpperChar();
-    //NCircleWithUpperChar();
-    //NRepeat();
-    //NCircleWithRepeat();
-    //NDifferentCircle();
+    NCircle();
+    NSelfCircle();
+    NSelfCircleWithUpperChar();
+    NCircleWithUpperChar();
+    NRepeat();
+    NCircleWithRepeat();
+    NDifferentCircle();
+    //NFullHeadTailConnectWords();
 
-    //WCircle();
+    WCircle();
     CCircle();
 }
 

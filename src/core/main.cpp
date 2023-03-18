@@ -97,13 +97,13 @@ int getFullHeadTailConnectWords(char** words) {
     //cout << "s" << endl;
 	for (int i = 0; i < number; i++) {
 		for (int j = i; j < number - 1; j++) {
-			getWord(words, count, 'a' + j, 'a' + j + 1, 8, true);
+			getWord(words, count, 'a' + j, 'a' + j + 1, 8 + count, true);
             //printf("%s\n", words[count]);
 			count += 1;
 		}
 	}
     for (int i = 0; i < number; i++) {
-        getWord(words, count, 'a' + i, 'a' + i, 8, true);
+        getWord(words, count, 'a' + i, 'a' + i, 8 + count, true);
         count += 1;
     }
 
@@ -119,11 +119,11 @@ int getFullHeadTailConnectWords(char** words) {
     //words[4] = (char*)"eZStJrf";
     //words[5] = (char*)"cddd";
      //wordRepeat;
-    for (int i = 0; i < count; i++) {
-    	printf("word %s\n", words[i]);
-    	append(path, words[i]);
-        //if(wordRepeat..);
-    }
+    //for (int i = 0; i < count; i++) {
+    //	printf("word %s\n", words[i]);
+    //	append(path, words[i]);
+    //    //if(wordRepeat..);
+    //}
 	return count;
 }
 
@@ -845,6 +845,54 @@ int printWFullLink(char head, char tail, char reject, bool loop) {
     return api_res;
 }
 
+int printCFullLink(char head, char tail, char reject, bool loop) {
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = getFullHeadTailConnectWords(words);
+    char* res[maxLength];
+    int api_res = 0;
+    //Low(words, len);
+    try {
+        api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
+    }
+    catch (CommandException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (FileException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (RuntimeException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (exception e) {
+        cout << "unknown exception" << endl;
+    }
+    //api_res = gen_chains_all(words, len, res);
+
+    //string path;
+    //if (release) {
+    //    path = "reNDifferentCircle.txt";
+    //}
+    //else
+    //{
+    //    path = "deNDifferentCircle.txt";
+    //}
+    //mycreate(path);
+    //for (int i = 0; i < len; i++) {
+    //    //printf("%s\n", words[i]);
+    //    myappend(path, words[i]);
+    //}
+
+    for (int i = 0; i < api_res; i++) {
+        printf("res %s\n", res[i]);
+        //myappend(path, res[i]);
+    }
+
+    cout << api_res << endl;
+    return api_res;
+}
+
 ////ÆÕÍ¨»·
 void WCircle()
 {
@@ -873,6 +921,7 @@ void WCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -896,6 +945,7 @@ void WCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -919,6 +969,7 @@ void WCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -942,6 +993,7 @@ void WCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -965,6 +1017,7 @@ void WCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -988,6 +1041,7 @@ void WCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -1011,6 +1065,7 @@ void WCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -1150,6 +1205,7 @@ void CCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -1173,6 +1229,7 @@ void CCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -1196,6 +1253,7 @@ void CCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -1219,6 +1277,7 @@ void CCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -1242,6 +1301,7 @@ void CCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -1265,6 +1325,7 @@ void CCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -1288,6 +1349,7 @@ void CCircle()
                 (code & 0b0100) == 0b0100 ? tail : 0,
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
+            cout << api_res << endl;
         }
         catch (CommandException e) {
             cout << e.getInfomation() << endl;
@@ -1465,16 +1527,16 @@ void CCircle()
 ////
 
 void run() {
-    NCircle();
-    NSelfCircle();
-    NSelfCircleWithUpperChar();
-    NCircleWithUpperChar();
-    NRepeat();
-    NCircleWithRepeat();
-    NDifferentCircle();
+    //NCircle();
+    //NSelfCircle();
+    //NSelfCircleWithUpperChar();
+    //NCircleWithUpperChar();
+    //NRepeat();
+    //NCircleWithRepeat();
+    //NDifferentCircle();
 
     //WCircle();
-    //CCircle();
+    CCircle();
 }
 
 int main() {
@@ -1487,11 +1549,50 @@ int main() {
     for (int i = 0; i < reSize; i++) {
         std::cout << result[i] << std::endl;
     }*/
+    /*char head = 's';
+    char tail = 'b';
+    char reject = 'b';
+    try {
+        wCircleCommon(0, 0, 0, false);
+        wCircleCommon(0, 0, 0, true);
+        wCircleCommon(0, 0, reject, false);
+    }
+    catch (CommandException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (FileException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (RuntimeException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (exception e) {
+        cout << "unknown exception" << endl;
+    }
 
-    //run();
+    try {
+        wCircleCommon(0, 0, 0, true);
+        wCircleCommon(0, 0, reject, false);
+    }
+    catch (CommandException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (FileException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (RuntimeException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (exception e) {
+        cout << "unknown exception" << endl;
+    }*/
+
+
+    run();
     //cout << "s" << endl;
 
-    printWFullLink(0, 'c', 'd', true);
+    //printWFullLink(0, 'z', 'x', true);
+    //printCFullLink(0, 't', 't', true);
 
     return 0;
 }

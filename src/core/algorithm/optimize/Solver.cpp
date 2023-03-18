@@ -88,9 +88,9 @@ static int weightByAlphas(const string &path) {
 
 
 void dfs(int now, int nowWeight, string &nowPath, int &longestWeight, string &longestPath, int nowLen, int &sumLen,
-         int getWeight(const string &path)) {
+         int getWeight(const string &path), int cnt) {
     // 遍历到终点
-    if (now == TARGET) {
+    if (now == TARGET && cnt > 1) {
         if (nowWeight > longestWeight) {
             longestPath = nowPath;
             longestWeight = nowWeight;
@@ -134,7 +134,7 @@ void dfs(int now, int nowWeight, string &nowPath, int &longestWeight, string &lo
 
         // 将下一条边标记为以遍历
         node.increaseItr(next);
-        dfs(next, nowWeight, nowPath, longestWeight, longestPath, nowLen, sumLen, getWeight);
+        dfs(next, nowWeight, nowPath, longestWeight, longestPath, nowLen, sumLen, getWeight, cnt + selfCnt + 1);
         node.decreaseItr(next);
 
         if (edge->getLen() != 0) {
@@ -225,7 +225,7 @@ int OPTIMIZE::Solver::longestWords(char **result) {
     string nowPath;
     int longestWeight = 0;
     int sumLen = 0;
-    dfs(SOURCE, 0, nowPath, longestWeight, longestPath, 0, sumLen, weightByWords);
+    dfs(SOURCE, 0, nowPath, longestWeight, longestPath, 0, sumLen, weightByWords, 0);
 
     if (sumLen > MAX_ANS_LEN) {
         throw RuntimeException(RESULT_TOO_LONG);
@@ -238,7 +238,7 @@ int OPTIMIZE::Solver::longestAlphas(char **result) {
     string nowPath;
     int longestWeight = 0;
     int sumLen = 0;
-    dfs(SOURCE, 0, nowPath, longestWeight, longestPath, 0, sumLen, weightByWords);
+    dfs(SOURCE, 0, nowPath, longestWeight, longestPath, 0, sumLen, weightByWords, 0);
 
     if (sumLen > MAX_ANS_LEN) {
         throw RuntimeException(RESULT_TOO_LONG);

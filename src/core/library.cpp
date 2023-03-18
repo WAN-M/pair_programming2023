@@ -13,6 +13,9 @@ static void buildGraph_o(char *words[], int len) {
     OPTIMIZE::Graph &graph = OPTIMIZE::Global::get_instance().getGraph();
     for (int i = 0; i < len; i++) {
 //        OPTIMIZE::Edge edge(words[i]);
+        if (!firstOk(OPTIMIZE::Global::get_instance().getParameter(), words[i][0])) {
+            continue;
+        }
         auto *edge = new OPTIMIZE::Edge(words[i]);
         edges.push_back(edge);
         graph.getNode(char2pos(words[i][0])).addEdge(edge);

@@ -123,7 +123,7 @@ void Scanner::readAvailableFile(const char *const fileName) {
         cout << "打开文件失败" << endl;
     }
 
-//    set<string> words;
+    set<string> allWords;
 //    vector<string> allWords = {};
 //    stringbuf word;
 

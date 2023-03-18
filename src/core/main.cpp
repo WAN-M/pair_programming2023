@@ -94,24 +94,37 @@ int getFullHeadTailConnectWords(char** words) {
 	int number = 26;
 	int count = 0;
 	string path = "./1_È«ÁªÍ¨ÍøÂç.txt";
+    //cout << "s" << endl;
 	for (int i = 0; i < number; i++) {
 		for (int j = i; j < number - 1; j++) {
-			getWord(words, count, 'a' + j, 'a' + j + 1, 8, true);
+			getWord(words, count, 'a' + j, 'a' + j + 1, 8 + count, true);
+            //printf("%s\n", words[count]);
 			count += 1;
 		}
-		//printf("%s\n", words[i]);
+		
 	}
     for (int i = 0; i < number; i++) {
-        getWord(words, count, 'a' + i, 'a' + i, 8, true);
+        getWord(words, count, 'a' + i, 'a' + i, 8 + count, true);
         count += 1;
     }
 
 	//pri
-	create(path);
-	for (int i = 0; i < count; i++) {
-		printf("word %s\n", words[i]);
-		append(path, words[i]);
-	}
+	//create(path);
+ ////   count = 5;
+	//
+ //   //int count = 5;
+ //   //words[0] = (char*)"ab";
+ //   //words[1] = (char*)"bc";
+ //   //words[2] = (char*)"cd";
+ //   //words[3] = (char*)"bcc";
+ //   //words[4] = (char*)"cdd";
+ //   //words[5] = (char*)"cddd";
+ //    //wordRepeat;
+ //   for (int i = 0; i < count; i++) {
+ //   	printf("word %s\n", words[i]);
+ //   	append(path, words[i]);
+ //       //if(wordRepeat..);
+ //   }
 	return count;
 }
 
@@ -1475,6 +1488,7 @@ int main() {
     }*/
 
     //run();
+    //cout << "s" << endl;
 
     printWFullLink(0, 'z', 'x', true);
 

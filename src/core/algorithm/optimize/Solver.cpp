@@ -106,6 +106,9 @@ void dfs(int now, int nowWeight, string &nowPath, int &longestWeight, string &lo
     const set<int> &nexts = node.getNext();
     // 根据贪心原则，先将自环加入
     int selfCnt = 0;
+    int selfPathLen = 0;
+    int selfWeight = 0;
+    int selfActualLen = 0;
     if (nexts.find(now) != nexts.end()) {
         while (node.hasEdge(now)) {
             selfCnt++;
@@ -116,6 +119,10 @@ void dfs(int now, int nowWeight, string &nowPath, int &longestWeight, string &lo
                 nowPath += edge->getWord();
                 nowWeight += getWeight(edge->getWord());
                 nowLen += edge->getLen();
+
+                selfPathLen += edge->getLen() + 1;
+                selfWeight += getWeight(edge->getWord());
+                selfActualLen += edge->getLen();
             }
         }
     }
@@ -148,6 +155,9 @@ void dfs(int now, int nowWeight, string &nowPath, int &longestWeight, string &lo
     while (selfCnt--) {
         node.decreaseItr(now);
     }
+    nowPath.erase(nowPath.end() - selfPathLen, nowPath.end());
+    nowWeight -= selfWeight;
+    nowLen -= selfActualLen;
 }
 
 static int copyPath(const string &path, char *result[], bool copy) {

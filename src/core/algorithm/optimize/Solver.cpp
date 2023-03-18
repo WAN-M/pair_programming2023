@@ -19,7 +19,7 @@ static bool hasCycle() {
     int n = NODE_SIZE;
 
     // 1. 求得各点的入度
-    int in[n + 5];
+    int in[NODE_SIZE + 5];
     memset(in, 0, sizeof(in));
     for (int i = 0; i < n; i++) {
         for (int v: OPTIMIZE::Global::get_instance().getGraph().getNode(i).getNext()) {
@@ -170,7 +170,7 @@ static void newPath(string &path, int &pos, char *result[]) {
     strcpy(result[pos++], path.c_str());
 }
 
-int getAllWordlist(int now, int nowLen, int &sumLen, string &path, int &pos, char *result[], bool canAns = false) {
+void getAllWordlist(int now, int nowLen, int &sumLen, string &path, int &pos, char *result[], bool canAns = false) {
     OPTIMIZE::Node &node = OPTIMIZE::Global::get_instance().getGraph().getNode(now);
     for (int i: node.getNext()) {
         int cnt = 0;

@@ -26,7 +26,7 @@ add_library(core
         error/MyError.cpp
         error/MyError.h
         var/Global.cpp
-        var/Global.h)
+        var/Global.h algorithm/optimize/Graph.cpp algorithm/optimize/Graph.h algorithm/optimize/Node.cpp algorithm/optimize/Node.h algorithm/optimize/Edge.cpp algorithm/optimize/Edge.h tools/Char2Pos.cpp tools/Char2Pos.h algorithm/optimize/Solver.cpp algorithm/optimize/Solver.h algorithm/optimize/Global.cpp algorithm/optimize/Global.h)
 
 #add_executable(core
 #        main.cpp
@@ -43,8 +43,8 @@ add_library(core
 #        algorithm/Algorithm.h
 #        algorithm/NoCycle.cpp
 #        algorithm/NoCycle.h
-#        algorithm/Cycle.cpp
-#        algorithm/Cycle.h
+#        algorithm/Solver.cpp
+#        algorithm/Solver.h
 #        var/Constant.h
 #        tools/JudgeChar.h
 #        tools/JudgeChar.cpp

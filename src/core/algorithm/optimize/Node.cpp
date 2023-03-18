@@ -5,11 +5,12 @@
 #include <cstring>
 #include <algorithm>
 #include "Node.h"
+#include "Global.h"
 
 OPTIMIZE::Node::Node(int pos) {
     this->pos = pos;
 //    memset(edgePos, 0, sizeof(edgePos));
-    for (int i = 0; i < 26; i++) {
+    for (int i = 0; i < NODE_SIZE; i++) {
         edges.emplace_back();
 //        edges.push_back(list<Edge *>());
         edgePos[i] = edges[i].begin();
@@ -25,7 +26,7 @@ void OPTIMIZE::Node::addEdge(Edge *e) {
 
 void OPTIMIZE::Node::resetAll() {
 //    memset(edgePos, 0, sizeof(edgePos));
-    for (int i = 0; i < 26; i++) {
+    for (int i = 0; i < NODE_SIZE; i++) {
         edgePos[i] = edges[i].begin();
     }
 }

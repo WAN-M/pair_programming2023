@@ -9,6 +9,11 @@
 #include "Graph.h"
 #include "../../var/Parameter.h"
 
+#define ALPHA_SIZE 26
+#define NODE_SIZE 28
+#define SOURCE 26
+#define TARGET 27
+
 namespace OPTIMIZE {
     class Global {
     private:

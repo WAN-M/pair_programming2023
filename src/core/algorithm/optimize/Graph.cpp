@@ -4,10 +4,11 @@
 
 #include "Graph.h"
 #include "../../tools/Char2Pos.h"
+#include "Global.h"
 
 // 初始向vector中加入26个点对应的关系容器
 OPTIMIZE::Graph::Graph() {
-    for (int i = 0; i < 26; i++) {
+    for (int i = 0; i < NODE_SIZE; i++) {
         nodes.emplace_back(i);
     }
 }

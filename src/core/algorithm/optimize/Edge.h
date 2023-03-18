@@ -19,9 +19,11 @@ namespace OPTIMIZE {
     public:
         explicit Edge(char *word);
 
+        Edge(int v);
+
         friend bool operator<(const Edge &a, const Edge &b);
 
-        const char *const getWord() const;
+        const char *getWord() const;
 
         int getU() const;
 

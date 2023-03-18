@@ -6,8 +6,12 @@
 #include <cstring>
 #include "../../tools/Char2Pos.h"
 
-const char *const OPTIMIZE::Edge::getWord() const {
-    return word;
+const char *OPTIMIZE::Edge::getWord() const {
+    if (this->len > 0) {
+        return word;
+    } else {
+        return "";
+    }
 }
 
 /*
@@ -35,4 +39,11 @@ OPTIMIZE::Edge::Edge(char *word) {
     this->len = strlen(word);
     this->u = char2pos(word[0]);
     this->v = char2pos(word[len - 1]);
+}
+
+OPTIMIZE::Edge::Edge(int v) {
+    this->word = nullptr;
+    this->len = 0;
+    this->u = 0;
+    this->v = v;
 }

@@ -16,7 +16,7 @@
 using namespace std;
 
 static bool hasCycle() {
-    int n = 26;
+    int n = NODE_SIZE;
 
     // 1. 求得各点的入度
     int in[n + 5];
@@ -86,28 +86,31 @@ static int weightByAlphas(const string &path) {
 }
 
 
-void dfs(int now, const string &nowPath, string &longestPath, int getWeight(const string &path)) {
-    OPTIMIZE::Graph &graph = OPTIMIZE::Global::get_instance().getGraph();
-    Parameter &parameter = OPTIMIZE::Global::get_instance().getParameter();
+void dfs(int now, int nowWeight, string &nowPath, int &longestWeight, string &longestPath, int getWeight(const string &path)) {
+    // 遍历到终点
+    if (now == TARGET) {
+        if (nowWeight > longestWeight) {
+            longestPath = nowPath;
+            longestWeight = nowWeight;
+        }
+        return;
+    }
 
+    OPTIMIZE::Graph &graph = OPTIMIZE::Global::get_instance().getGraph();
     OPTIMIZE::Node &node = graph.getNode(now);
 
     const set<int> &nexts = node.getNext();
     // 根据贪心原则，先将自环加入
     int selfCnt = 0;
-    string newPath = nowPath;
     if (nexts.find(now) != nexts.end()) {
         while (node.hasEdge(now)) {
             selfCnt++;
             OPTIMIZE::Edge *edge = node.nextEdge(now);
             node.increaseItr(now);
-            newPath += " ";
-            newPath += edge->getWord();
-        }
-
-        if (lastOk(parameter, pos2char(now))) {
-            if (getWeight(nowPath) > getWeight(longestPath)) {
-                longestPath = newPath;
+            if (edge->getLen() > 0) {
+                nowPath += " ";
+                nowPath += edge->getWord();
+                nowWeight += getWeight(edge->getWord());
             }
         }
     }
@@ -118,29 +121,25 @@ void dfs(int now, const string &nowPath, string &longestPath, int getWeight(cons
         }
         // 开始遍历下一条边
         OPTIMIZE::Edge *edge = node.nextEdge(next);
-
-        string newStr = newPath + " " + edge->getWord();
-        if (lastOk(parameter, pos2char(edge->getV()))) {
-            if (getWeight(newStr) > getWeight(longestPath)) {
-                longestPath = newStr;
-            }
+        if (edge->getLen() > 0) {
+            nowPath += " ";
+            nowPath += edge->getWord();
+            nowWeight += getWeight(edge->getWord());
         }
 
         // 将下一条边标记为以遍历
-//        int edgePos = node.getEdgePos(next);
-//        node.setEdgePos(next, edgePos + 1);
         node.increaseItr(next);
-
-        dfs(next, newStr, longestPath, getWeight);
-
-//        node.setEdgePos(next, edgePos);
+        dfs(next, nowWeight, nowPath, longestWeight, longestPath, getWeight);
         node.decreaseItr(next);
+
+        if (edge->getLen() != 0) {
+            nowPath.erase(nowPath.end() - edge->getLen() - 1, nowPath.end());
+        }
     }
 
     while (selfCnt--) {
         node.decreaseItr(now);
     }
-//    return longestPath;
 }
 
 static int copyPath(const string &path, char *result[]) {
@@ -163,7 +162,7 @@ static void newPath(string &path, int &pos, char *result[]) {
 
 void getAllWordlist(int now, string &path, int &pos, char *result[], bool canAns = false) {
     OPTIMIZE::Node &node = OPTIMIZE::Global::get_instance().getGraph().getNode(now);
-    for (int i : node.getNext()) {
+    for (int i: node.getNext()) {
         int cnt = 0;
         while (node.hasEdge(i)) {
             cnt++;
@@ -191,7 +190,7 @@ void getAllWordlist(int now, string &path, int &pos, char *result[], bool canAns
 int OPTIMIZE::Solver::allWordlist(char **result) {
     int pos = 0;
     string path;
-    for (int i = 0; i < 26; i++) {
+    for (int i = 0; i < ALPHA_SIZE; i++) {
         OPTIMIZE::Global::get_instance().getGraph().resetAll();
         getAllWordlist(i, path, pos, result);
     }
@@ -201,12 +200,8 @@ int OPTIMIZE::Solver::allWordlist(char **result) {
 int OPTIMIZE::Solver::longestWords(char **result) {
     string longestPath;
     string nowPath;
-    for (int i = 0; i < 26; i++) {
-        if (firstOk(Global::get_instance().getParameter(), pos2char(i))) {
-            Global::get_instance().getGraph().resetAll();
-            dfs(i, nowPath, longestPath, weightByWords);
-        }
-    }
+    int longestWeight = 0;
+    dfs(SOURCE, 0, nowPath, longestWeight, longestPath, weightByWords);
 
     return copyPath(longestPath, result);
 }
@@ -214,12 +209,8 @@ int OPTIMIZE::Solver::longestWords(char **result) {
 int OPTIMIZE::Solver::longestAlphas(char **result) {
     string longestPath;
     string nowPath;
-    for (int i = 0; i < 26; i++) {
-        if (firstOk(Global::get_instance().getParameter(), pos2char(i))) {
-            Global::get_instance().getGraph().resetAll();
-            dfs(i, nowPath, longestPath, weightByAlphas);
-        }
-    }
+    int longestWeight = 0;
+    dfs(SOURCE, 0, nowPath, longestWeight, longestPath, weightByWords);
 
     return copyPath(longestPath, result);
 }

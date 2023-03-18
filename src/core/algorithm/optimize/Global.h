@@ -33,6 +33,8 @@ namespace OPTIMIZE {
         OPTIMIZE::Graph &getGraph();
 
         Parameter &getParameter();
+
+        void reset();
     };
 }
 

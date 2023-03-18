@@ -40,7 +40,7 @@ static void buildGraph_o(char *words[], int len) {
 
 static void releaseEdges() {
     for (OPTIMIZE::Edge * edge : edges) {
-        free(edge);
+        delete &edge;
     }
 }
 
@@ -57,7 +57,9 @@ extern "C" __declspec(dllexport) int gen_chains_all(char *words[], int len, char
     OPTIMIZE::Global::get_instance().reset();
     OPTIMIZE::Global::get_instance().getParameter().setN(true);
     buildGraph_o(words, len);
-    return OPTIMIZE::Solver::solve(result);
+    int ans = OPTIMIZE::Solver::solve(result);
+    releaseEdges();
+    return ans;
 }
 
 extern "C" __declspec(dllexport) int gen_chain_word(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
@@ -76,5 +78,6 @@ extern "C" __declspec(dllexport) int gen_chain_char(char *words[], int len, char
     buildGraph_o(words, len);
     OPTIMIZE::Global::get_instance().getParameter().setC(true);
     int ans = OPTIMIZE::Solver::solve(result);
+    releaseEdges();
     return ans;
 }

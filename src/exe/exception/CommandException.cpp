@@ -9,3 +9,7 @@ CommandException::CommandException(const std::string &infomation) : infomation(i
 const std::string &CommandException::getInfomation() const {
     return infomation;
 }
+
+const char *CommandException::what() const noexcept {
+    return infomation.c_str();
+}

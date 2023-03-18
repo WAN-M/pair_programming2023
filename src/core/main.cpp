@@ -372,17 +372,17 @@ void NCircle()
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
     }
-    catch (CommandException e) {
-        cout << e.getInfomation() << endl;
-    }
-    catch (FileException e) {
-        cout << e.getInfomation() << endl;
-    }
-    catch (RuntimeException e) {
-        cout << e.getInfomation() << endl;
-    }
-    catch (exception e) {
-        cout << "unknown exception" << endl;
+//    catch (CommandException e) {
+//        cout << e.getInfomation() << endl;
+//    }
+//    catch (FileException e) {
+//        cout << e.getInfomation() << endl;
+//    }
+//    catch (RuntimeException e) {
+//        cout << e.getInfomation() << endl;
+//    }
+    catch (exception &e) {
+        cout << e.what() << endl;
     }
     //// 结果不能超过上限
     //EXPECT_LT(api_res, maxLength);
@@ -427,7 +427,7 @@ void NSelfCircle()
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
     }
-    catch (CommandException e) {
+    /*catch (CommandException e) {
         cout << e.getInfomation() << endl;
     }
     catch (FileException e) {
@@ -435,9 +435,9 @@ void NSelfCircle()
     }
     catch (RuntimeException e) {
         cout << e.getInfomation() << endl;
-    }
-    catch (exception e) {
-        cout << "unknown exception" << endl;
+    }*/
+    catch (exception& e) {
+        cout << e.what() << endl;
     }
     // 返回全部链数目
     //EXPECT_EQ(api_res, *resNumber);
@@ -472,7 +472,7 @@ void NSelfCircleWithUpperChar()
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
     }
-    catch (CommandException e) {
+    /*catch (CommandException e) {
         cout << e.getInfomation() << endl;
     }
     catch (FileException e) {
@@ -480,9 +480,9 @@ void NSelfCircleWithUpperChar()
     }
     catch (RuntimeException e) {
         cout << e.getInfomation() << endl;
-    }
-    catch (exception e) {
-        cout << "unknown exception" << endl;
+    }*/
+    catch (exception& e) {
+        cout << e.what() << endl;
     }
     // 返回全部链数目
     //EXPECT_EQ(api_res, *resNumber);
@@ -521,7 +521,7 @@ void NCircleWithUpperChar()
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
     }
-    catch (CommandException e) {
+    /*catch (CommandException e) {
         cout << e.getInfomation() << endl;
     }
     catch (FileException e) {
@@ -529,9 +529,9 @@ void NCircleWithUpperChar()
     }
     catch (RuntimeException e) {
         cout << e.getInfomation() << endl;
-    }
-    catch (exception e) {
-        cout << "unknown exception" << endl;
+    }*/
+    catch (exception& e) {
+        cout << e.what() << endl;
     }
     // 结果不能超过上限
     //EXPECT_LT(api_res, maxLength);
@@ -572,7 +572,7 @@ void NRepeat()
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
     }
-    catch (CommandException e) {
+    /*catch (CommandException e) {
         cout << e.getInfomation() << endl;
     }
     catch (FileException e) {
@@ -580,9 +580,9 @@ void NRepeat()
     }
     catch (RuntimeException e) {
         cout << e.getInfomation() << endl;
-    }
-    catch (exception e) {
-        cout << "unknown exception" << endl;
+    }*/
+    catch (exception& e) {
+        cout << e.what() << endl;
     }
     //// 结果不能超过上限
     //EXPECT_LT(api_res, maxLength);
@@ -623,7 +623,7 @@ void NCircleWithRepeat()
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
     }
-    catch (CommandException e) {
+    /*catch (CommandException e) {
         cout << e.getInfomation() << endl;
     }
     catch (FileException e) {
@@ -631,9 +631,9 @@ void NCircleWithRepeat()
     }
     catch (RuntimeException e) {
         cout << e.getInfomation() << endl;
-    }
-    catch (exception e) {
-        cout << "unknown exception" << endl;
+    }*/
+    catch (exception& e) {
+        cout << e.what() << endl;
     }
     // 结果不能超过上限
     //EXPECT_LT(api_res, maxLength);
@@ -722,7 +722,7 @@ void NFullHeadTailConnectWords()
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
     }
-    catch (CommandException e) {
+    /*catch (CommandException e) {
         cout << e.getInfomation() << endl;
     }
     catch (FileException e) {
@@ -730,9 +730,9 @@ void NFullHeadTailConnectWords()
     }
     catch (RuntimeException e) {
         cout << e.getInfomation() << endl;
-    }
-    catch (exception e) {
-        cout << "unknown exception" << endl;
+    }*/
+    catch (exception& e) {
+        cout << e.what() << endl;
     }
     //catch (MyError e) {
     //    // 本题应有异常
@@ -866,7 +866,7 @@ int printWFullLink(char head, char tail, char reject, bool loop) {
     try {
         api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
     }
-    catch (CommandException e) {
+    /*catch (CommandException e) {
         cout << e.getInfomation() << endl;
     }
     catch (FileException e) {
@@ -874,9 +874,9 @@ int printWFullLink(char head, char tail, char reject, bool loop) {
     }
     catch (RuntimeException e) {
         cout << e.getInfomation() << endl;
-    }
-    catch (exception e) {
-        cout << "unknown exception" << endl;
+    }*/
+    catch (exception& e) {
+        cout << e.what() << endl;
     }
     //api_res = gen_chains_all(words, len, res);
 
@@ -914,7 +914,7 @@ int printCFullLink(char head, char tail, char reject, bool loop) {
     try {
         api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
     }
-    catch (CommandException e) {
+    /*catch (CommandException e) {
         cout << e.getInfomation() << endl;
     }
     catch (FileException e) {
@@ -922,9 +922,9 @@ int printCFullLink(char head, char tail, char reject, bool loop) {
     }
     catch (RuntimeException e) {
         cout << e.getInfomation() << endl;
-    }
-    catch (exception e) {
-        cout << "unknown exception" << endl;
+    }*/
+    catch (exception& e) {
+        cout << e.what() << endl;
     }
     //api_res = gen_chains_all(words, len, res);
 
@@ -981,7 +981,7 @@ void WCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -989,9 +989,9 @@ void WCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }
@@ -1005,7 +1005,7 @@ void WCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -1013,9 +1013,9 @@ void WCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }
@@ -1029,7 +1029,7 @@ void WCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -1037,9 +1037,9 @@ void WCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }
@@ -1053,7 +1053,7 @@ void WCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -1061,9 +1061,9 @@ void WCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }
@@ -1077,7 +1077,7 @@ void WCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -1085,9 +1085,9 @@ void WCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }
@@ -1101,7 +1101,7 @@ void WCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -1109,9 +1109,9 @@ void WCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }
@@ -1125,7 +1125,7 @@ void WCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -1133,9 +1133,9 @@ void WCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }
@@ -1265,7 +1265,7 @@ void CCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -1273,9 +1273,9 @@ void CCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }
@@ -1289,7 +1289,7 @@ void CCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -1297,9 +1297,9 @@ void CCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }
@@ -1313,7 +1313,7 @@ void CCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -1321,9 +1321,9 @@ void CCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }
@@ -1337,7 +1337,7 @@ void CCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -1345,9 +1345,9 @@ void CCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }
@@ -1361,7 +1361,7 @@ void CCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -1369,9 +1369,9 @@ void CCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }
@@ -1385,7 +1385,7 @@ void CCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -1393,9 +1393,9 @@ void CCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }
@@ -1409,7 +1409,7 @@ void CCircle()
                 (code & 0b0001) == 0b0001 ? true : false);
             cout << api_res << endl;
         }
-        catch (CommandException e) {
+        /*catch (CommandException e) {
             cout << e.getInfomation() << endl;
         }
         catch (FileException e) {
@@ -1417,9 +1417,9 @@ void CCircle()
         }
         catch (RuntimeException e) {
             cout << e.getInfomation() << endl;
-        }
-        catch (exception e) {
-            cout << "unknown exception" << endl;
+        }*/
+        catch (exception& e) {
+            cout << e.what() << endl;
         }
         code += 1;
     }

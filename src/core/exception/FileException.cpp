@@ -9,3 +9,7 @@ FileException::FileException(const std::string &infomation) : infomation(infomat
 const std::string &FileException::getInfomation() const {
     return infomation;
 }
+
+const char *FileException::what() const noexcept {
+    return infomation.c_str();
+}

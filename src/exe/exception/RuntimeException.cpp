@@ -9,3 +9,7 @@ RuntimeException::RuntimeException(const std::string &infomation) : infomation(i
 const std::string &RuntimeException::getInfomation() const {
     return infomation;
 }
+
+const char *RuntimeException::what() const noexcept {
+    return infomation.c_str();
+}

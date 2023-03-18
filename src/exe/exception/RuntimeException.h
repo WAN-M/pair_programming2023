@@ -7,12 +7,12 @@
 
 #include <string>
 
-class RuntimeException : std::exception {
+class RuntimeException : public std::exception {
 private:
     std::string infomation;
 public:
     explicit RuntimeException(const std::string &infomation);
-
+    const char* what() const noexcept override;
     const std::string &getInfomation() const;
 };
 

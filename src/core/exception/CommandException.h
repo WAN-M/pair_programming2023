@@ -7,12 +7,12 @@
 
 #include <string>
 
-class CommandException : std::exception {
+class CommandException : public std::exception {
 private:
     std::string infomation;
 public:
     explicit CommandException(const std::string &infomation);
-
+    const char* what() const noexcept override;
     const std::string &getInfomation() const;
 };
 

@@ -7,12 +7,12 @@
 
 #include <string>
 
-class FileException : std::exception {
+class FileException : public std::exception {
 private:
     std::string infomation;
 public:
     explicit FileException(const std::string &infomation);
-
+    const char* what() const noexcept override;
     const std::string &getInfomation() const;
 };
 

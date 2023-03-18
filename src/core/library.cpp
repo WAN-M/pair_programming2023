@@ -1,18 +1,8 @@
 #include "library.h"
 #include "algorithm/optimize/Global.h"
 #include "algorithm/optimize/Solver.h"
-#include "algorithm/Solver.h"
-#include "var/Global.h"
 #include "tools/Char2Pos.h"
 #include "tools/JudgeChar.h"
-
-static void buildGraph(char *words[], int len) {
-//    Graph &graph = Global::get_instance().getGraph();
-    for (int i = 0; i < len; i++) {
-        Word word(words[i]);
-//        graph.addNode(word);
-    }
-}
 
 static list<OPTIMIZE::Edge *> edges;
 /*

@@ -239,7 +239,7 @@ int getDifferentCircle(char** words, int* resNumber, int* maxLen) {
 	*resNumber = 12;
 	*maxLen = 4;
 
-	return 5;
+	return 8;
 }
 
 /// <summary>
@@ -608,7 +608,7 @@ void NCircleWithRepeat()
 }
 
 // todo
-// 多个不同环，不允许
+// 多个不同链，允许
 void NDifferentCircle()
 {
     char* words[maxLength];
@@ -619,16 +619,16 @@ void NDifferentCircle()
     char* res[maxLength];
 
     int api_res = 0;
-    try {
+    //try {
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
-    }
-    catch (MyError e) {
-        // 本题应有异常
-        //EXPECT_EQ(e.reason, DATA_CYCLIC);
-        cout << e.reason << endl;
-        //EXPECT_EQ(e.reason, FILE_NOT_EXIST);
-    }
+    //}
+    //catch (MyError e) {
+    //    // 本题应有异常
+    //    //EXPECT_EQ(e.reason, DATA_CYCLIC);
+    //    cout << e.reason << endl;
+    //    //EXPECT_EQ(e.reason, FILE_NOT_EXIST);
+    //}
     //// 结果不能超过上限
     //EXPECT_LT(api_res, maxLength);
     //// 结果不能低于下限

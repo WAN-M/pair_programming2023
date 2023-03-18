@@ -228,7 +228,7 @@ int getDifferentCircle(char** words, int* resNumber, int* maxLen) {
 	*resNumber = 12;
 	*maxLen = 4;
 
-	return 5;
+	return 8;
 }
 
 /// <summary>

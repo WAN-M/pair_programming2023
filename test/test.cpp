@@ -324,6 +324,12 @@ TEST(NCircleWithRepeat, Forbid)
     }
 }
 
+void myPrint(char** words, int len) {
+    for (int i = 0; i < len; i++) {
+        printf("check %s\n", words[i]);
+    }
+}
+
 // todo
 // 多个不同环，不允许
 TEST(NDifferentCircle, Forbid)
@@ -336,20 +342,22 @@ TEST(NDifferentCircle, Forbid)
     char* res[maxLength];
 
     int api_res = 0;
-    try {
-        Low(words, len);
-        api_res = gen_chains_all(words, len, res);
-    }
-    catch (MyError e) {
-        // 本题应有异常
-        EXPECT_EQ(e.reason, DATA_CYCLIC);
-        //cout << "没有定义该类异常 " << e.reason << endl;
-        //EXPECT_EQ(e.reason, FILE_NOT_EXIST);
-    }
-    // 结果不能超过上限
-    EXPECT_LT(api_res, maxLength);
-    // 结果不能低于下限
-    EXPECT_GE(api_res, 0);
+    //try {
+    Low(words, len);
+    //myPrint(words, len);
+    api_res = gen_chains_all(words, len, res);
+    //}
+    //catch (MyError e) {
+    //    // 本题应有异常
+    //    EXPECT_EQ(e.reason, DATA_CYCLIC);
+    //    //cout << "没有定义该类异常 " << e.reason << endl;
+    //    //EXPECT_EQ(e.reason, FILE_NOT_EXIST);
+    //}
+    //// 结果不能超过上限
+    //EXPECT_LT(api_res, maxLength);
+    //// 结果不能低于下限
+    //EXPECT_GE(api_res, 0);
+    EXPECT_EQ(api_res, *resNumber);
     //int api_res = gen_chain_char(words, len, res, 0, 0, 0, true);
     //int api_res = gen_chain_word(words, len, res, 0, 0, 0, true);
     printf("n different-circle (x) %d\n", api_res);
@@ -365,8 +373,8 @@ TEST(NDifferentCircle, Forbid)
     //string path = mode + "NDifferentCircle.txt";
     mycreate(path);
     for (int i = 0; i < api_res; i++) {
-        printf("%s\n", words[i]);
-        myappend(path, words[i]);
+        printf("%s\n", res[i]);
+        myappend(path, res[i]);
     }
 }
 

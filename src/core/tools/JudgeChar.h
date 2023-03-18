@@ -8,6 +8,8 @@
 #include "../var/Parameter.h"
 bool firstOk(Parameter parameter, char first);
 
+bool firstRejected(Parameter &parameter, char first);
+
 bool lastOk(Parameter parameter, char last);
 
 #endif //WORDLIST_JUDGECHAR_H

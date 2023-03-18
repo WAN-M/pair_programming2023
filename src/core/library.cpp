@@ -39,8 +39,10 @@ static void buildGraph_o(char *words[], int len) {
 }
 
 static void releaseEdges() {
+    /*edges.clear();
+    printf("edges %d\n\n", edges.size());*/
     for (OPTIMIZE::Edge * edge : edges) {
-        delete &edge;
+        delete *edge;
     }
 }
 

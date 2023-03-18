@@ -97,34 +97,33 @@ int getFullHeadTailConnectWords(char** words) {
     //cout << "s" << endl;
 	for (int i = 0; i < number; i++) {
 		for (int j = i; j < number - 1; j++) {
-			getWord(words, count, 'a' + j, 'a' + j + 1, 8 + count, true);
+			getWord(words, count, 'a' + j, 'a' + j + 1, 8, true);
             //printf("%s\n", words[count]);
 			count += 1;
 		}
-		
 	}
     for (int i = 0; i < number; i++) {
-        getWord(words, count, 'a' + i, 'a' + i, 8 + count, true);
+        getWord(words, count, 'a' + i, 'a' + i, 8, true);
         count += 1;
     }
 
 	//pri
 	//create(path);
- ////   count = 5;
-	//
- //   //int count = 5;
- //   //words[0] = (char*)"ab";
- //   //words[1] = (char*)"bc";
- //   //words[2] = (char*)"cd";
- //   //words[3] = (char*)"bcc";
- //   //words[4] = (char*)"cdd";
- //   //words[5] = (char*)"cddd";
- //    //wordRepeat;
- //   for (int i = 0; i < count; i++) {
- //   	printf("word %s\n", words[i]);
- //   	append(path, words[i]);
- //       //if(wordRepeat..);
- //   }
+    //count = 5;
+	
+    ////int count = 5;
+    //words[0] = (char*)"aPqhmab";
+    //words[1] = (char*)"bLLDfrc";
+    //words[2] = (char*)"cvCgbKd";
+    //words[3] = (char*)"cndxFfc";
+    //words[4] = (char*)"eZStJrf";
+    //words[5] = (char*)"cddd";
+     //wordRepeat;
+    for (int i = 0; i < count; i++) {
+    	printf("word %s\n", words[i]);
+    	append(path, words[i]);
+        //if(wordRepeat..);
+    }
 	return count;
 }
 
@@ -841,6 +840,8 @@ int printWFullLink(char head, char tail, char reject, bool loop) {
         printf("res %s\n", res[i]);
         //myappend(path, res[i]);
     }
+
+    cout << api_res << endl;
     return api_res;
 }
 
@@ -1490,7 +1491,7 @@ int main() {
     //run();
     //cout << "s" << endl;
 
-    printWFullLink(0, 'z', 'x', true);
+    printWFullLink(0, 'c', 'd', true);
 
     return 0;
 }

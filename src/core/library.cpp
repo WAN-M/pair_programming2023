@@ -5,6 +5,7 @@
 #include "tools/JudgeChar.h"
 
 static list<OPTIMIZE::Edge *> edges;
+
 /*
  * 引入两虚点表示起止点，起点向可以作为起点的点连长度为0的边，可以为终点的点向终点连边。
  * 0-25表示各字母，26,27表示起始点
@@ -39,9 +40,10 @@ static void buildGraph_o(char *words[], int len) {
 }
 
 static void releaseEdges() {
-    for (OPTIMIZE::Edge * edge : edges) {
-        delete &edge;
+    for (OPTIMIZE::Edge *edge: edges) {
+        delete edge;
     }
+    edges.clear();
 }
 
 static void setParameters(char head, char tail, char reject, bool enable_loop) {
@@ -61,7 +63,8 @@ extern "C" __declspec(dllexport) int gen_chains_all(char *words[], int len, char
     return ans;
 }
 
-extern "C" __declspec(dllexport) int gen_chain_word(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
+extern "C" __declspec(dllexport) int
+gen_chain_word(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
     setParameters(head, tail, reject, enable_loop);
     buildGraph_o(words, len);
     OPTIMIZE::Global::get_instance().getParameter().setW(true);
@@ -70,7 +73,8 @@ extern "C" __declspec(dllexport) int gen_chain_word(char *words[], int len, char
     return ans;
 }
 
-extern "C" __declspec(dllexport) int gen_chain_char(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
+extern "C" __declspec(dllexport) int
+gen_chain_char(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
     setParameters(head, tail, reject, enable_loop);
     buildGraph_o(words, len);
     OPTIMIZE::Global::get_instance().getParameter().setC(true);

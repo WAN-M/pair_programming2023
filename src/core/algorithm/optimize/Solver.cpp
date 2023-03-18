@@ -201,8 +201,8 @@ void getAllWordlist(int now, int nowLen, int &sumLen, string &path, int &pos, ch
             }
             path += edge->getWord();
             if (wordCnt >= 1) {
-                sumLen += nowLen;
                 if (sumLen <= MAX_ANS_LEN) {
+                    sumLen += nowLen;
                     newPath(path, pos, result);
                 }
             }

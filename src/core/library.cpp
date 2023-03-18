@@ -51,12 +51,14 @@ static void setParameters(char head, char tail, char reject, bool enable_loop) {
 
 
 extern "C" __declspec(dllexport) int gen_chains_all(char *words[], int len, char *result[]) {
+    OPTIMIZE::Global::get_instance().reset();
     OPTIMIZE::Global::get_instance().getParameter().setN(true);
     buildGraph_o(words, len);
     return OPTIMIZE::Solver::solve(result);
 }
 
 extern "C" __declspec(dllexport) int gen_chain_word(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
+    OPTIMIZE::Global::get_instance().reset();
     setParameters(head, tail, reject, enable_loop);
     buildGraph_o(words, len);
     OPTIMIZE::Global::get_instance().getParameter().setW(true);
@@ -66,6 +68,7 @@ extern "C" __declspec(dllexport) int gen_chain_word(char *words[], int len, char
 }
 
 extern "C" __declspec(dllexport) int gen_chain_char(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
+    OPTIMIZE::Global::get_instance().reset();
     setParameters(head, tail, reject, enable_loop);
     buildGraph_o(words, len);
     OPTIMIZE::Global::get_instance().getParameter().setC(true);

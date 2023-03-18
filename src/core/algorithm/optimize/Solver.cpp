@@ -142,7 +142,9 @@ void dfs(int now, int nowWeight, string &nowPath, int &longestWeight, string &lo
 
         // 将下一条边标记为以遍历
         node.increaseItr(next);
-        dfs(next, nowWeight, nowPath, longestWeight, longestPath, nowLen, sumLen, getWeight, cnt + selfCnt + 1);
+        if (nowLen <= MAX_ANS_LEN) {
+            dfs(next, nowWeight, nowPath, longestWeight, longestPath, nowLen, sumLen, getWeight, cnt + selfCnt + 1);
+        }
         node.decreaseItr(next);
 
         if (edge->getLen() != 0) {
@@ -204,6 +206,8 @@ void getAllWordlist(int now, int nowLen, int &sumLen, string &path, int &pos, ch
                 if (sumLen <= MAX_ANS_LEN) {
                     sumLen += nowLen;
                     newPath(path, pos, result);
+                } else {
+                    throw RuntimeException(RESULT_TOO_LONG);
                 }
             }
             getAllWordlist(i, nowLen, sumLen, path, pos, result, wordCnt + 1);
@@ -225,9 +229,9 @@ int OPTIMIZE::Solver::allWordlist(char **result) {
         getAllWordlist(i, 0, sumLen, path, pos, result, 0);
     }
 
-    if (sumLen > MAX_ANS_LEN) {
-        throw RuntimeException(RESULT_TOO_LONG);
-    }
+//    if (sumLen > MAX_ANS_LEN) {
+//        throw RuntimeException(RESULT_TOO_LONG);
+//    }
     return pos;
 }
 

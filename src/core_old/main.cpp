@@ -264,7 +264,7 @@ int getPlentyLinks(char** words) {
 	//	printf("%s\n", *(words + i));
 	//	append(path, *(words + i));
 	//}
-	return number;
+	return count;
 }
 
 /// <summary>
@@ -728,6 +728,11 @@ int wPlentyLinks(char head, char tail, char reject, bool loop) {
     int api_res = 0;
     Low(words, len);
     api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
+
+    for (int i = 0; i < api_res; i++) {
+        printf("res %s\n", res[i]);
+    }
+
     return api_res;
 }
 
@@ -1349,8 +1354,10 @@ int main() {
         std::cout << result[i] << std::endl;
     }*/
 
-    run();
+    //run();
 
+    
+    cout << wPlentyLinks('a', 'z', 'x', false) << endl;
     //printWFullLink(0, 0, 0, true);
 
     return 0;

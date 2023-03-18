@@ -36,7 +36,13 @@
     <ClCompile Include="..\..\src\core\algorithm\optimize\Solver.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\core\error\MyError.cpp">
+    <ClCompile Include="..\..\src\core\exception\CommandException.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\core\exception\FileException.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\core\exception\RuntimeException.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\core\tools\Char2Pos.cpp">
@@ -68,7 +74,13 @@
     <ClInclude Include="..\..\src\core\algorithm\optimize\Solver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\core\error\MyError.h">
+    <ClInclude Include="..\..\src\core\exception\CommandException.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\core\exception\FileException.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\core\exception\RuntimeException.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\core\tools\Char2Pos.h">

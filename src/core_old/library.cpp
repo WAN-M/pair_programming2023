@@ -32,6 +32,9 @@ extern "C" __declspec(dllexport) int gen_chains_all(char *words[], int len, char
 }
 
 extern "C" __declspec(dllexport) int gen_chain_word(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop) {
+    for (int i = 0; i < len; i++) {
+        printf("check %s\n", words[i]);
+    }
     Global::get_instance().reset();
     buildGraph(words, len);
     setParameters(head, tail, reject, enable_loop);

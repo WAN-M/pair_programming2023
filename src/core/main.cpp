@@ -12,6 +12,9 @@ using namespace std;
 
 #include <iostream>
 #include <fstream>
+#include "exception/CommandException.h"
+#include "exception/FileException.h"
+#include "exception/RuntimeException.h"
 
 #define maxLength 20001
 #define release true
@@ -263,7 +266,7 @@ int getPlentyLinks(char** words) {
 	//	printf("%s\n", *(words + i));
 	//	append(path, *(words + i));
 	//}
-	return number;
+	return count;
 }
 
 /// <summary>
@@ -293,7 +296,7 @@ int getPlentyCircles(char** words) {
 	//	printf("%s\n", *(words + i));
 	//	append(path, *(words + i));
 	//}
-	return number;
+	return count;
 }
 
 
@@ -357,13 +360,17 @@ void NCircle()
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
     }
-    catch (MyError e) {
-        // 环必须识别
-        //EXPECT_EQ(e.reason, DATA_CYCLIC);
-        cout << e.reason << endl;
+    catch (CommandException e) {
+        cout << e.getInfomation() << endl;
     }
-    catch (exception& e) {
-        cout << e.what() << endl;
+    catch (FileException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (RuntimeException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (exception e) {
+        cout << "unknown exception" << endl;
     }
     //// 结果不能超过上限
     //EXPECT_LT(api_res, maxLength);
@@ -408,9 +415,17 @@ void NSelfCircle()
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
     }
-    catch (MyError e) {
-        // 本题不应有异常
-        cout << e.reason << " 本题不应有异常!" << endl;
+    catch (CommandException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (FileException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (RuntimeException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (exception e) {
+        cout << "unknown exception" << endl;
     }
     // 返回全部链数目
     //EXPECT_EQ(api_res, *resNumber);
@@ -445,9 +460,17 @@ void NSelfCircleWithUpperChar()
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
     }
-    catch (MyError e) {
-        // 本题不应有异常
-        cout << e.reason << " 本题不应有异常!" << endl;
+    catch (CommandException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (FileException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (RuntimeException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (exception e) {
+        cout << "unknown exception" << endl;
     }
     // 返回全部链数目
     //EXPECT_EQ(api_res, *resNumber);
@@ -486,9 +509,17 @@ void NCircleWithUpperChar()
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
     }
-    catch (MyError e) {
-        // 本题应有异常
-        //EXPECT_EQ(e.reason, DATA_CYCLIC);
+    catch (CommandException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (FileException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (RuntimeException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (exception e) {
+        cout << "unknown exception" << endl;
     }
     // 结果不能超过上限
     //EXPECT_LT(api_res, maxLength);
@@ -529,11 +560,17 @@ void NRepeat()
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
     }
-    catch (MyError e) {
-        // 本题应有异常
-        //EXPECT_EQ(e.reason, DATA_CYCLIC);
-        cout << "没有定义该类异常 " << e.reason << endl;
-        //EXPECT_EQ(e.reason, FILE_NOT_EXIST);
+    catch (CommandException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (FileException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (RuntimeException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (exception e) {
+        cout << "unknown exception" << endl;
     }
     //// 结果不能超过上限
     //EXPECT_LT(api_res, maxLength);
@@ -574,12 +611,17 @@ void NCircleWithRepeat()
         Low(words, len);
         api_res = gen_chains_all(words, len, res);
     }
-    catch (MyError e) {
-        // 本题应有异常
-
-        cout << "没有定义该类异常 " << e.reason << endl;
-        //EXPECT_EQ(e.reason, DATA_CYCLIC);
-        //EXPECT_EQ(e.reason, FILE_NOT_EXIST);
+    catch (CommandException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (FileException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (RuntimeException e) {
+        cout << e.getInfomation() << endl;
+    }
+    catch (exception e) {
+        cout << "unknown exception" << endl;
     }
     // 结果不能超过上限
     //EXPECT_LT(api_res, maxLength);
@@ -804,12 +846,17 @@ void WCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -822,12 +869,17 @@ void WCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -840,12 +892,17 @@ void WCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -858,12 +915,17 @@ void WCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -876,12 +938,17 @@ void WCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -894,12 +961,17 @@ void WCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -912,12 +984,17 @@ void WCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -1046,12 +1123,17 @@ void CCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -1064,12 +1146,17 @@ void CCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -1082,12 +1169,17 @@ void CCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -1100,12 +1192,17 @@ void CCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -1118,12 +1215,17 @@ void CCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -1136,12 +1238,17 @@ void CCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -1154,12 +1261,17 @@ void CCircle()
                 (code & 0b0010) == 0b0010 ? reject : 0,
                 (code & 0b0001) == 0b0001 ? true : false);
         }
-        catch (MyError e) {
-            // 环必须识别
-            //EXPECT_EQ(e.reason, DATA_CYCLIC);
+        catch (CommandException e) {
+            cout << e.getInfomation() << endl;
         }
-        catch (exception& e) {
-            cout << e.what() << endl;
+        catch (FileException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (RuntimeException e) {
+            cout << e.getInfomation() << endl;
+        }
+        catch (exception e) {
+            cout << "unknown exception" << endl;
         }
         code += 1;
     }
@@ -1325,12 +1437,12 @@ void CCircle()
 ////
 
 void run() {
-    //NCircle();
-    //NSelfCircle();
-    //NSelfCircleWithUpperChar();
-    //NCircleWithUpperChar();
-    //NRepeat();
-    //NCircleWithRepeat();
+    NCircle();
+    NSelfCircle();
+    NSelfCircleWithUpperChar();
+    NCircleWithUpperChar();
+    NRepeat();
+    NCircleWithRepeat();
     NDifferentCircle();
 
     //WCircle();

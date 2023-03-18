@@ -24,7 +24,9 @@
     <ClCompile Include="..\..\src\core\algorithm\optimize\Graph.cpp" />
     <ClCompile Include="..\..\src\core\algorithm\optimize\Node.cpp" />
     <ClCompile Include="..\..\src\core\algorithm\optimize\Solver.cpp" />
-    <ClCompile Include="..\..\src\core\error\MyError.cpp" />
+    <ClCompile Include="..\..\src\core\exception\CommandException.cpp" />
+    <ClCompile Include="..\..\src\core\exception\FileException.cpp" />
+    <ClCompile Include="..\..\src\core\exception\RuntimeException.cpp" />
     <ClCompile Include="..\..\src\core\library.cpp" />
     <ClCompile Include="..\..\src\core\main.cpp" />
     <ClCompile Include="..\..\src\core\tools\Char2Pos.cpp" />
@@ -37,7 +39,9 @@
     <ClInclude Include="..\..\src\core\algorithm\optimize\Graph.h" />
     <ClInclude Include="..\..\src\core\algorithm\optimize\Node.h" />
     <ClInclude Include="..\..\src\core\algorithm\optimize\Solver.h" />
-    <ClInclude Include="..\..\src\core\error\MyError.h" />
+    <ClInclude Include="..\..\src\core\exception\CommandException.h" />
+    <ClInclude Include="..\..\src\core\exception\FileException.h" />
+    <ClInclude Include="..\..\src\core\exception\RuntimeException.h" />
     <ClInclude Include="..\..\src\core\library.h" />
     <ClInclude Include="..\..\src\core\tools\Char2Pos.h" />
     <ClInclude Include="..\..\src\core\tools\JudgeChar.h" />
@@ -131,6 +135,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\pair_programming2023\src\core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

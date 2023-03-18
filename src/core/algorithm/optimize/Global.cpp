@@ -17,4 +17,9 @@ Parameter &OPTIMIZE::Global::getParameter() {
     return parameter;
 }
 
+void OPTIMIZE::Global::reset() {
+    graph = Graph();
+    parameter = Parameter();
+}
+
 OPTIMIZE::Global::Global() = default;

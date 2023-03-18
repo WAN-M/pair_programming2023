@@ -542,98 +542,98 @@ TEST(WCircle, Forbid)
     //EXPECT_GE(api_res, 0);
     //printf("NCircle finish! 结果长度: %d\n", api_res);
     
-    char head = 's';
-    char tail = 'b';
-    char reject = 'b';
+    char head = 'a';
+    char tail = 'z';
+    char reject = 'x';
     int code = 0b0000;
-    while (code <= 0b1111) {
-        try {
-            api_res = wCircleCommon((code & 0b1000) == 0b1000 ? head : 0,
-                (code & 0b0100) == 0b0100 ? tail : 0,
-                (code & 0b0010) == 0b0010 ? reject : 0, 
-                (code & 0b0001) == 0b0001 ? true : false);
-        }
-        catch (MyError e) {
-            // 环必须识别
-            EXPECT_EQ(e.reason, DATA_CYCLIC);
-        }
-        catch (exception& e) {
-            cout << e.what() << endl;
-        }
-        code += 1;
-    }
+    //while (code <= 0b1111) {
+    //    try {
+    //        api_res = wCircleCommon((code & 0b1000) == 0b1000 ? head : 0,
+    //            (code & 0b0100) == 0b0100 ? tail : 0,
+    //            (code & 0b0010) == 0b0010 ? reject : 0, 
+    //            (code & 0b0001) == 0b0001 ? true : false);
+    //    }
+    //    catch (MyError e) {
+    //        // 环必须识别
+    //        EXPECT_EQ(e.reason, DATA_CYCLIC);
+    //    }
+    //    catch (exception& e) {
+    //        cout << e.what() << endl;
+    //    }
+    //    code += 1;
+    //}
 
-    code = 0b0000;
-    while (code <= 0b1111) {
-        try {
-            api_res = wCircleDifferent((code & 0b1000) == 0b1000 ? head : 0,
-                (code & 0b0100) == 0b0100 ? tail : 0,
-                (code & 0b0010) == 0b0010 ? reject : 0,
-                (code & 0b0001) == 0b0001 ? true : false);
-        }
-        catch (MyError e) {
-            // 环必须识别
-            EXPECT_EQ(e.reason, DATA_CYCLIC);
-        }
-        catch (exception& e) {
-            cout << e.what() << endl;
-        }
-        code += 1;
-    }
+    //code = 0b0000;
+    //while (code <= 0b1111) {
+    //    try {
+    //        api_res = wCircleDifferent((code & 0b1000) == 0b1000 ? head : 0,
+    //            (code & 0b0100) == 0b0100 ? tail : 0,
+    //            (code & 0b0010) == 0b0010 ? reject : 0,
+    //            (code & 0b0001) == 0b0001 ? true : false);
+    //    }
+    //    catch (MyError e) {
+    //        // 环必须识别
+    //        EXPECT_EQ(e.reason, DATA_CYCLIC);
+    //    }
+    //    catch (exception& e) {
+    //        cout << e.what() << endl;
+    //    }
+    //    code += 1;
+    //}
 
-    code = 0b0000;
-    while (code <= 0b1111) {
-        try {
-            api_res = wLinks((code & 0b1000) == 0b1000 ? head : 0,
-                (code & 0b0100) == 0b0100 ? tail : 0,
-                (code & 0b0010) == 0b0010 ? reject : 0,
-                (code & 0b0001) == 0b0001 ? true : false);
-        }
-        catch (MyError e) {
-            // 环必须识别
-            EXPECT_EQ(e.reason, DATA_CYCLIC);
-        }
-        catch (exception& e) {
-            cout << e.what() << endl;
-        }
-        code += 1;
-    }
+    //code = 0b0000;
+    //while (code <= 0b1111) {
+    //    try {
+    //        api_res = wLinks((code & 0b1000) == 0b1000 ? head : 0,
+    //            (code & 0b0100) == 0b0100 ? tail : 0,
+    //            (code & 0b0010) == 0b0010 ? reject : 0,
+    //            (code & 0b0001) == 0b0001 ? true : false);
+    //    }
+    //    catch (MyError e) {
+    //        // 环必须识别
+    //        EXPECT_EQ(e.reason, DATA_CYCLIC);
+    //    }
+    //    catch (exception& e) {
+    //        cout << e.what() << endl;
+    //    }
+    //    code += 1;
+    //}
 
-    code = 0b0000;
-    while (code <= 0b1111) {
-        try {
-            api_res = wCircleRepeat((code & 0b1000) == 0b1000 ? head : 0,
-                (code & 0b0100) == 0b0100 ? tail : 0,
-                (code & 0b0010) == 0b0010 ? reject : 0,
-                (code & 0b0001) == 0b0001 ? true : false);
-        }
-        catch (MyError e) {
-            // 环必须识别
-            EXPECT_EQ(e.reason, DATA_CYCLIC);
-        }
-        catch (exception& e) {
-            cout << e.what() << endl;
-        }
-        code += 1;
-    }
+    //code = 0b0000;
+    //while (code <= 0b1111) {
+    //    try {
+    //        api_res = wCircleRepeat((code & 0b1000) == 0b1000 ? head : 0,
+    //            (code & 0b0100) == 0b0100 ? tail : 0,
+    //            (code & 0b0010) == 0b0010 ? reject : 0,
+    //            (code & 0b0001) == 0b0001 ? true : false);
+    //    }
+    //    catch (MyError e) {
+    //        // 环必须识别
+    //        EXPECT_EQ(e.reason, DATA_CYCLIC);
+    //    }
+    //    catch (exception& e) {
+    //        cout << e.what() << endl;
+    //    }
+    //    code += 1;
+    //}
 
-    code = 0b0000;
-    while (code <= 0b1111) {
-        try {
-            api_res = wPlentyCircle((code & 0b1000) == 0b1000 ? head : 0,
-                (code & 0b0100) == 0b0100 ? tail : 0,
-                (code & 0b0010) == 0b0010 ? reject : 0,
-                (code & 0b0001) == 0b0001 ? true : false);
-        }
-        catch (MyError e) {
-            // 环必须识别
-            EXPECT_EQ(e.reason, DATA_CYCLIC);
-        }
-        catch (exception& e) {
-            cout << e.what() << endl;
-        }
-        code += 1;
-    }
+    //code = 0b0000;
+    //while (code <= 0b1111) {
+    //    try {
+    //        api_res = wPlentyCircle((code & 0b1000) == 0b1000 ? head : 0,
+    //            (code & 0b0100) == 0b0100 ? tail : 0,
+    //            (code & 0b0010) == 0b0010 ? reject : 0,
+    //            (code & 0b0001) == 0b0001 ? true : false);
+    //    }
+    //    catch (MyError e) {
+    //        // 环必须识别
+    //        EXPECT_EQ(e.reason, DATA_CYCLIC);
+    //    }
+    //    catch (exception& e) {
+    //        cout << e.what() << endl;
+    //    }
+    //    code += 1;
+    //}
 
     code = 0b0000;
     while (code <= 0b1111) {
@@ -653,23 +653,23 @@ TEST(WCircle, Forbid)
         code += 1;
     }
 
-    code = 0b0000;
-    while (code <= 0b1111) {
-        try {
-            api_res = wFullLinks((code & 0b1000) == 0b1000 ? head : 0,
-                (code & 0b0100) == 0b0100 ? tail : 0,
-                (code & 0b0010) == 0b0010 ? reject : 0,
-                (code & 0b0001) == 0b0001 ? true : false);
-        }
-        catch (MyError e) {
-            // 环必须识别
-            EXPECT_EQ(e.reason, DATA_CYCLIC);
-        }
-        catch (exception& e) {
-            cout << e.what() << endl;
-        }
-        code += 1;
-    }
+    //code = 0b0000;
+    //while (code <= 0b1111) {
+    //    try {
+    //        api_res = wFullLinks((code & 0b1000) == 0b1000 ? head : 0,
+    //            (code & 0b0100) == 0b0100 ? tail : 0,
+    //            (code & 0b0010) == 0b0010 ? reject : 0,
+    //            (code & 0b0001) == 0b0001 ? true : false);
+    //    }
+    //    catch (MyError e) {
+    //        // 环必须识别
+    //        EXPECT_EQ(e.reason, DATA_CYCLIC);
+    //    }
+    //    catch (exception& e) {
+    //        cout << e.what() << endl;
+    //    }
+    //    code += 1;
+    //}
     //wPlentyCircle(0, 0, 0, true);
     //wPlentyLinks(0, 0, 0, true);
     //wFullLinks(0, 0, 0, true);

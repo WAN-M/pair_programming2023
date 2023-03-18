@@ -108,11 +108,11 @@ int getFullHeadTailConnectWords(char** words) {
 
 	//pri
 	create(path);
-	for (int i = 0; i < number - 23; i++) {
+	for (int i = 0; i < count; i++) {
 		printf("word %s\n", words[i]);
 		append(path, words[i]);
 	}
-	return number - 23;
+	return count;
 }
 
 /// <summary>
@@ -1476,7 +1476,7 @@ int main() {
 
     //run();
 
-    printWFullLink('a', 'c', 0, true);
+    printWFullLink(0, 'z', 'x', true);
 
     return 0;
 }

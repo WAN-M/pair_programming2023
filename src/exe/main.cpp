@@ -88,15 +88,22 @@ void call_gen_chain_word(char *words[], int len, char *result[], char head, char
         if(debug){
             printf("动态调用，结果个数 %d\n", res);
         }
-        try{
-            create(res_path);
+        if(AS_GUI_MODULE){
             for (int i = 0; i < res; i++){
-//            printf("%s\n", result[i]);
-                append(res_path, result[i]);
+            printf("%s\n", result[i]);
+//                append(res_path, result[i]);
             }
-        }
-        catch (exception &e){
-            throw FileException(FILE_WRITE_ERROR);
+        } else{
+            try{
+                create(res_path);
+                for (int i = 0; i < res; i++){
+//            printf("%s\n", result[i]);
+                    append(res_path, result[i]);
+                }
+            }
+            catch (exception &e){
+                throw FileException(FILE_WRITE_ERROR);
+            }
         }
     }
     catch (exception &e){
@@ -121,15 +128,22 @@ void call_gen_chain_char(char *words[], int len, char *result[], char head, char
         if(debug){
             printf("动态调用，结果个数 %d\n", res);
         }
-        try{
-            create(res_path);
+        if(AS_GUI_MODULE){
             for (int i = 0; i < res; i++){
-//            printf("%s\n", result[i]);
-                append(res_path, result[i]);
+            printf("%s\n", result[i]);
+//                append(res_path, result[i]);
             }
-        }
-        catch (exception &e){
-            throw FileException(FILE_WRITE_ERROR);
+        } else{
+            try{
+                create(res_path);
+                for (int i = 0; i < res; i++){
+//            printf("%s\n", result[i]);
+                    append(res_path, result[i]);
+                }
+            }
+            catch (exception &e){
+                throw FileException(FILE_WRITE_ERROR);
+            }
         }
     }
     catch (exception &e){

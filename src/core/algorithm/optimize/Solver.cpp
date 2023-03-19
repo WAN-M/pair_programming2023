@@ -257,7 +257,7 @@ int OPTIMIZE::Solver::longestAlphas(char **result) {
     string nowPath;
     int longestWeight = 0;
     int sumLen = 0;
-    dfs(SOURCE, 0, nowPath, longestWeight, longestPath, 0, sumLen, weightByWords, 0);
+    dfs(SOURCE, 0, nowPath, longestWeight, longestPath, 0, sumLen, weightByAlphas, 0);
 
     if (sumLen > MAX_ANS_LEN) {
         throw RuntimeException(RESULT_TOO_LONG);

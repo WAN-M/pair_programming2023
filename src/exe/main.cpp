@@ -6,7 +6,7 @@
 #include "exception/Information.h"
 #include "exception/FileException.h"
 #define AS_GUI_MODULE false
-#define debug true
+#define debug false
 #define res_path "solution.txt"
 using namespace std;
 
@@ -74,8 +74,8 @@ void call_gen_chains_all(char* words[], int len, char* result[])
 // 动态调用DLL库
 void call_gen_chain_word(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop)
 {
-    myPrint(words,len);
-    cout<< head << " " << tail << " " << reject << " " << enable_loop << endl;
+//    myPrint(words,len);
+//    cout<< head << " " << tail << " " << reject << " " << enable_loop << endl;
     typedef int(*AddFunc)(char *words[], int len, char *result[], char head, char tail, char reject, bool enable_loop);
     // 定义函数指针类型
     AddFunc callFunc;

@@ -3,76 +3,43 @@
   <ItemGroup>
     <ClCompile Include="test.cpp" />
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="..\src\core_old\tools\JudgeChar.cpp">
+    <ClCompile Include="..\src\exe\exception\CommandException.cpp">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\core_old\var\Global.cpp">
+    <ClCompile Include="..\src\exe\exception\FileException.cpp">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\core_old\var\Graph.cpp">
+    <ClCompile Include="..\src\exe\exception\RuntimeException.cpp">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\core_old\var\Parameter.cpp">
+    <ClCompile Include="..\src\exe\input\Parameter.cpp">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\core_old\var\Word.cpp">
+    <ClCompile Include="..\src\exe\input\Scanner.cpp">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\core_old\library.cpp">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\core_old\algorithm\Cycle.cpp">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\core_old\algorithm\NoCycle.cpp">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\core_old\algorithm\Solver.cpp">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\core_old\error\MyError.cpp">
+    <ClCompile Include="..\src\exe\main.cpp">
       <Filter>test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="..\src\core_old\tools\JudgeChar.h">
+    <ClInclude Include="..\src\exe\exception\CommandException.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\core_old\var\Constant.h">
+    <ClInclude Include="..\src\exe\exception\FileException.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\core_old\var\Global.h">
+    <ClInclude Include="..\src\exe\exception\Information.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\core_old\var\Graph.h">
+    <ClInclude Include="..\src\exe\exception\RuntimeException.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\core_old\var\Information.h">
+    <ClInclude Include="..\src\exe\input\Parameter.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\core_old\var\Parameter.h">
-      <Filter>test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\core_old\var\Word.h">
-      <Filter>test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\core_old\library.h">
-      <Filter>test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\core_old\algorithm\Algorithm.h">
-      <Filter>test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\core_old\algorithm\Cycle.h">
-      <Filter>test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\core_old\algorithm\NoCycle.h">
-      <Filter>test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\core_old\algorithm\Solver.h">
-      <Filter>test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\core_old\error\MyError.h">
+    <ClInclude Include="..\src\exe\input\Scanner.h">
       <Filter>test</Filter>
     </ClInclude>
   </ItemGroup>

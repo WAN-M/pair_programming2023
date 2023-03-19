@@ -6,10 +6,6 @@
 #include <iostream>
 #include <fstream>
 
-#include "library.h"
-
-
-
 #define maxLength 20001
 using namespace std;
  

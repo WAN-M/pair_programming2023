@@ -33,32 +33,23 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
-    <ClInclude Include="..\src\core_old\algorithm\Algorithm.h" />
-    <ClInclude Include="..\src\core_old\algorithm\Cycle.h" />
-    <ClInclude Include="..\src\core_old\algorithm\NoCycle.h" />
-    <ClInclude Include="..\src\core_old\algorithm\Solver.h" />
-    <ClInclude Include="..\src\core_old\error\MyError.h" />
-    <ClInclude Include="..\src\core_old\library.h" />
-    <ClInclude Include="..\src\core_old\tools\JudgeChar.h" />
-    <ClInclude Include="..\src\core_old\var\Constant.h" />
-    <ClInclude Include="..\src\core_old\var\Global.h" />
-    <ClInclude Include="..\src\core_old\var\Graph.h" />
-    <ClInclude Include="..\src\core_old\var\Information.h" />
-    <ClInclude Include="..\src\core_old\var\Parameter.h" />
-    <ClInclude Include="..\src\core_old\var\Word.h" />
+    <ClInclude Include="exe\exception\CommandException.h" />
+    <ClInclude Include="exe\exception\FileException.h" />
+    <ClInclude Include="exe\exception\Information.h" />
+    <ClInclude Include="exe\exception\RuntimeException.h" />
+    <ClInclude Include="exe\forTest.h" />
+    <ClInclude Include="exe\input\Parameter.h" />
+    <ClInclude Include="exe\input\Scanner.h" />
+    <ClInclude Include="exe\me.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\core_old\algorithm\Cycle.cpp" />
-    <ClCompile Include="..\src\core_old\algorithm\NoCycle.cpp" />
-    <ClCompile Include="..\src\core_old\algorithm\Solver.cpp" />
-    <ClCompile Include="..\src\core_old\error\MyError.cpp" />
-    <ClCompile Include="..\src\core_old\library.cpp" />
-    <ClCompile Include="..\src\core_old\tools\JudgeChar.cpp" />
-    <ClCompile Include="..\src\core_old\var\Global.cpp" />
-    <ClCompile Include="..\src\core_old\var\Graph.cpp" />
-    <ClCompile Include="..\src\core_old\var\Parameter.cpp" />
-    <ClCompile Include="..\src\core_old\var\Word.cpp" />
+    <ClCompile Include="exe\exception\CommandException.cpp" />
+    <ClCompile Include="exe\exception\FileException.cpp" />
+    <ClCompile Include="exe\exception\RuntimeException.cpp" />
+    <ClCompile Include="exe\f.cpp" />
+    <ClCompile Include="exe\input\Parameter.cpp" />
+    <ClCompile Include="exe\input\Scanner.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -119,7 +110,8 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>SyncCThrow</ExceptionHandling>
-      <AdditionalIncludeDirectories>D:\pair_programming2023\src\core_old;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\pair_programming2023\test\exe;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

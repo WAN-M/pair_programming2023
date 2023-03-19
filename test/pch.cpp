@@ -6,10 +6,6 @@
 #include <iostream>
 #include <fstream>
 
-#include "library.h"
-
-
-
 #define maxLength 20001
 using namespace std;
  
@@ -102,6 +98,107 @@ int getFullHeadTailConnectWords(char** words) {
 	return count;
 }
 
+/// <summary>
+/// 重复单词
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int newRepeat0(char** words, int* resNumber, int* maxLen) {
+	words[0] = (char*)"ssstd";
+	words[1] = (char*)"ssstd";
+
+	*resNumber = 12;
+	*maxLen = 3;
+
+	return 2;
+}
+
+/// <summary>
+/// 重复单词
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int newRepeat1(char** words, int* resNumber, int* maxLen) {
+	words[0] = (char*)"ssstd";
+	words[1] = (char*)"ssstd";
+	words[2] = (char*)"ssstd";
+
+	*resNumber = 12;
+	*maxLen = 3;
+
+	return 3;
+}
+
+/// <summary>
+/// 重复单词
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int newRepeat2(char** words, int* resNumber, int* maxLen) {
+	words[0] = (char*)"ssstd";
+	words[1] = (char*)"ssstd";
+	words[2] = (char*)"asbd";
+	words[3] = (char*)"ssstd";
+
+	*resNumber = 12;
+	*maxLen = 4;
+
+	return 4;
+}
+
+/// <summary>
+/// 重复单词
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int newEmpty(char** words, int* resNumber, int* maxLen) {
+	words[0] = (char*)"";
+	words[1] = (char*)"";
+	words[2] = (char*)"";
+	words[3] = (char*)"";
+
+	*resNumber = 12;
+	*maxLen = 4;
+
+	return 4;
+}
+
+
+/// <summary>
+/// 重复单词
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
+int newUnknownChar(char** words, int* resNumber, int* maxLen) {
+	words[0] = (char*)"sshh 9ugyu0 jj9gbbn'/kp9yt fy	";
+	words[1] = (char*)"[]sooa]]s;/nBhhshcaskmc\"";
+	words[2] = (char*)"$@#GYHBuTU^$WQ@UJKP(&T^$#FTYY&*TG&*$E";
+	words[3] = (char*)"5484sdx8dsa4a8c4as !ws wq2";
+
+	*resNumber = 12;
+	*maxLen = 4;
+
+	return 4;
+
+}
+/// <summary>
+/// 大小写
+/// </summary>
+/// <param name="words"></param>
+/// <param name="resNumber"></param>
+/// <param name="maxLen"></param>
+/// <returns></returns>
+int newBig(char** words, int* resNumber, int* maxLen) {
+	words[0] = (char*)"sSSSd";
+	words[1] = (char*)"ssVVtd";
+	words[2] = (char*)"asbdBB";
+	words[3] = (char*)"ASssstd";
+
+	*resNumber = 12;
+	*maxLen = 4;
+
+	return 4;
+}
 /// <summary>
 /// 单词存在环路
 /// </summary>

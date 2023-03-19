@@ -7,7 +7,7 @@
 
 #define FILE_NOT_EXIST      "文件不存在"
 #define FILE_UNREADABLE     "文件不可读"
-#define FILE_NOT_TXT        "数据文件类型不是.txt"
+#define FILE_NOT_TXT        "未指定数据文件或数据文件类型不是.txt"
 #define PARAMETERS_CRUSH    "参数组合不兼容"
 #define MORE_THAN_ONE_ALPHA "参数指定超过一个英文字符"
 #define NO_ALPHA            "参数未指定字符"

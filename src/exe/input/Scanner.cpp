@@ -51,7 +51,7 @@ static char nextChar(char *para, char *next) {
         information += NOT_ALPHA;
         throw CommandException(information);
     }
-    return para[0];
+    return next[0];
 }
 
 void Scanner::setParas(Parameter &parameter) {

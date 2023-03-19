@@ -17,7 +17,6 @@ const char *OPTIMIZE::Edge::getWord() const {
 /*
  * 再根据单词长度从大到小排序。
  */
-// TODO 检验排序规则正确性
 bool operator<(const OPTIMIZE::Edge &a, const OPTIMIZE::Edge &b) {
     return a.getLen() > b.getLen();
 }

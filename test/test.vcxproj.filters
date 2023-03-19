@@ -3,43 +3,49 @@
   <ItemGroup>
     <ClCompile Include="test.cpp" />
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="..\src\exe\exception\CommandException.cpp">
+    <ClCompile Include="exe\exception\CommandException.cpp">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\exe\exception\FileException.cpp">
+    <ClCompile Include="exe\exception\FileException.cpp">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\exe\exception\RuntimeException.cpp">
+    <ClCompile Include="exe\exception\RuntimeException.cpp">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\exe\input\Parameter.cpp">
+    <ClCompile Include="exe\input\Parameter.cpp">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\exe\input\Scanner.cpp">
+    <ClCompile Include="exe\input\Scanner.cpp">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\exe\main.cpp">
+    <ClCompile Include="exe\f.cpp">
       <Filter>test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="..\src\exe\exception\CommandException.h">
+    <ClInclude Include="exe\exception\CommandException.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\exe\exception\FileException.h">
+    <ClInclude Include="exe\exception\FileException.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\exe\exception\Information.h">
+    <ClInclude Include="exe\exception\Information.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\exe\exception\RuntimeException.h">
+    <ClInclude Include="exe\exception\RuntimeException.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\exe\input\Parameter.h">
+    <ClInclude Include="exe\input\Parameter.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\exe\input\Scanner.h">
+    <ClInclude Include="exe\input\Scanner.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="exe\me.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="exe\forTest.h">
       <Filter>test</Filter>
     </ClInclude>
   </ItemGroup>

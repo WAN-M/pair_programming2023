@@ -5,7 +5,7 @@
 //#include "error/MyError.h"
 //#include "var/Information.h"
 #include <fstream>
-//#include "forTest.h"
+#include "forTest.h"
 
 using namespace std;
 #define maxLength 20001
@@ -72,6 +72,352 @@ void saveData(string path, char** words, int length) {
     }
 }
 
+TEST(newRepeat0, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newRepeat0(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newRepeat0.txt", words, len);
+    // exe -n nc.txt
+    char* argv[3] = { "exe.exe", "-n", "newRepeat0.txt" };
+    mainTest(3, argv);
+}
+
+TEST(newRepeat1, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newRepeat1(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newRepeat1.txt", words, len);
+    // exe -n nc.txt
+    char* argv[3] = { "exe.exe", "-n", "newRepeat1.txt" };
+    mainTest(3, argv);
+}
+
+TEST(newRepeat2, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newRepeat2(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newRepeat2.txt", words, len);
+    // exe -n nc.txt
+    char* argv[3] = { "exe.exe", "-n", "newRepeat2.txt" };
+    mainTest(3, argv);
+}
+
+TEST(newBig, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newBig(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newBig.txt", words, len);
+    // exe -n nc.txt
+    char* argv[3] = { "exe.exe", "-n", "newBig.txt" };
+    mainTest(3, argv);
+}
+
+TEST(newEmpty, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newEmpty(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newEmpty.txt", words, len);
+    // exe -n nc.txt
+    char* argv[3] = { "exe.exe", "-n", "newEmpty.txt" };
+    mainTest(3, argv);
+}
+
+TEST(newUnkownChar, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[3] = { "exe.exe", "-n", "newUnknownChar.txt" };
+    mainTest(3, argv);
+}
+
+TEST(error_order_0, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[4] = { "exe.exe", "-n", "-w", "newUnknownChar.txt" };
+    mainTest(4, argv);
+}
+
+TEST(error_order_1, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[4] = { "exe.exe", "-n", "-h", "newUnknownChar.txt" };
+    mainTest(4, argv);
+}
+
+TEST(error_order_2, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[4] = { "exe.exe", "-w", "-c", "newUnknownChar.txt" };
+    mainTest(4, argv);
+}
+
+TEST(error_order_3, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[4] = { "exe.exe", "-w", "-h", "newUnknownChar.txt" };
+    mainTest(4, argv);
+}
+
+TEST(error_order_4, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[5] = { "exe.exe", "-w", "-h", "sssss", "newUnknownChar.txt" };
+    mainTest(5, argv);
+}
+
+TEST(error_order_5, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[5] = { "exe.exe", "-w", "-h", "-", "newUnknownChar.txt" };
+    mainTest(5, argv);
+}
+
+TEST(error_order_6, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[5] = { "exe.exe", "-w", "-h", "*", "newUnknownChar.txt" };
+    mainTest(5, argv);
+}
+
+TEST(error_order_7, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[6] = { "exe.exe", "-w", "-h", "s", "-t", "newUnknownChar.txt" };
+    mainTest(6, argv);
+}
+
+TEST(error_order_8, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[6] = { "exe.exe", "-w", "-h", "s", "-g", "newUnknownChar.txt" };
+    mainTest(6, argv);
+}
+
+TEST(error_order_9, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[3] = { "exe.exe", "xxs", "newUnknownChar.txt" };
+    mainTest(3, argv);
+}
+
+TEST(error_order_10, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[2] = { "exe.exe", "newUnknownChar.txt" };
+    mainTest(2, argv);
+}
+
+TEST(error_order_11, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[2] = { "exe.exe", "-n" };
+    mainTest(2, argv);
+}
+
+TEST(error_order_12, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[1] = { "exe.exe" };
+    mainTest(1, argv);
+}
+
+TEST(error_order_13, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[3] = { "exe.exe" , "-n", "ss.x"};
+    mainTest(3, argv);
+}
+
+TEST(error_order_14, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[3] = { "exe.exe" , "-n", "yy.txt" };
+    mainTest(3, argv);
+}
+
+TEST(error_order_15, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("newUnknownChar.txt", words, len);
+    // exe -n nc.txt
+    char* argv[5] = { "exe.exe" , "-n", "-h", "s", "yy.txt" };
+    mainTest(5, argv);
+}
+
+TEST(error_order_16, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("reNSelfCircle.txt", words, len);
+    // exe -n nc.txt
+    char* argv[3] = { "exe.exe" , "-n", "reNSelfCircle.txt.txt" };
+    mainTest(3, argv);
+}
+
+
 //普通环，不允许
 TEST(NCircle, Forbid)
 {
@@ -84,8 +430,8 @@ TEST(NCircle, Forbid)
 
     saveData("NCircle.txt", words, len);
     // exe -n nc.txt
-    //char* argv[3] = { "exe.exe", "-n", "NCircle.txt" };
-    //mainTest(3, argv);
+    char* argv[3] = { "exe.exe", "-n", "NCircle.txt" };
+    mainTest(3, argv);
     //try {
     //    Low(words, len);
     //    api_res = gen_chains_all(words, len, res);
@@ -521,464 +867,465 @@ int wCircleDifferent(char head, char tail, char reject, bool loop, string path) 
     //int api_res = 0;
     //Low(words, len);
     //api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
-    return api_res;
+    return 0;
 }
 
-int wLinks(char head, char tail, char reject, bool loop) {
+int wLinks(char head, char tail, char reject, bool loop, string path) {
     char* words[maxLength];
     int* resNumber = (int*)malloc(sizeof(int));
     int* maxLen = (int*)malloc(sizeof(int));
     int len = get25HeadTailConnectLongWords(words);
     char* res[maxLength];
+
+    saveData(path, words, len);
+
     int api_res = 0;
-    Low(words, len);
-    api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
+    //Low(words, len);
+    //api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
     return api_res;
 }
 
-int wCircleRepeat(char head, char tail, char reject, bool loop) {
+int wCircleRepeat(char head, char tail, char reject, bool loop, string path) {
     char* words[maxLength];
     int* resNumber = (int*)malloc(sizeof(int));
     int* maxLen = (int*)malloc(sizeof(int));
     int len = getCircleWithRepeat(words, resNumber, maxLen);
     char* res[maxLength];
+
+    saveData(path, words, len);
+
     int api_res = 0;
-    Low(words, len);
-    api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
+    //Low(words, len);
+    //api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
     return api_res;
 }
 
-int wPlentyCircle(char head, char tail, char reject, bool loop) {
+int wPlentyCircle(char head, char tail, char reject, bool loop, string path) {
     char* words[maxLength];
     int* resNumber = (int*)malloc(sizeof(int));
     int* maxLen = (int*)malloc(sizeof(int));
     int len = getPlentyCircles(words);
     char* res[maxLength];
+
+    saveData(path, words, len);
+
     int api_res = 0;
-    Low(words, len);
-    api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
+    //Low(words, len);
+    //api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
     return api_res;
 }
 
-int wPlentyLinks(char head, char tail, char reject, bool loop) {
+int wPlentyLinks(char head, char tail, char reject, bool loop, string path) {
     char* words[maxLength];
     int* resNumber = (int*)malloc(sizeof(int));
     int* maxLen = (int*)malloc(sizeof(int));
     int len = getPlentyLinks(words);
     char* res[maxLength];
+
+    saveData(path, words, len);
+
     int api_res = 0;
-    Low(words, len);
-    api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
+    //Low(words, len);
+    //api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
     return api_res;
 }
 
-int wFullLinks(char head, char tail, char reject, bool loop) {
+int wFullLinks(char head, char tail, char reject, bool loop, string path) {
     char* words[maxLength];
     int* resNumber = (int*)malloc(sizeof(int));
     int* maxLen = (int*)malloc(sizeof(int));
     int len = getFullHeadTailConnectWords(words);
     char* res[maxLength];
+
+    saveData(path, words, len);
+
     int api_res = 0;
     //Low(words, len);
-    api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
+    //api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
     return api_res;
 }
 
-//////普通环
-//TEST(WCircle, Forbid)
+////普通环
+TEST(WCircle, Forbid)
+{
+    int api_res = 0;
+    //// 不允许环
+    //try {
+    //    api_res = wCircle(0, 0, 0, false);
+    //}
+    //catch (MyError e) {
+    //    // 环必须识别
+    //    EXPECT_EQ(e.reason, DATA_CYCLIC);
+    //}
+    //// 结果不能超过上限
+    //EXPECT_LT(api_res, maxLength);
+    //// 结果不能低于下限
+    //EXPECT_GE(api_res, 0);
+    //printf("NCircle finish! 结果长度: %d\n", api_res);
+    
+    char head = 'a';
+    char tail = 'z';
+    char reject = 'x';
+    int code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = wCircleCommon((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0, 
+                (code & 0b0001) == 0b0001 ? true : false,
+                "wCircleCommon" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+
+    code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = wCircleDifferent((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0,
+                (code & 0b0001) == 0b0001 ? true : false,
+                "wCircleDifferent" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+
+    code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = wLinks((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0,
+                (code & 0b0001) == 0b0001 ? true : false,
+                "wLinks" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+
+    code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = wCircleRepeat((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0,
+                (code & 0b0001) == 0b0001 ? true : false,
+                "wCircleRepeat" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+
+    code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = wPlentyCircle((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0,
+                (code & 0b0001) == 0b0001 ? true : false,
+                "wPlentyCircle" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+
+    code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = wPlentyLinks((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0,
+                (code & 0b0001) == 0b0001 ? true : false,
+                "wPlentyLinks" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+
+    code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = wFullLinks((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0,
+                (code & 0b0001) == 0b0001 ? true : false,
+                "wFullLinks" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+    //wPlentyCircle(0, 0, 0, true);
+    //wPlentyLinks(0, 0, 0, true);
+    //wFullLinks(0, 0, 0, true);
+}
+
+
+/// <summary>
+/// 集中测试 gen_chain_word
+/// </summary>
+/// <param name="NameOfTestFunction">测试函数名</param>
+/// <param name="DescriptionOfAssert">渴望得到的测试效果描述</param>
+
+int cCircle(char head, char tail, char reject, bool loop, string path) {
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = getDifferentCircle(words, resNumber, maxLen);
+    char* res[maxLength];
+
+    saveData(path, words, len);
+
+    int api_res = 0;
+    //Low(words, len);
+    //api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
+    return api_res;
+}
+
+int cCircleDifferent(char head, char tail, char reject, bool loop, string path) {
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = getDifferentCircle(words, resNumber, maxLen);
+    char* res[maxLength];
+
+    saveData(path, words, len);
+
+    int api_res = 0;
+    //Low(words, len);
+    //api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
+    return api_res;
+}
+
+int cLinks(char head, char tail, char reject, bool loop, string path) {
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = get25HeadTailConnectLongWords(words);
+    char* res[maxLength];
+
+    saveData(path, words, len);
+
+    int api_res = 0;
+    //Low(words, len);
+    //api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
+    return api_res;
+}
+
+int cCircleRepeat(char head, char tail, char reject, bool loop, string path) {
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = getCircleWithRepeat(words, resNumber, maxLen);
+    char* res[maxLength];
+    saveData(path, words, len);
+    int api_res = 0;
+    //Low(words, len);
+    //api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
+    return api_res;
+}
+
+int cPlentyCircle(char head, char tail, char reject, bool loop, string path) {
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = getPlentyCircles(words);
+    char* res[maxLength];
+    saveData(path, words, len);
+    int api_res = 0;
+    //Low(words, len);
+    //api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
+    return api_res;
+}
+
+int cPlentyLinks(char head, char tail, char reject, bool loop, string path) {
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = getPlentyLinks(words);
+    char* res[maxLength];
+    saveData(path, words, len);
+    int api_res = 0;
+    //Low(words, len);
+    //api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
+    return api_res;
+}
+
+int cFullLinks(char head, char tail, char reject, bool loop, string path) {
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = getFullHeadTailConnectWords(words);
+    char* res[maxLength];
+    saveData(path, words, len);
+    int api_res = 0;
+    //Low(words, len);
+    //api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
+    return api_res;
+}
+
+////普通环
+TEST(CCircle, Forbid)
+{
+    int api_res = 0;
+    //// 不允许环
+    //try {
+    //    api_res = wCircle(0, 0, 0, false);
+    //}
+    //catch (MyError e) {
+    //    // 环必须识别
+    //    EXPECT_EQ(e.reason, DATA_CYCLIC);
+    //}
+    //// 结果不能超过上限
+    //EXPECT_LT(api_res, maxLength);
+    //// 结果不能低于下限
+    //EXPECT_GE(api_res, 0);
+    //printf("NCircle finish! 结果长度: %d\n", api_res);
+
+    char head = 's';
+    char tail = 'b';
+    char reject = 's';
+    int code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = cCircle((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0,
+                (code & 0b0001) == 0b0001 ? true : false,
+                "cCircle" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+
+    code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = cCircleDifferent((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0,
+                (code & 0b0001) == 0b0001 ? true : false,
+                "cCircleDifferent" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+
+    code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = cLinks((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0,
+                (code & 0b0001) == 0b0001 ? true : false,
+                "cLinks" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+
+    code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = cCircleRepeat((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0,
+                (code & 0b0001) == 0b0001 ? true : false,
+                "cCircleRepeat" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+
+    code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = cPlentyCircle((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0,
+                (code & 0b0001) == 0b0001 ? true : false,
+                "cPlentyCircle" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+
+    code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = cPlentyLinks((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0,
+                (code & 0b0001) == 0b0001 ? true : false,
+                "cPlentyLinks" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+
+    code = 0b0000;
+    while (code <= 0b1111) {
+        try {
+            api_res = cFullLinks((code & 0b1000) == 0b1000 ? head : 0,
+                (code & 0b0100) == 0b0100 ? tail : 0,
+                (code & 0b0010) == 0b0010 ? reject : 0,
+                (code & 0b0001) == 0b0001 ? true : false,
+                "cFullLinks" + to_string(code) + ".txt");
+        }
+        catch (exception& e) {
+            cout << e.what() << endl;
+        }
+        code += 1;
+    }
+    //cPlentyCircle(0, 0, 0, true);
+    //cPlentyLinks(0, 0, 0, true);
+}
+
+//int _tmain(int argc, _TCHAR* argv[])
 //{
-//    int api_res = 0;
-//    //// 不允许环
-//    //try {
-//    //    api_res = wCircle(0, 0, 0, false);
-//    //}
-//    //catch (MyError e) {
-//    //    // 环必须识别
-//    //    EXPECT_EQ(e.reason, DATA_CYCLIC);
-//    //}
-//    //// 结果不能超过上限
-//    //EXPECT_LT(api_res, maxLength);
-//    //// 结果不能低于下限
-//    //EXPECT_GE(api_res, 0);
-//    //printf("NCircle finish! 结果长度: %d\n", api_res);
-//    
-//    char head = 'a';
-//    char tail = 'z';
-//    char reject = 'x';
-//    int code = 0b0000;
-//    //while (code <= 0b1111) {
-//    //    try {
-//    //        api_res = wCircleCommon((code & 0b1000) == 0b1000 ? head : 0,
-//    //            (code & 0b0100) == 0b0100 ? tail : 0,
-//    //            (code & 0b0010) == 0b0010 ? reject : 0, 
-//    //            (code & 0b0001) == 0b0001 ? true : false);
-//    //    }
-//    //    catch (MyError e) {
-//    //        // 环必须识别
-//    //        EXPECT_EQ(e.reason, DATA_CYCLIC);
-//    //    }
-//    //    catch (exception& e) {
-//    //        cout << e.what() << endl;
-//    //    }
-//    //    code += 1;
-//    //}
-//
-//    //code = 0b0000;
-//    //while (code <= 0b1111) {
-//    //    try {
-//    //        api_res = wCircleDifferent((code & 0b1000) == 0b1000 ? head : 0,
-//    //            (code & 0b0100) == 0b0100 ? tail : 0,
-//    //            (code & 0b0010) == 0b0010 ? reject : 0,
-//    //            (code & 0b0001) == 0b0001 ? true : false);
-//    //    }
-//    //    catch (MyError e) {
-//    //        // 环必须识别
-//    //        EXPECT_EQ(e.reason, DATA_CYCLIC);
-//    //    }
-//    //    catch (exception& e) {
-//    //        cout << e.what() << endl;
-//    //    }
-//    //    code += 1;
-//    //}
-//
-//    //code = 0b0000;
-//    //while (code <= 0b1111) {
-//    //    try {
-//    //        api_res = wLinks((code & 0b1000) == 0b1000 ? head : 0,
-//    //            (code & 0b0100) == 0b0100 ? tail : 0,
-//    //            (code & 0b0010) == 0b0010 ? reject : 0,
-//    //            (code & 0b0001) == 0b0001 ? true : false);
-//    //    }
-//    //    catch (MyError e) {
-//    //        // 环必须识别
-//    //        EXPECT_EQ(e.reason, DATA_CYCLIC);
-//    //    }
-//    //    catch (exception& e) {
-//    //        cout << e.what() << endl;
-//    //    }
-//    //    code += 1;
-//    //}
-//
-//    //code = 0b0000;
-//    //while (code <= 0b1111) {
-//    //    try {
-//    //        api_res = wCircleRepeat((code & 0b1000) == 0b1000 ? head : 0,
-//    //            (code & 0b0100) == 0b0100 ? tail : 0,
-//    //            (code & 0b0010) == 0b0010 ? reject : 0,
-//    //            (code & 0b0001) == 0b0001 ? true : false);
-//    //    }
-//    //    catch (MyError e) {
-//    //        // 环必须识别
-//    //        EXPECT_EQ(e.reason, DATA_CYCLIC);
-//    //    }
-//    //    catch (exception& e) {
-//    //        cout << e.what() << endl;
-//    //    }
-//    //    code += 1;
-//    //}
-//
-//    //code = 0b0000;
-//    //while (code <= 0b1111) {
-//    //    try {
-//    //        api_res = wPlentyCircle((code & 0b1000) == 0b1000 ? head : 0,
-//    //            (code & 0b0100) == 0b0100 ? tail : 0,
-//    //            (code & 0b0010) == 0b0010 ? reject : 0,
-//    //            (code & 0b0001) == 0b0001 ? true : false);
-//    //    }
-//    //    catch (MyError e) {
-//    //        // 环必须识别
-//    //        EXPECT_EQ(e.reason, DATA_CYCLIC);
-//    //    }
-//    //    catch (exception& e) {
-//    //        cout << e.what() << endl;
-//    //    }
-//    //    code += 1;
-//    //}
-//
-//    code = 0b0000;
-//    while (code <= 0b1111) {
-//        try {
-//            api_res = wPlentyLinks((code & 0b1000) == 0b1000 ? head : 0,
-//                (code & 0b0100) == 0b0100 ? tail : 0,
-//                (code & 0b0010) == 0b0010 ? reject : 0,
-//                (code & 0b0001) == 0b0001 ? true : false);
-//        }
-//        catch (MyError e) {
-//            // 环必须识别
-//            EXPECT_EQ(e.reason, DATA_CYCLIC);
-//        }
-//        catch (exception& e) {
-//            cout << e.what() << endl;
-//        }
-//        code += 1;
-//    }
-//
-//    //code = 0b0000;
-//    //while (code <= 0b1111) {
-//    //    try {
-//    //        api_res = wFullLinks((code & 0b1000) == 0b1000 ? head : 0,
-//    //            (code & 0b0100) == 0b0100 ? tail : 0,
-//    //            (code & 0b0010) == 0b0010 ? reject : 0,
-//    //            (code & 0b0001) == 0b0001 ? true : false);
-//    //    }
-//    //    catch (MyError e) {
-//    //        // 环必须识别
-//    //        EXPECT_EQ(e.reason, DATA_CYCLIC);
-//    //    }
-//    //    catch (exception& e) {
-//    //        cout << e.what() << endl;
-//    //    }
-//    //    code += 1;
-//    //}
-//    //wPlentyCircle(0, 0, 0, true);
-//    //wPlentyLinks(0, 0, 0, true);
-//    //wFullLinks(0, 0, 0, true);
+//	testing::InitGoogleTest(&argc, argv);
+//	testing::GTEST_FLAG(output) = "xml:";
+//	return RUN_ALL_TESTS();
 //}
-//
-//
-///// <summary>
-///// 集中测试 gen_chain_word
-///// </summary>
-///// <param name="NameOfTestFunction">测试函数名</param>
-///// <param name="DescriptionOfAssert">渴望得到的测试效果描述</param>
-//
-//int cCircle(char head, char tail, char reject, bool loop) {
-//    char* words[maxLength];
-//    int* resNumber = (int*)malloc(sizeof(int));
-//    int* maxLen = (int*)malloc(sizeof(int));
-//    int len = getDifferentCircle(words, resNumber, maxLen);
-//    char* res[maxLength];
-//    int api_res = 0;
-//    Low(words, len);
-//    api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
-//    return api_res;
-//}
-//
-//int cCircleDifferent(char head, char tail, char reject, bool loop) {
-//    char* words[maxLength];
-//    int* resNumber = (int*)malloc(sizeof(int));
-//    int* maxLen = (int*)malloc(sizeof(int));
-//    int len = getDifferentCircle(words, resNumber, maxLen);
-//    char* res[maxLength];
-//    int api_res = 0;
-//    Low(words, len);
-//    api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
-//    return api_res;
-//}
-//
-//int cLinks(char head, char tail, char reject, bool loop) {
-//    char* words[maxLength];
-//    int* resNumber = (int*)malloc(sizeof(int));
-//    int* maxLen = (int*)malloc(sizeof(int));
-//    int len = get25HeadTailConnectLongWords(words);
-//    char* res[maxLength];
-//    int api_res = 0;
-//    Low(words, len);
-//    api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
-//    return api_res;
-//}
-//
-//int cCircleRepeat(char head, char tail, char reject, bool loop) {
-//    char* words[maxLength];
-//    int* resNumber = (int*)malloc(sizeof(int));
-//    int* maxLen = (int*)malloc(sizeof(int));
-//    int len = getCircleWithRepeat(words, resNumber, maxLen);
-//    char* res[maxLength];
-//    int api_res = 0;
-//    Low(words, len);
-//    api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
-//    return api_res;
-//}
-//
-//int cPlentyCircle(char head, char tail, char reject, bool loop) {
-//    char* words[maxLength];
-//    int* resNumber = (int*)malloc(sizeof(int));
-//    int* maxLen = (int*)malloc(sizeof(int));
-//    int len = getPlentyCircles(words);
-//    char* res[maxLength];
-//    int api_res = 0;
-//    Low(words, len);
-//    api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
-//    return api_res;
-//}
-//
-//int cPlentyLinks(char head, char tail, char reject, bool loop) {
-//    char* words[maxLength];
-//    int* resNumber = (int*)malloc(sizeof(int));
-//    int* maxLen = (int*)malloc(sizeof(int));
-//    int len = getPlentyLinks(words);
-//    char* res[maxLength];
-//    int api_res = 0;
-//    Low(words, len);
-//    api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
-//    return api_res;
-//}
-//
-//int cFullLinks(char head, char tail, char reject, bool loop) {
-//    char* words[maxLength];
-//    int* resNumber = (int*)malloc(sizeof(int));
-//    int* maxLen = (int*)malloc(sizeof(int));
-//    int len = getFullHeadTailConnectWords(words);
-//    char* res[maxLength];
-//    int api_res = 0;
-//    Low(words, len);
-//    api_res = gen_chain_char(words, len, res, head, tail, reject, loop);
-//    return api_res;
-//}
-//
-//////普通环
-//TEST(CCircle, Forbid)
-//{
-//    int api_res = 0;
-//    //// 不允许环
-//    //try {
-//    //    api_res = wCircle(0, 0, 0, false);
-//    //}
-//    //catch (MyError e) {
-//    //    // 环必须识别
-//    //    EXPECT_EQ(e.reason, DATA_CYCLIC);
-//    //}
-//    //// 结果不能超过上限
-//    //EXPECT_LT(api_res, maxLength);
-//    //// 结果不能低于下限
-//    //EXPECT_GE(api_res, 0);
-//    //printf("NCircle finish! 结果长度: %d\n", api_res);
-//
-//    char head = 's';
-//    char tail = 'b';
-//    char reject = 's';
-//    int code = 0b0000;
-//    while (code <= 0b1111) {
-//        try {
-//            api_res = cCircle((code & 0b1000) == 0b1000 ? head : 0,
-//                (code & 0b0100) == 0b0100 ? tail : 0,
-//                (code & 0b0010) == 0b0010 ? reject : 0,
-//                (code & 0b0001) == 0b0001 ? true : false);
-//        }
-//        catch (MyError e) {
-//            // 环必须识别
-//            EXPECT_EQ(e.reason, DATA_CYCLIC);
-//        }
-//        catch (exception& e) {
-//            cout << e.what() << endl;
-//        }
-//        code += 1;
-//    }
-//
-//    code = 0b0000;
-//    while (code <= 0b1111) {
-//        try {
-//            api_res = cCircleDifferent((code & 0b1000) == 0b1000 ? head : 0,
-//                (code & 0b0100) == 0b0100 ? tail : 0,
-//                (code & 0b0010) == 0b0010 ? reject : 0,
-//                (code & 0b0001) == 0b0001 ? true : false);
-//        }
-//        catch (MyError e) {
-//            // 环必须识别
-//            EXPECT_EQ(e.reason, DATA_CYCLIC);
-//        }
-//        catch (exception& e) {
-//            cout << e.what() << endl;
-//        }
-//        code += 1;
-//    }
-//
-//    code = 0b0000;
-//    while (code <= 0b1111) {
-//        try {
-//            api_res = cLinks((code & 0b1000) == 0b1000 ? head : 0,
-//                (code & 0b0100) == 0b0100 ? tail : 0,
-//                (code & 0b0010) == 0b0010 ? reject : 0,
-//                (code & 0b0001) == 0b0001 ? true : false);
-//        }
-//        catch (MyError e) {
-//            // 环必须识别
-//            EXPECT_EQ(e.reason, DATA_CYCLIC);
-//        }
-//        catch (exception& e) {
-//            cout << e.what() << endl;
-//        }
-//        code += 1;
-//    }
-//
-//    code = 0b0000;
-//    while (code <= 0b1111) {
-//        try {
-//            api_res = cCircleRepeat((code & 0b1000) == 0b1000 ? head : 0,
-//                (code & 0b0100) == 0b0100 ? tail : 0,
-//                (code & 0b0010) == 0b0010 ? reject : 0,
-//                (code & 0b0001) == 0b0001 ? true : false);
-//        }
-//        catch (MyError e) {
-//            // 环必须识别
-//            EXPECT_EQ(e.reason, DATA_CYCLIC);
-//        }
-//        catch (exception& e) {
-//            cout << e.what() << endl;
-//        }
-//        code += 1;
-//    }
-//
-//    code = 0b0000;
-//    while (code <= 0b1111) {
-//        try {
-//            api_res = cPlentyCircle((code & 0b1000) == 0b1000 ? head : 0,
-//                (code & 0b0100) == 0b0100 ? tail : 0,
-//                (code & 0b0010) == 0b0010 ? reject : 0,
-//                (code & 0b0001) == 0b0001 ? true : false);
-//        }
-//        catch (MyError e) {
-//            // 环必须识别
-//            EXPECT_EQ(e.reason, DATA_CYCLIC);
-//        }
-//        catch (exception& e) {
-//            cout << e.what() << endl;
-//        }
-//        code += 1;
-//    }
-//
-//    code = 0b0000;
-//    while (code <= 0b1111) {
-//        try {
-//            api_res = cPlentyLinks((code & 0b1000) == 0b1000 ? head : 0,
-//                (code & 0b0100) == 0b0100 ? tail : 0,
-//                (code & 0b0010) == 0b0010 ? reject : 0,
-//                (code & 0b0001) == 0b0001 ? true : false);
-//        }
-//        catch (MyError e) {
-//            // 环必须识别
-//            EXPECT_EQ(e.reason, DATA_CYCLIC);
-//        }
-//        catch (exception& e) {
-//            cout << e.what() << endl;
-//        }
-//        code += 1;
-//    }
-//
-//    code = 0b0000;
-//    while (code <= 0b1111) {
-//        try {
-//            api_res = cFullLinks((code & 0b1000) == 0b1000 ? head : 0,
-//                (code & 0b0100) == 0b0100 ? tail : 0,
-//                (code & 0b0010) == 0b0010 ? reject : 0,
-//                (code & 0b0001) == 0b0001 ? true : false);
-//        }
-//        catch (MyError e) {
-//            // 环必须识别
-//            EXPECT_EQ(e.reason, DATA_CYCLIC);
-//        }
-//        catch (exception& e) {
-//            cout << e.what() << endl;
-//        }
-//        code += 1;
-//    }
-//    //cPlentyCircle(0, 0, 0, true);
-//    //cPlentyLinks(0, 0, 0, true);
-//}
-//
-////int _tmain(int argc, _TCHAR* argv[])
-////{
-////	testing::InitGoogleTest(&argc, argv);
-////	testing::GTEST_FLAG(output) = "xml:";
-////	return RUN_ALL_TESTS();
-////}
+
+TEST(error_order_17, Forbid)
+{
+    char* words[maxLength];
+    int* resNumber = (int*)malloc(sizeof(int));
+    int* maxLen = (int*)malloc(sizeof(int));
+    int len = newUnknownChar(words, resNumber, maxLen);
+    char* res[maxLength];
+    int api_res = 0;
+
+    saveData("reNSelfCircle.txt", words, len);
+    // exe -n nc.txt
+    char* argv[3] = { "exe.exe" , "-n", "soulution.txt" };
+    mainTest(3, argv);
+}

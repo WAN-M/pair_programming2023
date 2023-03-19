@@ -19,3 +19,12 @@ int getCircleWithUpperChar(char** words, int* resNumber, int* maxLen);
 int getRepeat(char** words, int* resNumber, int* maxLen);
 int getCircleWithRepeat(char** words, int* resNumber, int* maxLen);
 int getDifferentCircle(char** words, int* resNumber, int* maxLen);
+
+// “Ï≥£≤‚ ‘
+int newRepeat0(char** words, int* resNumber, int* maxLen);
+int newRepeat1(char** words, int* resNumber, int* maxLen);
+int newRepeat2(char** words, int* resNumber, int* maxLen);
+
+int newBig(char** words, int* resNumber, int* maxLen);
+int newEmpty(char** words, int* resNumber, int* maxLen);
+int newUnknownChar(char** words, int* resNumber, int* maxLen);

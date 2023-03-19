@@ -38,7 +38,7 @@ static void checkParas(Parameter parameter) {
 
 static char nextChar(char *para, char *next) {
     // para长度不可能为0，没指定字符则para为下一个参数
-    if (next[0] == '-') {
+    if (next == nullptr || next[0] == '-') {
         string information = para;
         information += NO_ALPHA;
         throw CommandException(information);
@@ -93,13 +93,13 @@ void Scanner::setParas(Parameter &parameter) {
                     parameter.setR(true);
                     break;
                 case 'h':
-                    parameter.setH(nextChar(paras[i], paras[i + 1]));
+                    parameter.setH(nextChar(paras[i], i + 1 < n - 1 ? paras[i + 1] : nullptr));
                     break;
                 case 't':
-                    parameter.setT(nextChar(paras[i], paras[i + 1]));
+                    parameter.setT(nextChar(paras[i], i + 1 < n - 1 ? paras[i + 1] : nullptr));
                     break;
                 case 'j':
-                    parameter.setJ(nextChar(paras[i], paras[i + 1]));
+                    parameter.setJ(nextChar(paras[i], i + 1 < n - 1 ? paras[i + 1] : nullptr));
                     break;
                 default:
                     break;
@@ -183,7 +183,7 @@ void Scanner::readAvailableFile(const char *const fileName) {
 //        *((this->words) + i) = allWords.;
 //    }
     int index = 0;
-    for(string pointer : allWords){
+    for (string pointer: allWords) {
         *((this->words) + index) = (char *) malloc(sizeof(char) * (pointer.size() + 5));
         strcpy((this->words)[index++], pointer.c_str());
     }

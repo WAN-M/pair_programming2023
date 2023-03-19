@@ -1650,26 +1650,26 @@ int main() {
     }*/
 
     /**/
-    try {
-        wCircleRepeat('g', 0, 0, true);
-//        cLinks(  0,
-//              0,
-//              0,
-//              false);
-    }
-    catch (CommandException e) {
-        cout << e.getInfomation() << endl;
-    }
-    catch (FileException e) {
-        cout << e.getInfomation() << endl;
-    }
-    catch (RuntimeException e) {
-        cout << e.getInfomation() << endl;
-    }
-    catch (exception e) {
-        cout << "unknown exception" << endl;
-    }
-//    run();
+//    try {
+//        wCircleRepeat('g', 0, 0, true);
+////        cLinks(  0,
+////              0,
+////              0,
+////              false);
+//    }
+//    catch (CommandException e) {
+//        cout << e.getInfomation() << endl;
+//    }
+//    catch (FileException e) {
+//        cout << e.getInfomation() << endl;
+//    }
+//    catch (RuntimeException e) {
+//        cout << e.getInfomation() << endl;
+//    }
+//    catch (exception e) {
+//        cout << "unknown exception" << endl;
+//    }
+    run();
     //cout << "s" << endl;
 
     //printWFullLink(0, 'z', 'x', true);

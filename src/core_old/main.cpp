@@ -729,9 +729,9 @@ int wPlentyLinks(char head, char tail, char reject, bool loop) {
     Low(words, len);
     api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
 
-    for (int i = 0; i < api_res; i++) {
-        printf("res %s\n", res[i]);
-    }
+    //for (int i = 0; i < api_res; i++) {
+    //    printf("res %s\n", res[i]);
+    //}
 
     return api_res;
 }
@@ -774,10 +774,10 @@ int printWFullLink(char head, char tail, char reject, bool loop) {
     //    myappend(path, words[i]);
     //}
 
-    for (int i = 0; i < api_res; i++) {
-        printf("%s\n", res[i]);
-        //myappend(path, res[i]);
-    }
+    //for (int i = 0; i < api_res; i++) {
+    //    printf("%s\n", res[i]);
+    //    //myappend(path, res[i]);
+    //}
     return api_res;
 }
 
@@ -1354,10 +1354,10 @@ int main() {
         std::cout << result[i] << std::endl;
     }*/
 
-    //run();
+    run();
 
     
-    cout << wPlentyLinks('a', 'z', 'x', false) << endl;
+    //cout << wPlentyLinks('a', 'z', 'x', false) << endl;
     //printWFullLink(0, 0, 0, true);
 
     return 0;

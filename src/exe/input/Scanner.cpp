@@ -120,7 +120,6 @@ void Scanner::readAvailableFile(const char *const fileName) {
     fstream inFile;
     inFile.open(fileName, ios::in);
     if (!inFile.is_open()) {
-//        cout << "打开文件失败" << endl;
         throw FileException(FILE_NOT_EXIST);
     }
 

@@ -223,11 +223,11 @@ int getRepeat(char** words, int* resNumber, int* maxLen) {
 /// <param name="words"></param>
 /// <returns></returns>
 int getCircleWithRepeat(char** words, int* resNumber, int* maxLen) {
-	words[0] = (char*)"abcdE";
-	words[1] = (char*)"eccct";
-	words[2] = (char*)"BaaaB";
-	words[3] = (char*)"BaaaB";
-	words[4] = (char*)"tss";
+	words[0] = (char*)"abc";
+	words[1] = (char*)"cde";
+	words[2] = (char*)"efg";
+	words[3] = (char*)"ghi";
+	words[4] = (char*)"ikkkkk";
 
 	*resNumber = 4;
 	*maxLen = 3;
@@ -815,6 +815,9 @@ int wCircleRepeat(char head, char tail, char reject, bool loop) {
     int api_res = 0;
     Low(words, len);
     api_res = gen_chain_word(words, len, res, head, tail, reject, loop);
+    for(int i = 0; i < len; i++){
+        cout << res[i] << endl;
+    }
     return api_res;
 }
 
@@ -1646,11 +1649,13 @@ int main() {
         cout << "unknown exception" << endl;
     }*/
 
-    /*try {
-        cLinks(  0,
-              0,
-              0,
-              false);
+    /**/
+    try {
+        wCircleRepeat('g', 0, 0, true);
+//        cLinks(  0,
+//              0,
+//              0,
+//              false);
     }
     catch (CommandException e) {
         cout << e.getInfomation() << endl;
@@ -1663,9 +1668,8 @@ int main() {
     }
     catch (exception e) {
         cout << "unknown exception" << endl;
-    }*/
-
-    run();
+    }
+//    run();
     //cout << "s" << endl;
 
     //printWFullLink(0, 'z', 'x', true);

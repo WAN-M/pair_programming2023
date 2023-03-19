@@ -32,6 +32,36 @@ add_library(core
         exception/RuntimeException.h)
 
 #add_executable(core
+##        SHARED
+#        main.cpp
+#        library.h
+#        library.cpp
+#        var/Parameter.cpp
+#        var/Parameter.h
+#        var/Constant.h
+#        tools/JudgeChar.h
+#        tools/JudgeChar.cpp
+#        var/Information.h
+#        algorithm/optimize/Graph.cpp
+#        algorithm/optimize/Graph.h
+#        algorithm/optimize/Node.cpp
+#        algorithm/optimize/Node.h
+#        algorithm/optimize/Edge.cpp
+#        algorithm/optimize/Edge.h
+#        tools/Char2Pos.cpp
+#        tools/Char2Pos.h
+#        algorithm/optimize/Solver.cpp
+#        algorithm/optimize/Solver.h
+#        algorithm/optimize/Global.cpp
+#        algorithm/optimize/Global.h
+#        exception/CommandException.cpp
+#        exception/CommandException.h
+#        exception/FileException.cpp
+#        exception/FileException.h
+#        exception/RuntimeException.cpp
+#        exception/RuntimeException.h)
+
+#add_executable(core
 #        main.cpp
 #        library.cpp
 #        library.h
